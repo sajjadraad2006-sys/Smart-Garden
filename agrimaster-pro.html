@@ -1,0 +1,2032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgriMaster Pro — Farm Management Dashboard</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ===== CSS CUSTOM PROPERTIES ===== */
+:root {
+  --bg-deep: #060e06;
+  --bg-primary: #0a1a0a;
+  --bg-card: #0d220d;
+  --bg-card2: #111e11;
+  --bg-glass: rgba(15,40,15,0.7);
+  --border-green: rgba(46,204,113,0.18);
+  --border-green-hover: rgba(46,204,113,0.45);
+  --accent: #2ecc71;
+  --accent-dim: #1a8a4a;
+  --accent-glow: rgba(46,204,113,0.25);
+  --amber: #f39c12;
+  --amber-dim: rgba(243,156,18,0.15);
+  --red: #e74c3c;
+  --red-dim: rgba(231,76,60,0.15);
+  --blue: #3498db;
+  --text-primary: #d4f5d4;
+  --text-secondary: #7aab7a;
+  --text-muted: #4a6e4a;
+  --header-h: 68px;
+  --sidebar-w: 340px;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --font-display: 'Georgia', serif;
+  --font-body: 'Courier New', monospace;
+  --transition: 0.22s cubic-bezier(0.4,0,0.2,1);
+  --shadow-card: 0 4px 32px rgba(0,0,0,0.5), 0 0 0 1px var(--border-green);
+  --glow-accent: 0 0 20px var(--accent-glow);
+}
+[data-theme="light"] {
+  --bg-deep: #e8f5e9;
+  --bg-primary: #f1f8e9;
+  --bg-card: #ffffff;
+  --bg-card2: #f9fbe7;
+  --bg-glass: rgba(255,255,255,0.85);
+  --border-green: rgba(46,204,113,0.3);
+  --border-green-hover: rgba(46,204,113,0.6);
+  --text-primary: #1b4a1b;
+  --text-secondary: #2e7d32;
+  --text-muted: #66bb6a;
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.1), 0 0 0 1px var(--border-green);
+}
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg-deep);
+  color:var(--text-primary);
+  font-family:var(--font-body);
+  font-size:13px;
+  line-height:1.5;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:var(--bg-primary)}
+::-webkit-scrollbar-thumb{background:var(--accent-dim);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+/* ===== BACKGROUND TEXTURE ===== */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(46,204,113,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 90%, rgba(46,204,113,0.03) 0%, transparent 60%);
+  pointer-events:none;
+  z-index:0;
+}
+/* ===== HEADER ===== */
+#header{
+  position:fixed;top:0;left:0;right:0;
+  height:var(--header-h);
+  background:rgba(6,14,6,0.95);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border-green);
+  display:flex;align-items:center;
+  padding:0 20px;
+  gap:16px;
+  z-index:1000;
+}
+.logo{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--font-display);
+  font-size:20px;
+  font-weight:700;
+  color:var(--accent);
+  letter-spacing:0.5px;
+  text-shadow:0 0 20px var(--accent-glow);
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.logo i{font-size:22px;animation:pulse-glow 2.5s ease-in-out infinite}
+@keyframes pulse-glow{0%,100%{filter:drop-shadow(0 0 4px var(--accent))}50%{filter:drop-shadow(0 0 12px var(--accent))}}
+.header-center{flex:1;display:flex;align-items:center;justify-content:center;gap:20px}
+#live-clock{
+  font-family:var(--font-display);
+  font-size:17px;
+  color:var(--accent);
+  letter-spacing:2px;
+  text-shadow:0 0 10px var(--accent-glow);
+}
+#weather-widget{
+  display:flex;align-items:center;gap:8px;
+  background:var(--bg-glass);
+  border:1px solid var(--border-green);
+  border-radius:40px;
+  padding:6px 14px;
+  font-size:12px;
+  color:var(--text-secondary);
+}
+#weather-icon{font-size:18px}
+.header-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.icon-btn{
+  width:38px;height:38px;
+  border:1px solid var(--border-green);
+  background:var(--bg-card);
+  border-radius:50%;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text-secondary);
+  transition:var(--transition);
+  position:relative;
+  font-size:14px;
+}
+.icon-btn:hover{border-color:var(--accent);color:var(--accent);box-shadow:var(--glow-accent)}
+.badge{
+  position:absolute;top:-4px;right:-4px;
+  background:var(--red);
+  color:#fff;
+  font-size:9px;
+  width:16px;height:16px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:sans-serif;
+}
+/* ===== MAIN LAYOUT ===== */
+#app{
+  padding-top:var(--header-h);
+  display:flex;
+  min-height:100vh;
+}
+#sidebar{
+  width:var(--sidebar-w);
+  min-width:var(--sidebar-w);
+  background:rgba(6,14,6,0.97);
+  border-right:1px solid var(--border-green);
+  padding:16px;
+  overflow-y:auto;
+  transition:transform var(--transition);
+  position:fixed;
+  top:var(--header-h);
+  bottom:0;
+  left:0;
+  z-index:900;
+}
+#sidebar.collapsed{transform:translateX(calc(-1 * var(--sidebar-w)))}
+#main{
+  flex:1;
+  padding:20px;
+  margin-left:var(--sidebar-w);
+  transition:margin-left var(--transition);
+  min-width:0;
+}
+#main.expanded{margin-left:0}
+.section-title{
+  font-family:var(--font-display);
+  font-size:12px;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:14px;
+  display:flex;align-items:center;gap:8px;
+  border-bottom:1px solid var(--border-green);
+  padding-bottom:8px;
+}
+/* ===== SENSOR GAUGES GRID ===== */
+#sensors-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
+  gap:12px;
+  margin-bottom:24px;
+}
+.sensor-card{
+  background:var(--bg-card);
+  border:1px solid var(--border-green);
+  border-radius:var(--radius);
+  padding:14px 12px 10px;
+  position:relative;
+  transition:var(--transition);
+  overflow:hidden;
+}
+.sensor-card::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;
+  height:2px;
+  background:var(--accent);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform 0.5s ease;
+}
+.sensor-card:hover{border-color:var(--border-green-hover);box-shadow:var(--glow-accent)}
+.sensor-card:hover::before{transform:scaleX(1)}
+.sensor-card.warning{border-color:rgba(243,156,18,0.35)}
+.sensor-card.warning::before{background:var(--amber);transform:scaleX(1)}
+.sensor-card.critical{border-color:rgba(231,76,60,0.35)}
+.sensor-card.critical::before{background:var(--red);transform:scaleX(1)}
+.sensor-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.sensor-label{font-size:10px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase}
+.status-badge{
+  font-size:8px;letter-spacing:0.5px;text-transform:uppercase;
+  padding:2px 6px;border-radius:20px;font-family:sans-serif;
+}
+.badge-optimal{background:rgba(46,204,113,0.15);color:var(--accent);border:1px solid rgba(46,204,113,0.3)}
+.badge-warning{background:var(--amber-dim);color:var(--amber);border:1px solid rgba(243,156,18,0.3)}
+.badge-critical{background:var(--red-dim);color:var(--red);border:1px solid rgba(231,76,60,0.3)}
+.gauge-wrap{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.gauge-svg{width:64px;height:64px;flex-shrink:0}
+.gauge-ring{fill:none;stroke:#1a3a1a;stroke-width:6}
+.gauge-progress{
+  fill:none;stroke-width:6;
+  stroke-linecap:round;
+  transition:stroke-dashoffset 0.6s cubic-bezier(0.4,0,0.2,1), stroke 0.4s ease;
+  transform:rotate(-90deg);
+  transform-origin:50% 50%;
+}
+.gauge-text-wrap{flex:1}
+.gauge-value{font-size:22px;font-weight:700;color:var(--text-primary);line-height:1;font-family:var(--font-display)}
+.gauge-unit{font-size:10px;color:var(--text-muted);margin-top:2px}
+.sparkline-canvas{width:100%;height:28px;display:block}
+/* ===== CONTROL PANEL (MOD MENU) ===== */
+.ctrl-section{margin-bottom:20px}
+.ctrl-section-title{
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--text-muted);
+  margin-bottom:10px;
+  display:flex;align-items:center;gap:6px;
+}
+.ctrl-section-title i{color:var(--accent)}
+.slider-row{margin-bottom:12px}
+.slider-label{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:11px;color:var(--text-secondary);margin-bottom:5px;
+}
+.slider-val{color:var(--accent);font-weight:700;font-family:var(--font-display)}
+.slider-controls{display:flex;align-items:center;gap:6px}
+.mini-btn{
+  width:22px;height:22px;border-radius:50%;
+  background:var(--bg-card2);border:1px solid var(--border-green);
+  color:var(--accent);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;transition:var(--transition);flex-shrink:0;
+}
+.mini-btn:hover{background:var(--accent);color:#000}
+input[type=range]{
+  flex:1;height:4px;
+  -webkit-appearance:none;
+  background:linear-gradient(to right, var(--accent) var(--pct, 50%), #1a3a1a var(--pct, 50%));
+  border-radius:2px;cursor:pointer;outline:none;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  width:14px;height:14px;
+  background:var(--accent);
+  border-radius:50%;
+  box-shadow:0 0 8px var(--accent-glow);
+  transition:var(--transition);
+}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
+/* Season Presets */
+.presets-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px}
+.preset-btn{
+  padding:8px 4px;
+  background:var(--bg-card2);
+  border:1px solid var(--border-green);
+  border-radius:var(--radius-sm);
+  color:var(--text-secondary);
+  cursor:pointer;
+  font-size:11px;
+  font-family:var(--font-body);
+  transition:var(--transition);
+  text-align:center;
+}
+.preset-btn:hover,.preset-btn.active{background:var(--accent);color:#000;border-color:var(--accent)}
+/* Toggles */
+.toggle-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 0;border-bottom:1px solid var(--border-green);
+}
+.toggle-label{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-secondary)}
+.toggle-label i{width:16px;text-align:center}
+.toggle{position:relative;width:40px;height:22px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0}
+.toggle-slider{
+  position:absolute;inset:0;
+  background:#1a3a1a;border-radius:22px;cursor:pointer;
+  transition:var(--transition);border:1px solid var(--border-green);
+}
+.toggle-slider::before{
+  content:'';
+  position:absolute;left:2px;top:50%;transform:translateY(-50%);
+  width:16px;height:16px;background:#4a6e4a;
+  border-radius:50%;transition:var(--transition);
+}
+.toggle input:checked+.toggle-slider{background:rgba(46,204,113,0.2);border-color:var(--accent)}
+.toggle input:checked+.toggle-slider::before{transform:translate(18px,-50%);background:var(--accent);box-shadow:0 0 8px var(--accent-glow)}
+/* Apply Button */
+.apply-btn{
+  width:100%;padding:10px;
+  background:linear-gradient(135deg,var(--accent-dim),var(--accent));
+  border:none;border-radius:var(--radius-sm);
+  color:#000;font-weight:700;font-size:12px;
+  letter-spacing:1px;font-family:var(--font-body);
+  cursor:pointer;margin-top:12px;
+  transition:var(--transition);
+  text-transform:uppercase;
+}
+.apply-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px var(--accent-glow)}
+/* Export/Import Buttons */
+.export-row{display:flex;gap:8px;margin-top:10px}
+.export-btn{
+  flex:1;padding:7px;
+  background:var(--bg-card2);border:1px solid var(--border-green);
+  border-radius:var(--radius-sm);color:var(--text-secondary);
+  cursor:pointer;font-size:10px;letter-spacing:0.5px;
+  font-family:var(--font-body);transition:var(--transition);
+  display:flex;align-items:center;justify-content:center;gap:5px;
+}
+.export-btn:hover{border-color:var(--accent);color:var(--accent)}
+/* ===== FARM GRID ===== */
+.farm-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:16px;flex-wrap:wrap;gap:10px;
+}
+#farm-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:14px;
+  margin-bottom:24px;
+}
+.plant-card{
+  background:var(--bg-card);
+  border:1px solid var(--border-green);
+  border-radius:var(--radius);
+  padding:14px;
+  cursor:pointer;
+  transition:var(--transition);
+  position:relative;
+  overflow:hidden;
+}
+.plant-card::after{
+  content:'';
+  position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 0, var(--accent-glow), transparent 70%);
+  opacity:0;transition:opacity 0.3s;
+}
+.plant-card:hover{border-color:var(--border-green-hover);transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,0.4),var(--glow-accent)}
+.plant-card:hover::after{opacity:1}
+.plant-card.thriving{border-color:rgba(46,204,113,0.3)}
+.plant-card.stressed{border-color:rgba(243,156,18,0.3)}
+.plant-card.critical-plant{border-color:rgba(231,76,60,0.3)}
+.plant-card.dying{border-color:rgba(120,0,0,0.5);filter:saturate(0.4)}
+.pc-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+.pc-emoji{font-size:32px;line-height:1;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.3))}
+.pc-del{
+  width:26px;height:26px;border-radius:50%;
+  background:rgba(231,76,60,0.1);border:1px solid rgba(231,76,60,0.2);
+  color:rgba(231,76,60,0.6);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;transition:var(--transition);
+  flex-shrink:0;
+}
+.pc-del:hover{background:var(--red-dim);color:var(--red);border-color:var(--red)}
+.pc-name{font-size:14px;font-weight:700;color:var(--text-primary);font-family:var(--font-display);line-height:1.2}
+.pc-sci{font-size:9px;color:var(--text-muted);font-style:italic;margin-bottom:8px}
+.pc-status{font-size:10px;margin-bottom:10px;display:flex;align-items:center;gap:5px}
+.pc-health-bar-wrap{margin-bottom:10px}
+.pb-label{font-size:9px;color:var(--text-muted);display:flex;justify-content:space-between;margin-bottom:3px;letter-spacing:0.5px}
+.progress-bar{
+  height:5px;background:#1a3a1a;border-radius:3px;overflow:hidden;
+}
+.progress-fill{
+  height:100%;border-radius:3px;
+  transition:width 0.6s cubic-bezier(0.4,0,0.2,1);
+  position:relative;
+}
+.progress-fill::after{
+  content:'';
+  position:absolute;top:0;right:0;width:4px;height:100%;
+  background:rgba(255,255,255,0.3);border-radius:2px;
+}
+.pc-mini-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin-top:8px}
+.mini-stat{
+  background:var(--bg-card2);border-radius:5px;
+  padding:4px 3px;text-align:center;
+  border:1px solid var(--border-green);
+}
+.mini-stat-label{font-size:7px;color:var(--text-muted);letter-spacing:0.5px}
+.mini-stat-val{font-size:10px;font-weight:700;color:var(--text-secondary)}
+.harvest-row{display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid var(--border-green)}
+.harvest-label{font-size:9px;color:var(--text-muted)}
+.harvest-val{font-size:10px;color:var(--accent);font-weight:700}
+/* Empty state */
+.empty-farm{
+  grid-column:1/-1;
+  padding:60px 20px;
+  text-align:center;
+  color:var(--text-muted);
+}
+.empty-farm i{font-size:48px;margin-bottom:16px;color:#1a3a1a}
+.empty-farm p{font-size:14px;margin-bottom:4px}
+.empty-farm small{font-size:11px}
+/* ===== RECOMMENDATIONS ===== */
+#reco-panel{
+  background:var(--bg-card);
+  border:1px solid var(--border-green);
+  border-radius:var(--radius);
+  padding:14px;
+  margin-bottom:24px;
+}
+.reco-item{
+  display:flex;align-items:flex-start;gap:8px;
+  padding:7px 0;
+  border-bottom:1px solid var(--border-green);
+  font-size:11px;
+  line-height:1.4;
+  animation:slide-in 0.3s ease;
+}
+@keyframes slide-in{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+.reco-item:last-child{border-bottom:none}
+.reco-icon{font-size:13px;flex-shrink:0;margin-top:1px}
+.reco-ok .reco-icon{color:var(--accent)}
+.reco-warn .reco-icon{color:var(--amber)}
+.reco-danger .reco-icon{color:var(--red)}
+.reco-info .reco-icon{color:var(--blue)}
+/* ===== STATS PANEL ===== */
+#stats-panel{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:12px;
+  margin-bottom:24px;
+}
+.stat-card{
+  background:var(--bg-card);
+  border:1px solid var(--border-green);
+  border-radius:var(--radius);
+  padding:14px;
+  text-align:center;
+}
+.stat-title{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
+.stat-value{font-size:28px;font-weight:700;font-family:var(--font-display);color:var(--accent)}
+.stat-sub{font-size:10px;color:var(--text-muted);margin-top:4px}
+#donut-canvas{width:100%;max-width:140px;height:140px;margin:0 auto;display:block}
+#env-score-canvas{width:100%;max-width:140px;height:140px;margin:0 auto;display:block}
+/* ===== MODALS ===== */
+.modal-overlay{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(4px);
+  z-index:2000;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.25s;
+}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{
+  background:var(--bg-card);
+  border:1px solid var(--border-green);
+  border-radius:var(--radius);
+  width:min(700px,95vw);
+  max-height:85vh;
+  overflow-y:auto;
+  transform:translateY(20px) scale(0.97);
+  transition:transform 0.25s cubic-bezier(0.4,0,0.2,1);
+  position:relative;
+}
+.modal-overlay.open .modal{transform:translateY(0) scale(1)}
+.modal-header{
+  padding:18px 20px 14px;
+  border-bottom:1px solid var(--border-green);
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;background:var(--bg-card);z-index:2;
+}
+.modal-title{font-family:var(--font-display);font-size:16px;color:var(--accent)}
+.modal-close{
+  width:30px;height:30px;border-radius:50%;
+  background:var(--bg-card2);border:1px solid var(--border-green);
+  color:var(--text-muted);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;transition:var(--transition);
+}
+.modal-close:hover{color:var(--red);border-color:var(--red)}
+.modal-body{padding:20px}
+/* Plant selection modal */
+.plant-search{
+  width:100%;padding:10px 14px;
+  background:var(--bg-card2);border:1px solid var(--border-green);
+  border-radius:var(--radius-sm);color:var(--text-primary);
+  font-family:var(--font-body);font-size:12px;
+  margin-bottom:14px;outline:none;transition:var(--transition);
+}
+.plant-search:focus{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-glow)}
+.plant-category{margin-bottom:16px}
+.plant-cat-title{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
+.plant-grid-select{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
+.plant-option{
+  background:var(--bg-card2);border:1px solid var(--border-green);
+  border-radius:var(--radius-sm);padding:10px 8px;
+  cursor:pointer;text-align:center;transition:var(--transition);
+}
+.plant-option:hover{border-color:var(--accent);background:rgba(46,204,113,0.07)}
+.po-emoji{font-size:24px;margin-bottom:4px}
+.po-name{font-size:11px;color:var(--text-secondary);font-weight:700}
+.po-harvest{font-size:9px;color:var(--text-muted);margin-top:2px}
+.compat-bar{margin-top:4px;height:3px;background:#1a3a1a;border-radius:2px;overflow:hidden}
+.compat-fill{height:100%;border-radius:2px;transition:width 0.4s}
+/* Detail modal */
+.detail-hero{
+  text-align:center;padding:20px 0 10px;
+}
+.detail-emoji{font-size:60px;margin-bottom:8px}
+.detail-name{font-family:var(--font-display);font-size:22px;color:var(--text-primary)}
+.detail-sci{font-size:11px;color:var(--text-muted);font-style:italic}
+.detail-health-big{
+  font-size:52px;font-weight:700;
+  font-family:var(--font-display);margin:10px 0 4px;
+}
+.comparison-table{width:100%;border-collapse:collapse;margin:12px 0}
+.comparison-table th{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);padding:6px 8px;border-bottom:1px solid var(--border-green);text-align:left}
+.comparison-table td{padding:8px;border-bottom:1px solid var(--border-green);font-size:11px}
+.cmp-bar-cell{min-width:120px}
+.cmp-bar{height:6px;background:#1a3a1a;border-radius:3px;position:relative;overflow:visible}
+.cmp-optimal-range{
+  position:absolute;height:100%;background:rgba(46,204,113,0.25);border-radius:3px;
+}
+.cmp-current-dot{
+  position:absolute;top:50%;transform:translate(-50%,-50%);
+  width:10px;height:10px;border-radius:50%;
+  border:2px solid var(--bg-card);
+}
+.detail-reco{margin-top:14px}
+.reco-block{
+  background:var(--bg-card2);border-left:3px solid var(--amber);
+  padding:8px 12px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom:6px;font-size:11px;color:var(--text-secondary);
+}
+.reco-block.good{border-color:var(--accent)}
+.reco-block.bad{border-color:var(--red)}
+/* Harvest celebration */
+.harvest-banner{
+  background:linear-gradient(135deg,rgba(46,204,113,0.2),rgba(39,174,96,0.2));
+  border:1px solid var(--accent);
+  border-radius:var(--radius-sm);
+  padding:10px 14px;
+  text-align:center;
+  margin-bottom:10px;
+  animation:harvest-pulse 1.5s ease-in-out infinite;
+}
+@keyframes harvest-pulse{0%,100%{box-shadow:0 0 10px var(--accent-glow)}50%{box-shadow:0 0 20px rgba(46,204,113,0.5)}}
+/* ===== TOAST NOTIFICATIONS ===== */
+#toast-container{
+  position:fixed;bottom:20px;right:20px;
+  z-index:9999;
+  display:flex;flex-direction:column;gap:8px;
+  pointer-events:none;
+}
+.toast{
+  background:var(--bg-card);
+  border:1px solid var(--border-green);
+  border-radius:var(--radius-sm);
+  padding:10px 14px;
+  min-width:280px;max-width:360px;
+  display:flex;align-items:center;gap:10px;
+  font-size:11px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.4);
+  animation:toast-in 0.3s cubic-bezier(0.4,0,0.2,1);
+  pointer-events:all;
+}
+@keyframes toast-in{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes toast-out{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(20px)}}
+.toast.success{border-left:3px solid var(--accent)}
+.toast.warning{border-left:3px solid var(--amber)}
+.toast.danger{border-left:3px solid var(--red)}
+.toast.info{border-left:3px solid var(--blue)}
+.toast-icon{font-size:14px;flex-shrink:0}
+.toast.success .toast-icon{color:var(--accent)}
+.toast.warning .toast-icon{color:var(--amber)}
+.toast.danger .toast-icon{color:var(--red)}
+.toast.info .toast-icon{color:var(--blue)}
+/* ===== BUTTONS ===== */
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 16px;
+  background:linear-gradient(135deg,var(--accent-dim),var(--accent));
+  border:none;border-radius:var(--radius-sm);
+  color:#000;font-weight:700;font-size:11px;
+  letter-spacing:0.5px;font-family:var(--font-body);
+  cursor:pointer;transition:var(--transition);
+  text-transform:uppercase;
+}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 16px var(--accent-glow)}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 16px;
+  background:var(--bg-card2);
+  border:1px solid var(--border-green);
+  border-radius:var(--radius-sm);
+  color:var(--text-secondary);font-size:11px;
+  letter-spacing:0.5px;font-family:var(--font-body);
+  cursor:pointer;transition:var(--transition);
+  text-transform:uppercase;
+}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+/* ===== SIDEBAR TOGGLE ===== */
+#sidebar-toggle{
+  position:fixed;
+  top:calc(var(--header-h) + 16px);
+  left:16px;
+  z-index:950;
+  width:34px;height:34px;
+  background:var(--bg-card);border:1px solid var(--border-green);
+  border-radius:50%;cursor:pointer;
+  display:none;align-items:center;justify-content:center;
+  color:var(--accent);font-size:13px;
+  transition:var(--transition);
+}
+#sidebar-toggle:hover{box-shadow:var(--glow-accent)}
+/* ===== CONFETTI ===== */
+.confetti-piece{
+  position:fixed;width:8px;height:8px;
+  border-radius:50%;pointer-events:none;
+  z-index:9999;
+  animation:confetti-fall 2.5s ease-in forwards;
+}
+@keyframes confetti-fall{
+  0%{transform:translateY(-100px) rotate(0);opacity:1}
+  100%{transform:translateY(100vh) rotate(720deg);opacity:0}
+}
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  #sidebar{transform:translateX(calc(-1 * var(--sidebar-w)))}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0}
+  #sidebar-toggle{display:flex}
+}
+@media(max-width:600px){
+  #sensors-grid{grid-template-columns:repeat(2,1fr)}
+  #farm-grid{grid-template-columns:1fr 1fr}
+  .header-center{display:none}
+}
+/* Scrollbar for sidebar */
+#sidebar{scrollbar-width:thin;scrollbar-color:var(--accent-dim) transparent}
+/* Confirmation overlay */
+.confirm-row{display:flex;gap:8px;margin-top:12px}
+/* Light mode overrides */
+[data-theme="light"] body::before{background:none}
+[data-theme="light"] .sensor-card,[data-theme="light"] .plant-card,
+[data-theme="light"] #reco-panel,[data-theme="light"] .stat-card{background:#fff;box-shadow:0 2px 12px rgba(0,0,0,0.08)}
+[data-theme="light"] #sidebar{background:rgba(241,248,233,0.98)}
+[data-theme="light"] #header{background:rgba(241,248,233,0.97)}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header id="header">
+  <div class="logo">
+    <i class="fa-solid fa-leaf"></i>
+    AgriMaster Pro
+  </div>
+  <div class="header-center">
+    <div id="live-clock">00:00:00</div>
+    <div id="weather-widget">
+      <span id="weather-icon">☀️</span>
+      <span id="weather-city">My Farm</span>
+      <span id="weather-desc">Sunny, 25°C</span>
+    </div>
+  </div>
+  <div class="header-right">
+    <button class="icon-btn" onclick="toggleTheme()" title="Toggle Theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
+    <button class="icon-btn" id="bell-btn" title="Notifications">
+      <i class="fa-solid fa-bell"></i>
+      <span class="badge" id="bell-count">0</span>
+    </button>
+    <button class="btn-primary" onclick="openAddPlant()"><i class="fa-solid fa-plus"></i> Add Plant</button>
+  </div>
+</header>
+
+<!-- ===== SIDEBAR TOGGLE (mobile) ===== -->
+<button id="sidebar-toggle" onclick="toggleSidebar()"><i class="fa-solid fa-sliders"></i></button>
+
+<!-- ===== APP WRAPPER ===== -->
+<div id="app">
+
+  <!-- ===== CONTROL PANEL SIDEBAR ===== -->
+  <aside id="sidebar">
+    <div class="section-title"><i class="fa-solid fa-gamepad"></i> Control Panel</div>
+
+    <!-- Season Presets -->
+    <div class="ctrl-section">
+      <div class="ctrl-section-title"><i class="fa-solid fa-sun"></i> Season Presets</div>
+      <div class="presets-grid">
+        <button class="preset-btn" onclick="applyPreset('spring')">🌸 Spring</button>
+        <button class="preset-btn" onclick="applyPreset('summer')">☀️ Summer</button>
+        <button class="preset-btn" onclick="applyPreset('autumn')">🍂 Autumn</button>
+        <button class="preset-btn" onclick="applyPreset('winter')">❄️ Winter</button>
+      </div>
+    </div>
+
+    <!-- Sliders -->
+    <div class="ctrl-section">
+      <div class="ctrl-section-title"><i class="fa-solid fa-thermometer-half"></i> Environment Controls</div>
+      <div id="sliders-container"></div>
+    </div>
+
+    <!-- Toggles -->
+    <div class="ctrl-section">
+      <div class="ctrl-section-title"><i class="fa-solid fa-toggle-on"></i> Systems</div>
+      <div class="toggle-row">
+        <div class="toggle-label"><i class="fa-solid fa-droplet" style="color:#3498db"></i> Irrigation</div>
+        <label class="toggle"><input type="checkbox" id="t-irrigation" onchange="toggleSystem('irrigation',this.checked)"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-label"><i class="fa-solid fa-flask" style="color:#2ecc71"></i> Fertilizer</div>
+        <label class="toggle"><input type="checkbox" id="t-fertilizer" onchange="toggleSystem('fertilizer',this.checked)"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-label"><i class="fa-solid fa-bug" style="color:#f39c12"></i> Pesticide</div>
+        <label class="toggle"><input type="checkbox" id="t-pesticide" onchange="toggleSystem('pesticide',this.checked)"><span class="toggle-slider"></span></label>
+      </div>
+    </div>
+
+    <button class="apply-btn" onclick="applyToAll()"><i class="fa-solid fa-check-double"></i> Apply to All Plants</button>
+
+    <!-- Export/Import -->
+    <div class="ctrl-section" style="margin-top:14px">
+      <div class="ctrl-section-title"><i class="fa-solid fa-database"></i> Data</div>
+      <div class="export-row">
+        <button class="export-btn" onclick="exportFarm()"><i class="fa-solid fa-download"></i> Export</button>
+        <button class="export-btn" onclick="importFarm()"><i class="fa-solid fa-upload"></i> Import</button>
+        <input type="file" id="import-file" style="display:none" accept=".json" onchange="handleImport(event)">
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main id="main">
+
+    <!-- Environmental Monitoring -->
+    <div class="section-title"><i class="fa-solid fa-gauge-high"></i> Environmental Monitoring</div>
+    <div id="sensors-grid"></div>
+
+    <!-- Recommendations -->
+    <div class="section-title"><i class="fa-solid fa-lightbulb"></i> Smart Recommendations</div>
+    <div id="reco-panel"><div id="reco-list"></div></div>
+
+    <!-- Farm Grid -->
+    <div class="farm-header">
+      <div class="section-title" style="margin:0"><i class="fa-solid fa-seedling"></i> Farm Grid <span id="plant-count-badge" style="font-size:10px;color:var(--text-muted);font-family:var(--font-body)"></span></div>
+      <div style="display:flex;gap:8px">
+        <button class="btn-secondary" onclick="openAddPlant()"><i class="fa-solid fa-plus"></i> Add Plant</button>
+      </div>
+    </div>
+    <div id="farm-grid"></div>
+
+    <!-- Stats -->
+    <div class="section-title"><i class="fa-solid fa-chart-pie"></i> Statistics Dashboard</div>
+    <div id="stats-panel">
+      <div class="stat-card">
+        <div class="stat-title">Total Plants</div>
+        <div class="stat-value" id="stat-total">0</div>
+        <div class="stat-sub" id="stat-breakdown">No plants yet</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Average Health</div>
+        <canvas id="env-score-canvas" width="140" height="140"></canvas>
+        <div class="stat-sub" id="stat-avg-health">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Plant Status</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px">
+          <div class="mini-stat"><div class="mini-stat-val" id="s-thriving" style="color:var(--accent)">0</div><div class="mini-stat-label">Thriving</div></div>
+          <div class="mini-stat"><div class="mini-stat-val" id="s-stressed" style="color:var(--amber)">0</div><div class="mini-stat-label">Stressed</div></div>
+          <div class="mini-stat"><div class="mini-stat-val" id="s-critical" style="color:var(--red)">0</div><div class="mini-stat-label">Critical</div></div>
+          <div class="mini-stat"><div class="mini-stat-val" id="s-dying" style="color:#888">0</div><div class="mini-stat-label">Dying</div></div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Plants by Category</div>
+        <canvas id="donut-canvas" width="140" height="140"></canvas>
+        <div id="donut-legend" style="margin-top:8px;display:flex;flex-wrap:wrap;gap:4px;justify-content:center"></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Environmental Score</div>
+        <div class="stat-value" id="stat-env-score">—</div>
+        <div class="stat-sub" id="stat-best">No plants planted</div>
+      </div>
+    </div>
+
+    <!-- Algorithm Status Panel -->
+    <div class="section-title" style="cursor:pointer" onclick="toggleAlgoPanel()">
+      <i class="fa-solid fa-brain"></i> Algorithm Status
+      <i class="fa-solid fa-chevron-down" id="algo-chevron" style="margin-left:auto;font-size:10px;transition:transform 0.3s"></i>
+    </div>
+    <div id="algo-panel" style="display:none">
+      <div id="algo-panel-inner" style="background:var(--bg-card);border:1px solid var(--border-green);border-radius:var(--radius);padding:14px;margin-bottom:24px">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px">
+          <div class="mini-stat"><div class="mini-stat-val" id="algo-cycle-ms">—</div><div class="mini-stat-label">Cycle Time</div></div>
+          <div class="mini-stat"><div class="mini-stat-val" id="algo-layers">—</div><div class="mini-stat-label">Layers Active</div></div>
+          <div class="mini-stat"><div class="mini-stat-val" id="algo-actions">—</div><div class="mini-stat-label">Actions</div></div>
+        </div>
+        <div id="algo-reasoning" style="font-size:11px;color:var(--text-secondary);max-height:200px;overflow-y:auto"></div>
+      </div>
+    </div>
+
+    <!-- Alert Feed -->
+    <div class="section-title"><i class="fa-solid fa-bell"></i> Alert Feed</div>
+    <div id="alert-feed" style="background:var(--bg-card);border:1px solid var(--border-green);border-radius:var(--radius);padding:14px;margin-bottom:24px;max-height:250px;overflow-y:auto">
+      <div style="color:var(--text-muted);font-size:11px;text-align:center">No alerts yet</div>
+    </div>
+
+    <!-- Historical Charts -->
+    <div class="section-title"><i class="fa-solid fa-chart-line"></i> 24h History</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px" id="history-charts">
+      <div class="stat-card"><div class="stat-title">Temperature</div><canvas id="hist-temp" height="120"></canvas></div>
+      <div class="stat-card"><div class="stat-title">Soil Moisture</div><canvas id="hist-soil" height="120"></canvas></div>
+      <div class="stat-card"><div class="stat-title">Humidity</div><canvas id="hist-humidity" height="120"></canvas></div>
+      <div class="stat-card"><div class="stat-title">pH Level</div><canvas id="hist-ph" height="120"></canvas></div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ===== ADD PLANT MODAL ===== -->
+<div class="modal-overlay" id="modal-add">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title"><i class="fa-solid fa-seedling"></i> Plant Library</div>
+      <button class="modal-close" onclick="closeModal('modal-add')"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <input type="text" class="plant-search" id="plant-search-input" placeholder="🔍  Search plants..." oninput="filterPlants()">
+      <div id="plant-library-content"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PLANT DETAIL MODAL ===== -->
+<div class="modal-overlay" id="modal-detail">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="detail-modal-title">Plant Details</div>
+      <button class="modal-close" onclick="closeModal('modal-detail')"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body" id="detail-modal-body"></div>
+  </div>
+</div>
+
+<!-- ===== TOAST CONTAINER ===== -->
+<div id="toast-container"></div>
+
+<script>
+/* ====================================================
+   AGRIMASTER PRO — Main JavaScript
+   ==================================================== */
+
+// ===== PLANT DATABASE =====
+const PLANT_DB = {
+  "Grains & Cereals": [
+    {id:"wheat",name:"Wheat",emoji:"🌾",sci:"Triticum aestivum",pH:[5.5,7.0],temp:[10,24],humidity:[40,70],soilMoisture:[40,60],light:[30,60],harvest:120,desc:"Staple cereal grain, drought-tolerant."},
+    {id:"rice",name:"Rice",emoji:"🌾",sci:"Oryza sativa",pH:[5.0,6.5],temp:[20,35],humidity:[70,90],soilMoisture:[70,90],light:[40,70],harvest:130,desc:"Water-loving grain, thrives in paddies."},
+    {id:"corn",name:"Corn / Maize",emoji:"🌽",sci:"Zea mays",pH:[5.8,7.0],temp:[18,32],humidity:[50,80],soilMoisture:[50,70],light:[40,80],harvest:90,desc:"Versatile cereal, high yield potential."},
+    {id:"barley",name:"Barley",emoji:"🌾",sci:"Hordeum vulgare",pH:[6.0,7.5],temp:[8,20],humidity:[45,70],soilMoisture:[40,60],light:[30,60],harvest:100,desc:"Cool-weather grain, tolerates poor soils."},
+    {id:"sorghum",name:"Sorghum",emoji:"🌾",sci:"Sorghum bicolor",pH:[5.5,7.5],temp:[25,35],humidity:[40,65],soilMoisture:[40,60],light:[40,80],harvest:110,desc:"Heat and drought resistant cereal."},
+  ],
+  "Vegetables": [
+    {id:"tomato",name:"Tomato",emoji:"🍅",sci:"Solanum lycopersicum",pH:[6.0,6.8],temp:[18,27],humidity:[65,85],soilMoisture:[55,75],light:[40,80],harvest:80,desc:"Popular vegetable, loves warm conditions."},
+    {id:"potato",name:"Potato",emoji:"🥔",sci:"Solanum tuberosum",pH:[4.8,5.5],temp:[15,20],humidity:[80,90],soilMoisture:[65,80],light:[30,60],harvest:100,desc:"Starchy tuber, prefers cool moist soil."},
+    {id:"carrot",name:"Carrot",emoji:"🥕",sci:"Daucus carota",pH:[6.0,6.8],temp:[15,20],humidity:[65,75],soilMoisture:[55,70],light:[30,60],harvest:75,desc:"Root vegetable, needs deep loose soil."},
+    {id:"lettuce",name:"Lettuce",emoji:"🥬",sci:"Lactuca sativa",pH:[6.0,7.0],temp:[10,20],humidity:[60,70],soilMoisture:[60,75],light:[20,50],harvest:60,desc:"Cool-season leafy green, fast growing."},
+    {id:"onion",name:"Onion",emoji:"🧅",sci:"Allium cepa",pH:[6.0,7.0],temp:[13,24],humidity:[70,80],soilMoisture:[55,70],light:[30,60],harvest:120,desc:"Pungent bulb vegetable, widely used."},
+    {id:"pepper",name:"Pepper",emoji:"🫑",sci:"Capsicum annuum",pH:[6.0,6.8],temp:[20,30],humidity:[70,80],soilMoisture:[55,70],light:[40,70],harvest:90,desc:"Warm-season vegetable, sun-loving."},
+    {id:"cucumber",name:"Cucumber",emoji:"🥒",sci:"Cucumis sativus",pH:[5.5,7.0],temp:[20,30],humidity:[70,85],soilMoisture:[60,80],light:[40,70],harvest:55,desc:"Fast-growing climbing vegetable."},
+    {id:"spinach",name:"Spinach",emoji:"🥬",sci:"Spinacia oleracea",pH:[6.0,7.0],temp:[10,18],humidity:[60,70],soilMoisture:[55,70],light:[20,50],harvest:45,desc:"Nutrient-rich leafy green."},
+    {id:"garlic",name:"Garlic",emoji:"🧄",sci:"Allium sativum",pH:[6.0,7.0],temp:[12,24],humidity:[60,70],soilMoisture:[50,65],light:[30,60],harvest:240,desc:"Aromatic bulb, strong natural pest deterrent."},
+    {id:"eggplant",name:"Eggplant",emoji:"🍆",sci:"Solanum melongena",pH:[5.5,6.5],temp:[22,30],humidity:[65,75],soilMoisture:[55,70],light:[40,75],harvest:80,desc:"Tropical vegetable, loves heat."},
+  ],
+  "Fruits": [
+    {id:"apple",name:"Apple",emoji:"🍎",sci:"Malus domestica",pH:[5.8,6.5],temp:[12,22],humidity:[60,80],soilMoisture:[50,70],light:[40,70],harvest:150,desc:"Temperate fruit tree, needs cold winters."},
+    {id:"strawberry",name:"Strawberry",emoji:"🍓",sci:"Fragaria ananassa",pH:[5.5,6.5],temp:[15,22],humidity:[65,75],soilMoisture:[60,75],light:[40,70],harvest:90,desc:"Low-growing berry, high yield."},
+    {id:"watermelon",name:"Watermelon",emoji:"🍉",sci:"Citrullus lanatus",pH:[6.0,6.8],temp:[22,30],humidity:[60,80],soilMoisture:[55,75],light:[50,80],harvest:85,desc:"Large summer fruit, loves heat."},
+    {id:"melon",name:"Melon",emoji:"🍈",sci:"Cucumis melo",pH:[6.0,6.5],temp:[24,30],humidity:[60,75],soilMoisture:[55,70],light:[50,80],harvest:90,desc:"Sweet summer fruit."},
+    {id:"grapes",name:"Grapes",emoji:"🍇",sci:"Vitis vinifera",pH:[5.5,6.5],temp:[18,30],humidity:[50,70],soilMoisture:[45,65],light:[50,80],harvest:180,desc:"Climbing vine fruit, used for wine."},
+    {id:"mango",name:"Mango",emoji:"🥭",sci:"Mangifera indica",pH:[5.5,7.5],temp:[24,35],humidity:[50,75],soilMoisture:[50,70],light:[50,80],harvest:120,desc:"Tropical king of fruits."},
+    {id:"banana",name:"Banana",emoji:"🍌",sci:"Musa acuminata",pH:[5.5,7.0],temp:[26,35],humidity:[75,90],soilMoisture:[65,80],light:[50,80],harvest:300,desc:"Tropical staple, fast grower."},
+    {id:"lemon",name:"Lemon",emoji:"🍋",sci:"Citrus limon",pH:[5.5,6.5],temp:[20,35],humidity:[50,70],soilMoisture:[50,65],light:[50,80],harvest:180,desc:"Citrus fruit, rich in Vitamin C."},
+    {id:"orange",name:"Orange",emoji:"🍊",sci:"Citrus sinensis",pH:[5.5,6.5],temp:[18,30],humidity:[50,75],soilMoisture:[50,65],light:[50,80],harvest:240,desc:"Sweet citrus, widely cultivated."},
+    {id:"pineapple",name:"Pineapple",emoji:"🍍",sci:"Ananas comosus",pH:[4.5,6.0],temp:[25,35],humidity:[60,80],soilMoisture:[55,70],light:[60,90],harvest:540,desc:"Tropical bromeliad, slow but rewarding."},
+    {id:"papaya",name:"Papaya",emoji:"🍈",sci:"Carica papaya",pH:[6.0,7.0],temp:[22,32],humidity:[65,85],soilMoisture:[55,70],light:[50,80],harvest:180,desc:"Fast-growing tropical fruit."},
+    {id:"peach",name:"Peach",emoji:"🍑",sci:"Prunus persica",pH:[6.0,7.0],temp:[15,25],humidity:[50,70],soilMoisture:[50,65],light:[40,70],harvest:160,desc:"Stone fruit, needs temperate climate."},
+  ],
+  "Trees": [
+    {id:"olive",name:"Olive",emoji:"🫒",sci:"Olea europaea",pH:[5.5,8.5],temp:[15,30],humidity:[40,60],soilMoisture:[35,55],light:[60,90],harvest:1825,desc:"Ancient Mediterranean tree, drought-hardy."},
+    {id:"datepalm",name:"Date Palm",emoji:"🌴",sci:"Phoenix dactylifera",pH:[6.0,8.0],temp:[30,45],humidity:[20,50],soilMoisture:[40,60],light:[70,100],harvest:365,desc:"Desert king, produces sweet dates."},
+    {id:"avocado",name:"Avocado",emoji:"🥑",sci:"Persea americana",pH:[6.0,7.0],temp:[18,28],humidity:[60,80],soilMoisture:[55,70],light:[50,80],harvest:540,desc:"Rich tropical fruit, superstar of nutrition."},
+    {id:"coconut",name:"Coconut",emoji:"🥥",sci:"Cocos nucifera",pH:[5.0,8.0],temp:[27,37],humidity:[70,90],soilMoisture:[60,80],light:[60,90],harvest:365,desc:"Versatile palm, coastal tropical regions."},
+    {id:"fig",name:"Fig",emoji:"🫐",sci:"Ficus carica",pH:[6.0,7.5],temp:[18,35],humidity:[40,65],soilMoisture:[40,60],light:[50,80],harvest:540,desc:"Ancient cultivated fruit tree."},
+    {id:"pomegranate",name:"Pomegranate",emoji:"🍎",sci:"Punica granatum",pH:[5.5,7.0],temp:[18,35],humidity:[40,65],soilMoisture:[40,60],light:[50,80],harvest:180,desc:"Hardy fruit, drought-tolerant."},
+  ],
+  "Herbs & Spices": [
+    {id:"mint",name:"Mint",emoji:"🌿",sci:"Mentha spicata",pH:[6.0,7.0],temp:[15,25],humidity:[65,80],soilMoisture:[60,75],light:[25,55],harvest:90,desc:"Fast-spreading aromatic herb."},
+    {id:"basil",name:"Basil",emoji:"🌿",sci:"Ocimum basilicum",pH:[6.0,7.0],temp:[20,30],humidity:[60,70],soilMoisture:[55,70],light:[40,70],harvest:60,desc:"Fragrant culinary herb."},
+    {id:"coriander",name:"Coriander",emoji:"🌿",sci:"Coriandrum sativum",pH:[6.0,7.5],temp:[17,27],humidity:[50,65],soilMoisture:[50,65],light:[30,60],harvest:45,desc:"Fast crop, leaves and seeds used."},
+    {id:"turmeric",name:"Turmeric",emoji:"🌿",sci:"Curcuma longa",pH:[5.0,7.5],temp:[20,35],humidity:[75,90],soilMoisture:[65,80],light:[30,60],harvest:270,desc:"Medicinal spice, rhizome crop."},
+    {id:"ginger",name:"Ginger",emoji:"🫚",sci:"Zingiber officinale",pH:[5.5,6.5],temp:[22,30],humidity:[70,90],soilMoisture:[65,80],light:[30,60],harvest:240,desc:"Tropical rhizome, shade-tolerant."},
+    {id:"saffron",name:"Saffron",emoji:"🌸",sci:"Crocus sativus",pH:[6.0,8.0],temp:[15,20],humidity:[35,55],soilMoisture:[40,55],light:[50,80],harvest:180,desc:"World's most expensive spice."},
+  ],
+  "Industrial / Other": [
+    {id:"sunflower",name:"Sunflower",emoji:"🌻",sci:"Helianthus annuus",pH:[6.0,7.5],temp:[20,28],humidity:[40,65],soilMoisture:[45,65],light:[60,90],harvest:100,desc:"Oilseed crop, follows the sun."},
+    {id:"cotton",name:"Cotton",emoji:"🌿",sci:"Gossypium hirsutum",pH:[5.8,7.0],temp:[22,32],humidity:[40,65],soilMoisture:[45,65],light:[50,80],harvest:180,desc:"Fiber crop, warm season essential."},
+    {id:"sugarcane",name:"Sugar Cane",emoji:"🎋",sci:"Saccharum officinarum",pH:[6.0,7.5],temp:[25,38],humidity:[60,80],soilMoisture:[60,80],light:[60,90],harvest:365,desc:"Tall grass producing sugar."},
+  ]
+};
+
+// ===== ENVIRONMENT STATE =====
+let envState = {
+  temperature: 25, humidity: 65, soilMoisture: 60,
+  pH: 6.5, light: 35, co2: 800, windSpeed: 10, rainfall: 5,
+  irrigation: false, fertilizer: false, pesticide: false
+};
+
+// ===== SENSOR CONFIG =====
+const SENSORS = [
+  {key:"temperature",label:"Temperature",unit:"°C",min:-10,max:50,warn:[35,null],crit:[42,null],warnLow:null,critLow:null,icon:"fa-thermometer-half",color:"#e74c3c"},
+  {key:"humidity",label:"Humidity",unit:"%",min:0,max:100,warn:[85,30],crit:[95,20],icon:"fa-droplet",color:"#3498db"},
+  {key:"soilMoisture",label:"Soil Moisture",unit:"%",min:0,max:100,warn:[null,25],crit:[null,15],icon:"fa-layer-group",color:"#8b6914"},
+  {key:"pH",label:"pH Level",unit:"pH",min:3,max:9,warn:[7.5,5.5],crit:[8.5,4.5],icon:"fa-flask",color:"#9b59b6"},
+  {key:"light",label:"Light",unit:"klux",min:0,max:100,warn:[null,10],crit:[null,5],icon:"fa-sun",color:"#f39c12"},
+  {key:"co2",label:"CO₂ Level",unit:"ppm",min:300,max:2000,warn:[1200,null],crit:[1500,null],icon:"fa-wind",color:"#1abc9c"},
+  {key:"windSpeed",label:"Wind Speed",unit:"km/h",min:0,max:100,warn:[40,null],crit:[60,null],icon:"fa-tornado",color:"#95a5a6"},
+  {key:"rainfall",label:"Rainfall",unit:"mm",min:0,max:200,warn:[null,null],crit:[100,null],icon:"fa-cloud-rain",color:"#2980b9"},
+];
+
+const SLIDER_CONFIG = [
+  {key:"temperature",label:"Temperature",unit:"°C",min:-10,max:50,step:1},
+  {key:"humidity",label:"Humidity",unit:"%",min:0,max:100,step:1},
+  {key:"soilMoisture",label:"Soil Moisture",unit:"%",min:0,max:100,step:1},
+  {key:"pH",label:"pH Level",unit:"",min:3.0,max:9.0,step:0.1},
+  {key:"light",label:"Light",unit:"klux",min:0,max:100,step:1},
+  {key:"co2",label:"CO₂",unit:"ppm",min:300,max:2000,step:10},
+  {key:"windSpeed",label:"Wind Speed",unit:"km/h",min:0,max:100,step:1},
+  {key:"rainfall",label:"Rainfall",unit:"mm",min:0,max:200,step:1},
+];
+
+const SEASON_PRESETS = {
+  spring: {temperature:18, humidity:70, soilMoisture:65, pH:6.5, light:40, co2:750, windSpeed:12, rainfall:8},
+  summer: {temperature:32, humidity:55, soilMoisture:45, pH:6.8, light:75, co2:800, windSpeed:18, rainfall:3},
+  autumn: {temperature:14, humidity:75, soilMoisture:70, pH:6.2, light:25, co2:700, windSpeed:20, rainfall:12},
+  winter: {temperature:4,  humidity:80, soilMoisture:75, pH:6.0, light:15, co2:650, windSpeed:30, rainfall:15},
+};
+
+// ===== FARM PLANTS =====
+let farmPlants = [];
+let alertCount = 0;
+let sparkData = {}; // sparkline history per sensor
+
+// ===== PLANT HEALTH ALGORITHM =====
+function calculatePlantHealth(plant, env) {
+  const db = findPlantById(plant.dbId);
+  if (!db) return {score:0, status:"dying", statusLabel:"Dying", recommendations:[]};
+
+  function rangeScore(val, [lo, hi]) {
+    const mid = (lo + hi) / 2;
+    const range = (hi - lo) / 2;
+    if (val >= lo && val <= hi) return 100;
+    const dist = val < lo ? lo - val : val - hi;
+    return Math.max(0, 100 - (dist / (range || 1)) * 80);
+  }
+
+  const pHScore   = rangeScore(env.pH,          db.pH);
+  const tScore    = rangeScore(env.temperature,  db.temp);
+  const hScore    = rangeScore(env.humidity,     db.humidity);
+  const smScore   = rangeScore(env.soilMoisture, db.soilMoisture);
+  const lScore    = rangeScore(env.light,        db.light);
+
+  const score = Math.round(pHScore*0.25 + tScore*0.25 + hScore*0.20 + smScore*0.15 + lScore*0.15);
+
+  let status, statusLabel;
+  if (score >= 80) { status = "thriving"; statusLabel = "🟢 Thriving"; }
+  else if (score >= 55) { status = "stressed"; statusLabel = "🟡 Stressed"; }
+  else if (score >= 30) { status = "critical"; statusLabel = "🔴 Critical"; }
+  else { status = "dying"; statusLabel = "💀 Dying"; }
+
+  const recommendations = [];
+  if (env.pH < db.pH[0]) recommendations.push({type:"warn", msg:`Raise pH to at least ${db.pH[0]}`});
+  if (env.pH > db.pH[1]) recommendations.push({type:"warn", msg:`Lower pH to at most ${db.pH[1]}`});
+  if (env.temperature < db.temp[0]) recommendations.push({type:"warn", msg:`Temperature too low (min ${db.temp[0]}°C)`});
+  if (env.temperature > db.temp[1]) recommendations.push({type:"danger", msg:`Temperature too high (max ${db.temp[1]}°C)`});
+  if (env.humidity < db.humidity[0]) recommendations.push({type:"warn", msg:`Humidity too low (min ${db.humidity[0]}%)`});
+  if (env.humidity > db.humidity[1]) recommendations.push({type:"warn", msg:`Humidity too high (max ${db.humidity[1]}%)`});
+  if (env.soilMoisture < db.soilMoisture[0]) recommendations.push({type:"warn", msg:`Increase soil moisture`});
+  if (score >= 80) recommendations.push({type:"good", msg:`Conditions are optimal for ${db.name}`});
+
+  return { score, status, statusLabel, recommendations, pHScore, tScore, hScore, smScore, lScore };
+}
+
+function findPlantById(id) {
+  for (const cat of Object.values(PLANT_DB)) {
+    const found = cat.find(p => p.id === id);
+    if (found) return found;
+  }
+  return null;
+}
+
+// ===== SENSOR STATUS =====
+function getSensorStatus(s) {
+  const v = envState[s.key];
+  if (s.crit) {
+    if (s.crit[0] !== null && v >= s.crit[0]) return {status:"critical", label:"Critical"};
+    if (s.crit[1] !== null && v <= s.crit[1]) return {status:"critical", label:"Critical"};
+  }
+  if (s.warn) {
+    if (s.warn[0] !== null && v >= s.warn[0]) return {status:"warning", label:"Warning"};
+    if (s.warn[1] !== null && v <= s.warn[1]) return {status:"warning", label:"Warning"};
+  }
+  return {status:"optimal", label:"Optimal"};
+}
+
+// ===== BUILD SENSORS GRID =====
+function buildSensorsGrid() {
+  const grid = document.getElementById("sensors-grid");
+  grid.innerHTML = "";
+  SENSORS.forEach(s => {
+    const div = document.createElement("div");
+    div.className = "sensor-card";
+    div.id = "sc-" + s.key;
+    div.innerHTML = `
+      <div class="sensor-header">
+        <div class="sensor-label"><i class="fa-solid ${s.icon}" style="color:${s.color};margin-right:4px"></i>${s.label}</div>
+        <span class="status-badge badge-optimal" id="sb-${s.key}">Optimal</span>
+      </div>
+      <div class="gauge-wrap">
+        <svg class="gauge-svg" viewBox="0 0 64 64">
+          <circle class="gauge-ring" cx="32" cy="32" r="26"/>
+          <circle class="gauge-progress" id="gp-${s.key}" cx="32" cy="32" r="26"
+            stroke="${s.color}" stroke-dasharray="163.36" stroke-dashoffset="163.36"/>
+        </svg>
+        <div class="gauge-text-wrap">
+          <div class="gauge-value" id="gv-${s.key}">—</div>
+          <div class="gauge-unit">${s.unit}</div>
+        </div>
+      </div>
+      <canvas class="sparkline-canvas" id="spark-${s.key}" height="28"></canvas>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+function updateSensorGauge(s) {
+  const v = envState[s.key];
+  const pct = Math.max(0, Math.min(1, (v - s.min) / (s.max - s.min)));
+  const circ = 163.36;
+  const offset = circ - pct * circ;
+  const gp = document.getElementById("gp-" + s.key);
+  const gv = document.getElementById("gv-" + s.key);
+  const sb = document.getElementById("sb-" + s.key);
+  const sc = document.getElementById("sc-" + s.key);
+  if (!gp) return;
+  gp.style.strokeDashoffset = offset;
+  gv.textContent = (s.key === "pH") ? v.toFixed(1) : (Number.isInteger(v) ? v : v.toFixed(1));
+  const st = getSensorStatus(s);
+  sc.className = "sensor-card " + (st.status === "optimal" ? "" : st.status);
+  sb.className = "status-badge " + (st.status === "optimal" ? "badge-optimal" : st.status === "warning" ? "badge-warning" : "badge-critical");
+  sb.textContent = st.label;
+  // Update sparkline
+  if (!sparkData[s.key]) sparkData[s.key] = [];
+  sparkData[s.key].push(v);
+  if (sparkData[s.key].length > 20) sparkData[s.key].shift();
+  drawSparkline("spark-" + s.key, sparkData[s.key], s.color);
+}
+
+function updateAllSensors() {
+  SENSORS.forEach(s => updateSensorGauge(s));
+  updateWeather();
+}
+
+// ===== SPARKLINES =====
+function drawSparkline(canvasId, data, color) {
+  const c = document.getElementById(canvasId);
+  if (!c || data.length < 2) return;
+  const ctx = c.getContext("2d");
+  const W = c.clientWidth || 120;
+  const H = c.clientHeight || 28;
+  c.width = W; c.height = H;
+  ctx.clearRect(0,0,W,H);
+  const mn = Math.min(...data), mx = Math.max(...data);
+  const range = mx - mn || 1;
+  const pts = data.map((v,i) => [i/(data.length-1)*W, H - ((v-mn)/range)*(H-6) - 3]);
+  ctx.beginPath();
+  ctx.moveTo(pts[0][0],pts[0][1]);
+  for (let i=1;i<pts.length;i++) ctx.lineTo(pts[i][0],pts[i][1]);
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+  // Fill gradient
+  ctx.lineTo(W,H); ctx.lineTo(0,H); ctx.closePath();
+  const grad = ctx.createLinearGradient(0,0,0,H);
+  grad.addColorStop(0, color + "44");
+  grad.addColorStop(1, color + "00");
+  ctx.fillStyle = grad;
+  ctx.fill();
+}
+
+// ===== BUILD SLIDERS =====
+function buildSliders() {
+  const cont = document.getElementById("sliders-container");
+  cont.innerHTML = "";
+  SLIDER_CONFIG.forEach(cfg => {
+    const div = document.createElement("div");
+    div.className = "slider-row";
+    const val = envState[cfg.key];
+    const disp = cfg.step < 1 ? val.toFixed(1) : val;
+    const pct = ((val - cfg.min) / (cfg.max - cfg.min) * 100).toFixed(1);
+    div.innerHTML = `
+      <div class="slider-label">
+        <span>${cfg.label}</span>
+        <span class="slider-val" id="sv-${cfg.key}">${disp}${cfg.unit}</span>
+      </div>
+      <div class="slider-controls">
+        <button class="mini-btn" onclick="nudge('${cfg.key}',-${cfg.step})">−</button>
+        <input type="range" id="sl-${cfg.key}"
+          min="${cfg.min}" max="${cfg.max}" step="${cfg.step}" value="${val}"
+          style="--pct:${pct}%"
+          oninput="onSlider('${cfg.key}',this.value,'${cfg.unit}',${cfg.min},${cfg.max},${cfg.step})">
+        <button class="mini-btn" onclick="nudge('${cfg.key}',${cfg.step})">+</button>
+      </div>
+    `;
+    cont.appendChild(div);
+  });
+}
+
+function onSlider(key, val, unit, min, max, step) {
+  val = parseFloat(val);
+  envState[key] = val;
+  const disp = step < 1 ? val.toFixed(1) : Math.round(val);
+  document.getElementById("sv-" + key).textContent = disp + unit;
+  const pct = ((val - min) / (max - min) * 100).toFixed(1);
+  document.getElementById("sl-" + key).style.setProperty("--pct", pct + "%");
+  updateAllSensors();
+  updateFarmGrid();
+  updateRecommendations();
+  updateStats();
+  saveState();
+}
+
+function nudge(key, delta) {
+  const cfg = SLIDER_CONFIG.find(c => c.key === key);
+  if (!cfg) return;
+  let newVal = Math.round((envState[key] + delta) * 100) / 100;
+  newVal = Math.max(cfg.min, Math.min(cfg.max, newVal));
+  envState[key] = newVal;
+  const sl = document.getElementById("sl-" + key);
+  if (sl) { sl.value = newVal; onSlider(key, newVal, cfg.unit, cfg.min, cfg.max, cfg.step); }
+}
+
+// ===== SEASON PRESETS =====
+function applyPreset(season) {
+  const p = SEASON_PRESETS[season];
+  Object.assign(envState, p);
+  buildSliders();
+  updateAllSensors();
+  updateFarmGrid();
+  updateRecommendations();
+  updateStats();
+  saveState();
+  document.querySelectorAll(".preset-btn").forEach(b => b.classList.remove("active"));
+  event.target.classList.add("active");
+  toast(`${season.charAt(0).toUpperCase()+season.slice(1)} preset applied`, "info", "fa-sun");
+}
+
+// ===== TOGGLES =====
+function toggleSystem(key, val) {
+  envState[key] = val;
+  const msgs = {irrigation:"💧 Irrigation", fertilizer:"🌱 Fertilizer", pesticide:"🐛 Pesticide"};
+  toast(`${msgs[key]} ${val ? "activated" : "deactivated"}`, val ? "success" : "warning", val ? "fa-check" : "fa-xmark");
+  saveState();
+}
+
+// ===== ADD PLANT =====
+function openAddPlant() {
+  document.getElementById("plant-search-input").value = "";
+  renderPlantLibrary("");
+  openModal("modal-add");
+}
+
+function renderPlantLibrary(query) {
+  const cont = document.getElementById("plant-library-content");
+  cont.innerHTML = "";
+  const q = query.toLowerCase();
+  for (const [cat, plants] of Object.entries(PLANT_DB)) {
+    const filtered = plants.filter(p => !q || p.name.toLowerCase().includes(q) || p.sci.toLowerCase().includes(q));
+    if (!filtered.length) continue;
+    const sec = document.createElement("div");
+    sec.className = "plant-category";
+    sec.innerHTML = `<div class="plant-cat-title">${getCatEmoji(cat)} ${cat}</div><div class="plant-grid-select" id="pg-${cat.replace(/\s/g,'_')}"></div>`;
+    cont.appendChild(sec);
+    const grid = sec.querySelector(".plant-grid-select");
+    filtered.forEach(p => {
+      const h = calculatePlantHealth({dbId:p.id}, envState);
+      const pct = h.score;
+      const col = pct >= 80 ? "#2ecc71" : pct >= 55 ? "#f39c12" : "#e74c3c";
+      const el = document.createElement("div");
+      el.className = "plant-option";
+      el.innerHTML = `
+        <div class="po-emoji">${p.emoji}</div>
+        <div class="po-name">${p.name}</div>
+        <div class="po-harvest">${p.harvest >= 365 ? (p.harvest/365).toFixed(1)+'y' : p.harvest+'d'} harvest</div>
+        <div class="compat-bar"><div class="compat-fill" style="width:${pct}%;background:${col}"></div></div>
+        <div style="font-size:9px;color:${col};margin-top:3px">${pct}% compat</div>
+      `;
+      el.onclick = () => addPlantToFarm(p.id);
+      grid.appendChild(el);
+    });
+  }
+}
+
+function getCatEmoji(cat) {
+  const map = {"Grains & Cereals":"🌾","Vegetables":"🥦","Fruits":"🍎","Trees":"🌳","Herbs & Spices":"🌿","Industrial / Other":"🌻"};
+  return map[cat] || "🌱";
+}
+
+function filterPlants() {
+  renderPlantLibrary(document.getElementById("plant-search-input").value);
+}
+
+function addPlantToFarm(dbId) {
+  const db = findPlantById(dbId);
+  if (!db) return;
+  const plant = {
+    id: Date.now() + Math.random(),
+    dbId,
+    name: db.name,
+    plantDate: new Date().toISOString(),
+    harvestDays: db.harvest,
+    healthHistory: [],
+  };
+  farmPlants.push(plant);
+  closeModal("modal-add");
+  updateFarmGrid();
+  updateRecommendations();
+  updateStats();
+  saveState();
+  toast(`${db.emoji} ${db.name} planted!`, "success", "fa-seedling");
+}
+
+// ===== REMOVE PLANT =====
+function removePlant(id) {
+  const plant = farmPlants.find(p => p.id === id);
+  if (!plant) return;
+  if (!confirm(`Remove ${plant.name} from your farm?`)) return;
+  farmPlants = farmPlants.filter(p => p.id !== id);
+  updateFarmGrid();
+  updateRecommendations();
+  updateStats();
+  saveState();
+  toast(`${plant.name} removed`, "warning", "fa-trash");
+}
+
+// ===== DAYS SINCE PLANTED =====
+function daysSincePlanted(plant) {
+  return Math.floor((Date.now() - new Date(plant.plantDate)) / 86400000);
+}
+
+function daysUntilHarvest(plant) {
+  return Math.max(0, plant.harvestDays - daysSincePlanted(plant));
+}
+
+// ===== FARM GRID =====
+function updateFarmGrid() {
+  const grid = document.getElementById("farm-grid");
+  grid.innerHTML = "";
+  document.getElementById("plant-count-badge").textContent = farmPlants.length ? `(${farmPlants.length})` : "";
+  if (!farmPlants.length) {
+    grid.innerHTML = `<div class="empty-farm">
+      <i class="fa-solid fa-seedling"></i>
+      <p>Your farm is empty</p>
+      <small>Click "Add Plant" to start growing!</small>
+    </div>`;
+    return;
+  }
+  farmPlants.forEach(plant => {
+    const db = findPlantById(plant.dbId);
+    if (!db) return;
+    const h = calculatePlantHealth(plant, envState);
+    const dth = daysUntilHarvest(plant);
+    const dsp = daysSincePlanted(plant);
+    const harvestPct = Math.min(100, (dsp / plant.harvestDays) * 100);
+    const healthColor = h.score >= 80 ? "#2ecc71" : h.score >= 55 ? "#f39c12" : h.score >= 30 ? "#e74c3c" : "#666";
+    const harvestColor = harvestPct >= 100 ? "#2ecc71" : "#3498db";
+    const pHMatch = Math.round(h.pHScore);
+    const tMatch = Math.round(h.tScore);
+    const hMatch = Math.round(h.hScore);
+    const isHarvest = dth === 0;
+
+    const card = document.createElement("div");
+    card.className = `plant-card ${h.status === "critical" ? "critical-plant" : h.status}`;
+    card.innerHTML = `
+      ${isHarvest ? `<div class="harvest-banner">🎉 Ready to Harvest!</div>` : ""}
+      <div class="pc-header">
+        <div class="pc-emoji">${db.emoji}</div>
+        <button class="pc-del" onclick="event.stopPropagation();removePlant(${plant.id})" title="Remove"><i class="fa-solid fa-trash"></i></button>
+      </div>
+      <div class="pc-name">${db.name}</div>
+      <div class="pc-sci">${db.sci}</div>
+      <div class="pc-status">${h.statusLabel}</div>
+      <div class="pc-health-bar-wrap">
+        <div class="pb-label"><span>HEALTH</span><span style="color:${healthColor}">${h.score}/100</span></div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width:${h.score}%;background:${healthColor}"></div>
+        </div>
+      </div>
+      <div class="pc-health-bar-wrap">
+        <div class="pb-label"><span>GROWTH</span><span>${Math.round(harvestPct)}%</span></div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width:${harvestPct}%;background:${harvestColor}"></div>
+        </div>
+      </div>
+      <div class="pc-mini-stats">
+        <div class="mini-stat"><div class="mini-stat-val" style="color:${tMatch>=80?'#2ecc71':tMatch>=55?'#f39c12':'#e74c3c'}">${tMatch}%</div><div class="mini-stat-label">Temp</div></div>
+        <div class="mini-stat"><div class="mini-stat-val" style="color:${pHMatch>=80?'#2ecc71':pHMatch>=55?'#f39c12':'#e74c3c'}">${pHMatch}%</div><div class="mini-stat-label">pH</div></div>
+        <div class="mini-stat"><div class="mini-stat-val" style="color:${hMatch>=80?'#2ecc71':hMatch>=55?'#f39c12':'#e74c3c'}">${hMatch}%</div><div class="mini-stat-label">Humid</div></div>
+      </div>
+      <div class="harvest-row">
+        <span class="harvest-label"><i class="fa-solid fa-clock"></i> Harvest</span>
+        <span class="harvest-val">${isHarvest ? "🎉 Ready!" : dth + " days"}</span>
+      </div>
+    `;
+    card.onclick = () => openPlantDetail(plant);
+    grid.appendChild(card);
+
+    if (isHarvest && !plant._celebrated) {
+      plant._celebrated = true;
+      launchConfetti();
+      toast(`🎉 ${db.name} is ready to harvest!`, "success", "fa-star");
+    }
+  });
+}
+
+// ===== PLANT DETAIL MODAL =====
+function openPlantDetail(plant) {
+  const db = findPlantById(plant.dbId);
+  if (!db) return;
+  const h = calculatePlantHealth(plant, envState);
+  const dth = daysUntilHarvest(plant);
+  const dsp = daysSincePlanted(plant);
+  const healthColor = h.score >= 80 ? "#2ecc71" : h.score >= 55 ? "#f39c12" : h.score >= 30 ? "#e74c3c" : "#666";
+  document.getElementById("detail-modal-title").textContent = db.name + " Details";
+  const body = document.getElementById("detail-modal-body");
+
+  // Build comparison rows
+  const params = [
+    {label:"pH Level", cur:envState.pH, opt:db.pH, unit:"pH", min:3, max:9},
+    {label:"Temperature", cur:envState.temperature, opt:db.temp, unit:"°C", min:-10, max:50},
+    {label:"Humidity", cur:envState.humidity, opt:db.humidity, unit:"%", min:0, max:100},
+    {label:"Soil Moisture", cur:envState.soilMoisture, opt:db.soilMoisture, unit:"%", min:0, max:100},
+    {label:"Light", cur:envState.light, opt:db.light, unit:"klux", min:0, max:100},
+  ];
+
+  const recoHTML = h.recommendations.map(r => {
+    const cls = r.type === "good" ? "good" : r.type === "danger" ? "bad" : "";
+    const icon = r.type === "good" ? "✅" : r.type === "danger" ? "🚨" : "⚠️";
+    return `<div class="reco-block ${cls}">${icon} ${r.msg}</div>`;
+  }).join("");
+
+  body.innerHTML = `
+    <div class="detail-hero">
+      <div class="detail-emoji">${db.emoji}</div>
+      <div class="detail-name">${db.name}</div>
+      <div class="detail-sci">${db.sci}</div>
+      <div class="detail-health-big" style="color:${healthColor}">${h.score}</div>
+      <div style="font-size:11px;color:var(--text-muted)">Health Score</div>
+      <div style="margin-top:8px;font-size:11px;color:var(--text-secondary)">${h.statusLabel} &nbsp;|&nbsp; Planted ${dsp} days ago &nbsp;|&nbsp; ${dth === 0 ? "🎉 Ready to harvest!" : dth + " days until harvest"}</div>
+    </div>
+    <div style="font-size:11px;color:var(--text-secondary);margin-bottom:12px;text-align:center;padding:0 10px">${db.desc}</div>
+    <div class="section-title" style="margin-bottom:10px"><i class="fa-solid fa-chart-bar"></i> Conditions vs Optimal</div>
+    <table class="comparison-table">
+      <thead><tr><th>Parameter</th><th>Current</th><th>Optimal</th><th>Match</th></tr></thead>
+      <tbody>
+        ${params.map(p => {
+          const pct = ((p.cur - p.min) / (p.max - p.min)) * 100;
+          const loP = ((p.opt[0] - p.min) / (p.max - p.min)) * 100;
+          const hiP = ((p.opt[1] - p.min) / (p.max - p.min)) * 100;
+          const inRange = p.cur >= p.opt[0] && p.cur <= p.opt[1];
+          const dotCol = inRange ? "#2ecc71" : "#e74c3c";
+          const match = p.cur >= p.opt[0] && p.cur <= p.opt[1] ? "✅ OK" :
+                        (p.cur < p.opt[0] ? `▼ Low` : `▲ High`);
+          return `<tr>
+            <td>${p.label}</td>
+            <td style="color:${dotCol};font-weight:700">${typeof p.cur === 'number' && !Number.isInteger(p.cur) ? p.cur.toFixed(1) : p.cur}${p.unit}</td>
+            <td style="color:var(--text-muted)">${p.opt[0]}–${p.opt[1]}${p.unit}</td>
+            <td class="cmp-bar-cell">
+              <div class="cmp-bar">
+                <div class="cmp-optimal-range" style="left:${loP}%;width:${hiP-loP}%"></div>
+                <div class="cmp-current-dot" style="left:${pct}%;background:${dotCol}"></div>
+              </div>
+              <div style="font-size:9px;color:${dotCol};margin-top:3px">${match}</div>
+            </td>
+          </tr>`;
+        }).join("")}
+      </tbody>
+    </table>
+    <div class="detail-reco">${recoHTML || '<div class="reco-block good">✅ All conditions looking good!</div>'}</div>
+    <div class="section-title" style="margin:14px 0 8px"><i class="fa-solid fa-lightbulb"></i> Care Tips</div>
+    <div style="font-size:11px;color:var(--text-secondary);line-height:1.7;background:var(--bg-card2);padding:12px;border-radius:8px;border:1px solid var(--border-green)">
+      <b style="color:var(--accent)">Harvest:</b> ${db.harvest} days from planting<br>
+      <b style="color:var(--accent)">Optimal pH:</b> ${db.pH[0]}–${db.pH[1]}<br>
+      <b style="color:var(--accent)">Temperature:</b> ${db.temp[0]}–${db.temp[1]}°C<br>
+      <b style="color:var(--accent)">Humidity:</b> ${db.humidity[0]}–${db.humidity[1]}%<br>
+      <b style="color:var(--accent)">Soil Moisture:</b> ${db.soilMoisture[0]}–${db.soilMoisture[1]}%<br>
+      <b style="color:var(--accent)">Light:</b> ${db.light[0]}–${db.light[1]} klux
+    </div>
+  `;
+  openModal("modal-detail");
+}
+
+// ===== RECOMMENDATIONS =====
+function updateRecommendations() {
+  const list = document.getElementById("reco-list");
+  const recos = [];
+  let newAlerts = 0;
+
+  // Sensor alerts
+  SENSORS.forEach(s => {
+    const st = getSensorStatus(s);
+    if (st.status === "critical") { recos.push({type:"danger", icon:"fa-circle-exclamation", msg:`${s.label} is CRITICAL (${envState[s.key]}${s.unit})`}); newAlerts++; }
+    else if (st.status === "warning") { recos.push({type:"warn", icon:"fa-triangle-exclamation", msg:`${s.label} is at warning level (${envState[s.key]}${s.unit})`}); }
+  });
+
+  // Plant health
+  let waterNeeded = 0;
+  farmPlants.forEach(plant => {
+    const db = findPlantById(plant.dbId);
+    if (!db) return;
+    const h = calculatePlantHealth(plant, envState);
+    if (h.status === "dying") { recos.push({type:"danger", icon:"fa-skull", msg:`${db.emoji} ${db.name} is DYING — check conditions immediately`}); newAlerts++; }
+    else if (h.status === "critical") { recos.push({type:"danger", icon:"fa-heart-crack", msg:`${db.emoji} ${db.name} is in critical condition (${h.score}/100)`}); newAlerts++; }
+    else if (h.status === "stressed") { recos.push({type:"warn", icon:"fa-triangle-exclamation", msg:`${db.emoji} ${db.name} is stressed (${h.score}/100)`}); }
+    else { recos.push({type:"ok", icon:"fa-circle-check", msg:`${db.emoji} ${db.name} thriving in current conditions`}); }
+    if (envState.soilMoisture < 30) waterNeeded++;
+    if (daysUntilHarvest(plant) === 0) recos.unshift({type:"ok", icon:"fa-star", msg:`🎉 ${db.emoji} ${db.name} is ready to harvest!`});
+  });
+
+  if (waterNeeded > 0) recos.push({type:"info", icon:"fa-droplet", msg:`${waterNeeded} plant(s) need more soil moisture`});
+  if (!farmPlants.length) recos.push({type:"info", icon:"fa-seedling", msg:`No plants planted yet — add some from the library!`});
+
+  // Update bell
+  alertCount = newAlerts;
+  document.getElementById("bell-count").textContent = alertCount;
+  document.getElementById("bell-count").style.display = alertCount ? "flex" : "none";
+
+  list.innerHTML = recos.map(r => `
+    <div class="reco-item reco-${r.type === 'ok' ? 'ok' : r.type === 'danger' ? 'danger' : r.type === 'info' ? 'info' : 'warn'}">
+      <i class="fa-solid ${r.icon} reco-icon"></i>
+      <span>${r.msg}</span>
+    </div>
+  `).join("") || `<div class="reco-item reco-ok"><i class="fa-solid fa-circle-check reco-icon"></i> All systems operating normally</div>`;
+}
+
+// ===== STATISTICS =====
+function updateStats() {
+  const total = farmPlants.length;
+  document.getElementById("stat-total").textContent = total;
+  const cats = {};
+  let thriving=0, stressed=0, critical=0, dying=0;
+  let totalHealth=0, bestScore=0, bestName="—";
+
+  farmPlants.forEach(plant => {
+    const db = findPlantById(plant.dbId);
+    if (!db) return;
+    for (const [cat, plants] of Object.entries(PLANT_DB)) {
+      if (plants.find(p => p.id === plant.dbId)) { cats[cat] = (cats[cat]||0)+1; break; }
+    }
+    const h = calculatePlantHealth(plant, envState);
+    totalHealth += h.score;
+    if (h.score > bestScore) { bestScore = h.score; bestName = db.name; }
+    if (h.status === "thriving") thriving++;
+    else if (h.status === "stressed") stressed++;
+    else if (h.status === "critical") critical++;
+    else dying++;
+  });
+
+  const avg = total ? Math.round(totalHealth / total) : 0;
+  document.getElementById("s-thriving").textContent = thriving;
+  document.getElementById("s-stressed").textContent = stressed;
+  document.getElementById("s-critical").textContent = critical;
+  document.getElementById("s-dying").textContent = dying;
+
+  // Env score (average compat of all plants)
+  let envScore = total ? avg : computeEnvScoreDefault();
+  document.getElementById("stat-env-score").textContent = envScore;
+  document.getElementById("stat-env-score").style.color = envScore >= 70 ? "#2ecc71" : envScore >= 45 ? "#f39c12" : "#e74c3c";
+  document.getElementById("stat-best").textContent = total ? `Best: ${bestName} (${bestScore})` : "Add plants to see stats";
+
+  const avgHealth = total ? avg : 0;
+  document.getElementById("stat-avg-health").textContent = total ? `${avgHealth}/100 avg health` : "No plants";
+
+  drawHealthGauge(avgHealth);
+  drawDonut(cats);
+
+  // Breakdown
+  const b = Object.entries(cats).map(([k,v]) => `${v} ${k.split(" ")[0]}`).join(", ");
+  document.getElementById("stat-breakdown").textContent = total ? b : "No plants yet";
+}
+
+function computeEnvScoreDefault() {
+  // Generic env quality without plants
+  let s = 100;
+  if (envState.temperature > 35) s -= 20;
+  if (envState.humidity < 20 || envState.humidity > 95) s -= 15;
+  if (envState.soilMoisture < 15) s -= 20;
+  return Math.max(0, s);
+}
+
+function drawHealthGauge(score) {
+  const c = document.getElementById("env-score-canvas");
+  if (!c) return;
+  const ctx = c.getContext("2d");
+  const W=140, H=140, cx=70, cy=70, r=50;
+  ctx.clearRect(0,0,W,H);
+  // BG arc
+  ctx.beginPath(); ctx.arc(cx,cy,r,Math.PI*0.75,Math.PI*2.25);
+  ctx.strokeStyle="#1a3a1a"; ctx.lineWidth=10; ctx.lineCap="round"; ctx.stroke();
+  // Score arc
+  const frac = score / 100;
+  const col = score >= 80 ? "#2ecc71" : score >= 55 ? "#f39c12" : "#e74c3c";
+  ctx.beginPath(); ctx.arc(cx,cy,r,Math.PI*0.75,Math.PI*0.75 + Math.PI*1.5*frac);
+  ctx.strokeStyle=col; ctx.lineWidth=10; ctx.stroke();
+  // Text
+  ctx.fillStyle=col; ctx.font="bold 26px Georgia"; ctx.textAlign="center"; ctx.textBaseline="middle";
+  ctx.fillText(score, cx, cy);
+  ctx.fillStyle="#4a6e4a"; ctx.font="10px Courier New";
+  ctx.fillText("HEALTH", cx, cy+18);
+}
+
+const CAT_COLORS = ["#2ecc71","#3498db","#e74c3c","#f39c12","#9b59b6","#1abc9c"];
+
+function drawDonut(cats) {
+  const c = document.getElementById("donut-canvas");
+  if (!c) return;
+  const ctx = c.getContext("2d");
+  const W=140, H=140, cx=70, cy=70, r=50, inner=28;
+  ctx.clearRect(0,0,W,H);
+  const entries = Object.entries(cats);
+  const total = entries.reduce((s,[,v])=>s+v,0);
+  if (!total) {
+    ctx.fillStyle="#1a3a1a"; ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle="#4a6e4a"; ctx.font="10px Courier New"; ctx.textAlign="center"; ctx.textBaseline="middle";
+    ctx.fillText("No plants", cx, cy); return;
+  }
+  let angle = -Math.PI/2;
+  entries.forEach(([cat, val], i) => {
+    const sweep = (val/total) * Math.PI*2;
+    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.arc(cx,cy,r,angle,angle+sweep); ctx.closePath();
+    ctx.fillStyle = CAT_COLORS[i % CAT_COLORS.length]; ctx.fill();
+    angle += sweep;
+  });
+  ctx.beginPath(); ctx.arc(cx,cy,inner,0,Math.PI*2);
+  ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg-card').trim() || "#0d220d";
+  ctx.fill();
+  ctx.fillStyle="#7aab7a"; ctx.font="bold 16px Georgia"; ctx.textAlign="center"; ctx.textBaseline="middle";
+  ctx.fillText(total, cx, cy);
+
+  // Legend
+  const leg = document.getElementById("donut-legend");
+  leg.innerHTML = entries.map(([cat, val], i) =>
+    `<span style="font-size:9px;color:${CAT_COLORS[i%CAT_COLORS.length]};display:flex;align-items:center;gap:3px">
+      <span style="width:7px;height:7px;border-radius:50%;background:${CAT_COLORS[i%CAT_COLORS.length]};display:inline-block"></span>
+      ${cat.split(" ")[0]} (${val})
+    </span>`
+  ).join("");
+}
+
+// ===== WEATHER =====
+function updateWeather() {
+  const t = envState.temperature, h = envState.humidity, r = envState.rainfall;
+  let icon, desc;
+  if (r > 50) { icon="⛈️"; desc="Stormy"; }
+  else if (r > 10) { icon="🌧️"; desc="Rainy"; }
+  else if (h > 80) { icon="⛅"; desc="Cloudy"; }
+  else if (t > 35) { icon="🌡️"; desc="Hot"; }
+  else { icon="☀️"; desc="Sunny"; }
+  document.getElementById("weather-icon").textContent = icon;
+  document.getElementById("weather-desc").textContent = `${desc}, ${Math.round(t)}°C`;
+}
+
+// ===== CLOCK =====
+function updateClock() {
+  const now = new Date();
+  const pad = n => String(n).padStart(2,"0");
+  document.getElementById("live-clock").textContent = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+}
+
+// ===== MODALS =====
+function openModal(id) { document.getElementById(id).classList.add("open"); }
+function closeModal(id) { document.getElementById(id).classList.remove("open"); }
+document.querySelectorAll(".modal-overlay").forEach(el => el.addEventListener("click", e => { if (e.target === el) closeModal(el.id); }));
+
+// ===== TOAST =====
+function toast(msg, type="info", icon="fa-info-circle") {
+  const container = document.getElementById("toast-container");
+  const t = document.createElement("div");
+  t.className = `toast ${type}`;
+  t.innerHTML = `<i class="fa-solid ${icon} toast-icon"></i><span>${msg}</span>`;
+  container.appendChild(t);
+  setTimeout(() => { t.style.animation = "toast-out 0.3s forwards"; setTimeout(() => t.remove(), 300); }, 4000);
+}
+
+// ===== CONFETTI =====
+function launchConfetti() {
+  const colors = ["#2ecc71","#f39c12","#3498db","#e74c3c","#9b59b6","#1abc9c","#fff"];
+  for (let i=0; i<40; i++) {
+    const p = document.createElement("div");
+    p.className = "confetti-piece";
+    p.style.cssText = `
+      left:${Math.random()*100}vw;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      animation-delay:${Math.random()*1}s;
+      animation-duration:${2+Math.random()*2}s;
+      width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;
+    `;
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 4000);
+  }
+}
+
+// ===== APPLY TO ALL =====
+function applyToAll() {
+  updateFarmGrid();
+  updateRecommendations();
+  updateStats();
+  toast("Environment applied to all plants", "success", "fa-check-double");
+}
+
+// ===== THEME TOGGLE =====
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute("data-theme");
+  const next = cur === "light" ? "dark" : "light";
+  document.documentElement.setAttribute("data-theme", next === "light" ? "light" : "");
+  localStorage.setItem("agri-theme", next);
+  // Redraw canvases
+  updateStats();
+}
+
+// ===== SIDEBAR TOGGLE =====
+function toggleSidebar() {
+  const sb = document.getElementById("sidebar");
+  sb.classList.toggle("open");
+}
+
+// ===== PERSISTENCE =====
+function saveState() {
+  localStorage.setItem("agri-env", JSON.stringify(envState));
+  localStorage.setItem("agri-plants", JSON.stringify(farmPlants.map(p => ({...p, _celebrated:undefined}))));
+}
+
+function loadState() {
+  try {
+    const e = localStorage.getItem("agri-env");
+    if (e) Object.assign(envState, JSON.parse(e));
+    const p = localStorage.getItem("agri-plants");
+    if (p) farmPlants = JSON.parse(p);
+  } catch(e) { console.warn("Load state error", e); }
+}
+
+// ===== EXPORT / IMPORT =====
+function exportFarm() {
+  const data = { envState, farmPlants, exportDate: new Date().toISOString() };
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "agrimaster-farm.json";
+  a.click();
+  toast("Farm data exported", "success", "fa-download");
+}
+
+function importFarm() { document.getElementById("import-file").click(); }
+
+function handleImport(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const data = JSON.parse(ev.target.result);
+      if (data.envState) Object.assign(envState, data.envState);
+      if (data.farmPlants) farmPlants = data.farmPlants;
+      buildSliders();
+      updateAllSensors();
+      updateFarmGrid();
+      updateRecommendations();
+      updateStats();
+      saveState();
+      toast("Farm data imported!", "success", "fa-upload");
+    } catch(err) { toast("Invalid file format", "danger", "fa-xmark"); }
+  };
+  reader.readAsText(file);
+}
+
+// ===== SEED DEFAULT PLANTS =====
+function seedDefaultPlants() {
+  if (farmPlants.length > 0) return;
+  const defaults = ["tomato","corn","wheat"];
+  const dates = [20, 45, 10]; // planted X days ago
+  defaults.forEach((id, i) => {
+    const db = findPlantById(id);
+    if (!db) return;
+    const plantedDate = new Date(Date.now() - dates[i] * 86400000).toISOString();
+    farmPlants.push({ id: Date.now() + i, dbId: id, name: db.name, plantDate: plantedDate, harvestDays: db.harvest, healthHistory: [] });
+  });
+}
+
+// ===== SIMULATE SPARK DATA =====
+function seedSparkData() {
+  SENSORS.forEach(s => {
+    sparkData[s.key] = [];
+    const base = envState[s.key];
+    for (let i=0; i<7; i++) {
+      const noise = (Math.random()-0.5) * (s.max - s.min) * 0.08;
+      sparkData[s.key].push(Math.max(s.min, Math.min(s.max, base + noise)));
+    }
+    sparkData[s.key].push(base);
+  });
+}
+
+// ===== API CONFIGURATION =====
+const WS_URL = 'ws://localhost:8000/ws/live';
+const API_BASE = 'http://localhost:8000/api';
+let ws = null;
+let wsRetryTimer = null;
+let apiConnected = false;
+
+// ===== WEBSOCKET CONNECTION =====
+function connectWebSocket() {
+  try {
+    ws = new WebSocket(WS_URL);
+    ws.onopen = () => {
+      console.log('[WS] Connected');
+      apiConnected = true;
+      toast('Connected to AgriMaster backend', 'success', 'fa-plug');
+    };
+    ws.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        if (data.type === 'sensor_update') {
+          handleSensorUpdate(data);
+        } else if (data.type === 'decision') {
+          handleDecisionUpdate(data);
+        } else if (data.type === 'alerts') {
+          handleAlertUpdate(data);
+        }
+      } catch (e) { console.warn('[WS] Parse error:', e); }
+    };
+    ws.onclose = () => {
+      apiConnected = false;
+      console.log('[WS] Disconnected, retrying in 5s...');
+      wsRetryTimer = setTimeout(connectWebSocket, 5000);
+    };
+    ws.onerror = () => { ws.close(); };
+  } catch (e) {
+    console.warn('[WS] Connection failed:', e);
+    wsRetryTimer = setTimeout(connectWebSocket, 5000);
+  }
+}
+
+function handleSensorUpdate(data) {
+  const s = data.sensors || {};
+  envState.temperature = s.temperature ?? envState.temperature;
+  envState.humidity = s.humidity ?? envState.humidity;
+  envState.soilMoisture = s.soil_moisture ?? envState.soilMoisture;
+  envState.pH = s.ph ?? envState.pH;
+  envState.light = (s.light_lux ?? envState.light * 1000) / 1000;
+  envState.co2 = s.co2_ppm ?? envState.co2;
+  envState.windSpeed = s.wind_kmh ?? envState.windSpeed;
+  envState.rainfall = s.rainfall_mm ?? envState.rainfall;
+  updateAllSensors();
+  updateFarmGrid();
+  updateRecommendations();
+  updateStats();
+  buildSliders();
+}
+
+function handleDecisionUpdate(data) {
+  // Update algorithm panel
+  const scores = data.plant_scores || [];
+  const actions = data.actions || [];
+  const layers = data.layers || [];
+  document.getElementById('algo-layers').textContent = layers.length;
+  document.getElementById('algo-actions').textContent = actions.length;
+  const reasoning = document.getElementById('algo-reasoning');
+  reasoning.innerHTML = actions.map(a =>
+    `<div style="padding:4px 0;border-bottom:1px solid var(--border-green)">
+      <span style="color:var(--accent);font-weight:700">${a.target}</span>
+      <span style="color:var(--text-muted);margin:0 6px">→</span>
+      <span>${a.reason || 'No reason'}</span>
+    </div>`
+  ).join('') || '<div style="color:var(--text-muted)">No active actions</div>';
+}
+
+function handleAlertUpdate(data) {
+  const alerts = data.alerts || [];
+  const feed = document.getElementById('alert-feed');
+  alerts.forEach(a => {
+    const cls = a.severity === 'critical' ? 'danger' : a.severity === 'warning' ? 'warning' : 'info';
+    const icon = a.severity === 'critical' ? 'fa-circle-exclamation' : 'fa-triangle-exclamation';
+    const el = document.createElement('div');
+    el.className = `reco-item reco-${cls}`;
+    el.style.animation = 'slide-in 0.3s ease';
+    el.innerHTML = `<i class="fa-solid ${icon} reco-icon"></i><span>${a.message}</span>
+      <span style="margin-left:auto;font-size:9px;color:var(--text-muted)">${new Date(a.timestamp).toLocaleTimeString()}</span>`;
+    feed.prepend(el);
+    // Toast notification
+    toast(a.message, cls, icon);
+    alertCount++;
+  });
+  document.getElementById('bell-count').textContent = alertCount;
+  document.getElementById('bell-count').style.display = alertCount ? 'flex' : 'none';
+}
+
+// ===== API CALLS =====
+async function apiGet(path) {
+  try {
+    const res = await fetch(`${API_BASE}${path}`);
+    return await res.json();
+  } catch (e) { console.warn(`API GET ${path} failed:`, e); return null; }
+}
+
+async function apiPost(path, body) {
+  try {
+    const res = await fetch(`${API_BASE}${path}`, {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(body)
+    });
+    return await res.json();
+  } catch (e) { console.warn(`API POST ${path} failed:`, e); return null; }
+}
+
+// ===== TOGGLE SYSTEM WITH API =====
+const _origToggleSystem = toggleSystem;
+toggleSystem = function(key, val) {
+  _origToggleSystem(key, val);
+  // Also send to backend
+  const targetMap = {irrigation: 'pump_main', fertilizer: 'fertilizer', pesticide: 'misting'};
+  const target = targetMap[key] || key;
+  apiPost('/control/relay', {target, value: val, duration: val ? 300 : 0});
+};
+
+// ===== ALGORITHM PANEL TOGGLE =====
+function toggleAlgoPanel() {
+  const panel = document.getElementById('algo-panel');
+  const chevron = document.getElementById('algo-chevron');
+  const visible = panel.style.display !== 'none';
+  panel.style.display = visible ? 'none' : 'block';
+  chevron.style.transform = visible ? '' : 'rotate(180deg)';
+  if (!visible) fetchAlgorithmStatus();
+}
+
+async function fetchAlgorithmStatus() {
+  const data = await apiGet('/algorithm/last_decision');
+  if (!data || data.error) return;
+  document.getElementById('algo-cycle-ms').textContent = (data.cycle_ms || 0).toFixed(1) + 'ms';
+  document.getElementById('algo-layers').textContent = (data.layers_triggered || []).length;
+  document.getElementById('algo-actions').textContent = (data.actions || []).length;
+  const reasoning = document.getElementById('algo-reasoning');
+  reasoning.innerHTML = (data.actions || []).map(a =>
+    `<div style="padding:4px 0;border-bottom:1px solid var(--border-green)">
+      <span style="color:var(--accent);font-weight:700">[${a.layer || '?'}]</span>
+      <span style="color:var(--amber);margin:0 4px">${a.target}</span>
+      <span>${a.reason || ''}</span>
+    </div>`
+  ).join('') || '<div style="color:var(--text-muted)">No recent actions</div>';
+}
+
+// ===== HISTORICAL CHARTS =====
+async function loadHistoryCharts() {
+  const charts = [
+    {id: 'hist-temp', sensor: 'temp', color: '#e74c3c', label: '°C'},
+    {id: 'hist-soil', sensor: 'soil_moist', color: '#8b6914', label: '%'},
+    {id: 'hist-humidity', sensor: 'humidity', color: '#3498db', label: '%'},
+    {id: 'hist-ph', sensor: 'ph', color: '#9b59b6', label: 'pH'},
+  ];
+  for (const chart of charts) {
+    const data = await apiGet(`/sensors/history?hours=24&sensor=${chart.sensor}`);
+    if (data && data.length > 0) {
+      drawHistoryChart(chart.id, data.map(d => d.value), chart.color, chart.label);
+    }
+  }
+}
+
+function drawHistoryChart(canvasId, values, color, label) {
+  const c = document.getElementById(canvasId);
+  if (!c || values.length < 2) return;
+  const ctx = c.getContext('2d');
+  const W = c.clientWidth || 300;
+  const H = c.clientHeight || 120;
+  c.width = W; c.height = H;
+  ctx.clearRect(0, 0, W, H);
+
+  const mn = Math.min(...values), mx = Math.max(...values);
+  const range = mx - mn || 1;
+  const pad = 8;
+
+  // Grid lines
+  ctx.strokeStyle = 'rgba(46,204,113,0.1)';
+  ctx.lineWidth = 1;
+  for (let i = 0; i < 4; i++) {
+    const y = pad + (i / 3) * (H - pad * 2);
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+  }
+
+  // Data line
+  const pts = values.map((v, i) => [
+    (i / (values.length - 1)) * W,
+    H - pad - ((v - mn) / range) * (H - pad * 2)
+  ]);
+  ctx.beginPath();
+  ctx.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Fill gradient
+  ctx.lineTo(W, H); ctx.lineTo(0, H); ctx.closePath();
+  const grad = ctx.createLinearGradient(0, 0, 0, H);
+  grad.addColorStop(0, color + '33');
+  grad.addColorStop(1, color + '05');
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Min/Max labels
+  ctx.fillStyle = 'rgba(122,171,122,0.8)';
+  ctx.font = '9px Courier New';
+  ctx.fillText(`${mx.toFixed(1)}${label}`, 4, pad + 8);
+  ctx.fillText(`${mn.toFixed(1)}${label}`, 4, H - 4);
+}
+
+// ===== FETCH ALERTS =====
+async function loadAlerts() {
+  const alerts = await apiGet('/alerts?resolved=false');
+  if (!alerts || !alerts.length) return;
+  const feed = document.getElementById('alert-feed');
+  feed.innerHTML = alerts.map(a => {
+    const cls = a.severity === 'critical' ? 'danger' : a.severity === 'warning' ? 'warning' : 'info';
+    const icon = a.severity === 'critical' ? 'fa-circle-exclamation' : 'fa-triangle-exclamation';
+    const t = new Date(a.timestamp).toLocaleTimeString();
+    return `<div class="reco-item reco-${cls}">
+      <i class="fa-solid ${icon} reco-icon"></i><span>${a.message}</span>
+      <span style="margin-left:auto;font-size:9px;color:var(--text-muted)">${t}</span>
+    </div>`;
+  }).join('');
+  alertCount = alerts.length;
+  document.getElementById('bell-count').textContent = alertCount;
+  document.getElementById('bell-count').style.display = alertCount ? 'flex' : 'none';
+}
+
+// ===== INIT =====
+function init() {
+  // Load theme
+  const theme = localStorage.getItem("agri-theme");
+  if (theme === "light") document.documentElement.setAttribute("data-theme", "light");
+
+  loadState();
+  seedDefaultPlants();
+  seedSparkData();
+
+  // Sync toggles
+  document.getElementById("t-irrigation").checked = envState.irrigation;
+  document.getElementById("t-fertilizer").checked = envState.fertilizer;
+  document.getElementById("t-pesticide").checked = envState.pesticide;
+
+  buildSensorsGrid();
+  buildSliders();
+  updateAllSensors();
+  updateFarmGrid();
+  updateRecommendations();
+  updateStats();
+
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  // Connect to real backend via WebSocket
+  connectWebSocket();
+
+  // Load historical data and alerts from API
+  setTimeout(() => {
+    loadHistoryCharts();
+    loadAlerts();
+    fetchAlgorithmStatus();
+  }, 2000);
+
+  // Refresh history charts every 5 minutes
+  setInterval(loadHistoryCharts, 300000);
+  // Refresh alerts every 30 seconds
+  setInterval(loadAlerts, 30000);
+
+  // Fallback: simulate slight env fluctuation if no WS connection
+  setInterval(() => {
+    if (apiConnected) return; // Skip if getting real data
+    SENSORS.forEach(s => {
+      if (!sparkData[s.key]) sparkData[s.key] = [];
+      const noise = (Math.random()-0.5) * (s.max - s.min) * 0.04;
+      const v = Math.max(s.min, Math.min(s.max, envState[s.key] + noise));
+      sparkData[s.key].push(v);
+      if (sparkData[s.key].length > 20) sparkData[s.key].shift();
+      drawSparkline("spark-" + s.key, sparkData[s.key], s.color);
+    });
+  }, 8000);
+}
+
+document.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>
