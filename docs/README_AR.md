@@ -99,7 +99,7 @@
 
 ```bash
 # حمّل المشروع
-git clone https://github.com/sajjadraad2006-sys/AgriMaster-Pro.git
+git clone https://github.com/sajjadraad2006-sys/Smart-Garden.git
 cd AgriMaster-Pro
 
 # نصّب كل شي بأمر واحد

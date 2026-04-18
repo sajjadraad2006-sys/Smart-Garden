@@ -156,8 +156,8 @@ garden_project/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/garden_project.git
-cd garden_project
+git clone https://github.com/sajjadraad2006-sys/Smart-Garden.git
+cd Smart-Garden
 
 # 2. Install everything
 ./scripts/install.sh
