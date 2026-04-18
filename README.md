@@ -14,6 +14,8 @@
 
 ---
 
+> **📖 [اقرأ الشرح بالعربي](docs/README_AR.md)** — شرح كامل بالعربي مع خطوات التنصيب وهل تحتاج كل القطع ولا لا
+
 # AgriMaster Pro
 
 A production-grade smart garden management system combining ESP32 hardware, a 10-layer decision engine, and a real-time web dashboard. Designed for precision agriculture — monitors 10 sensor channels, controls 9 actuators, and makes intelligent irrigation, pH, ventilation, lighting, and fertilizer decisions every 30 seconds.
