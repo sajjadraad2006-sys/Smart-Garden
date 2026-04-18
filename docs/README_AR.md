@@ -145,7 +145,7 @@ GND            →    GND مشترك
 ```
 
 ### التوصيل الكامل:
-ارجع لملف [WIRING_DIAGRAM.md](docs/WIRING_DIAGRAM.md)
+ارجع لملف [WIRING_DIAGRAM.md](WIRING_DIAGRAM.md)
 
 ## الخطوة 5: التشغيل الحقيقي
 
@@ -218,10 +218,10 @@ curl -X POST http://localhost:8000/api/control/relay \
 
 # روابط مفيدة
 
-- 📋 [دليل التنصيب الكامل](docs/SETUP_GUIDE.md)
-- 🔌 [مخطط التوصيلات](docs/WIRING_DIAGRAM.md)
-- 🧠 [مواصفات الخوارزمية](docs/ALGORITHM_SPEC.md)
-- 📡 [API Documentation](http://localhost:8000/docs)
+- 📋 [دليل التنصيب الكامل](SETUP_GUIDE.md)
+- 🔌 [مخطط التوصيلات](WIRING_DIAGRAM.md)
+- 🧠 [مواصفات الخوارزمية](ALGORITHM_SPEC.md)
+- 📡 **API Documentation** — شغل السيرفر وافتح `http://localhost:8000/docs`
 
 ---
 
