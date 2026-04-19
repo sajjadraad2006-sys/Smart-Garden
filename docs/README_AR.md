@@ -100,7 +100,7 @@
 ```bash
 # حمّل المشروع
 git clone https://github.com/sajjadraad2006-sys/Smart-Garden.git
-cd AgriMaster-Pro
+cd Smart-Garden
 
 # نصّب كل شي بأمر واحد
 ./scripts/install.sh
