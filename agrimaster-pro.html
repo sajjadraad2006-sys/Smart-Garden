@@ -687,11 +687,12 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
   </div>
   <div class="header-right">
     <button class="icon-btn" onclick="toggleTheme()" title="Toggle Theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
+    <button class="icon-btn" id="lang-btn" onclick="toggleLang()" title="العربية / English" style="font-size:13px;font-weight:700;letter-spacing:0">EN</button>
     <button class="icon-btn" id="bell-btn" title="Notifications">
       <i class="fa-solid fa-bell"></i>
       <span class="badge" id="bell-count">0</span>
     </button>
-    <button class="btn-primary" onclick="openAddPlant()"><i class="fa-solid fa-plus"></i> Add Plant</button>
+    <button class="btn-primary" onclick="openAddPlant()"><i class="fa-solid fa-plus"></i> <span data-i18n="addPlant">Add Plant</span></button>
   </div>
 </header>
 
@@ -703,50 +704,50 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
 
   <!-- ===== CONTROL PANEL SIDEBAR ===== -->
   <aside id="sidebar">
-    <div class="section-title"><i class="fa-solid fa-gamepad"></i> Control Panel</div>
+    <div class="section-title"><i class="fa-solid fa-gamepad"></i> <span data-i18n="controlPanel">Control Panel</span></div>
 
     <!-- Season Presets -->
     <div class="ctrl-section">
-      <div class="ctrl-section-title"><i class="fa-solid fa-sun"></i> Season Presets</div>
+      <div class="ctrl-section-title"><i class="fa-solid fa-sun"></i> <span data-i18n="seasonPresets">Season Presets</span></div>
       <div class="presets-grid">
-        <button class="preset-btn" onclick="applyPreset('spring')">🌸 Spring</button>
-        <button class="preset-btn" onclick="applyPreset('summer')">☀️ Summer</button>
-        <button class="preset-btn" onclick="applyPreset('autumn')">🍂 Autumn</button>
-        <button class="preset-btn" onclick="applyPreset('winter')">❄️ Winter</button>
+        <button class="preset-btn" onclick="applyPreset('spring')">🌸 <span data-i18n="spring">Spring</span></button>
+        <button class="preset-btn" onclick="applyPreset('summer')">☀️ <span data-i18n="summer">Summer</span></button>
+        <button class="preset-btn" onclick="applyPreset('autumn')">🍂 <span data-i18n="autumn">Autumn</span></button>
+        <button class="preset-btn" onclick="applyPreset('winter')">❄️ <span data-i18n="winter">Winter</span></button>
       </div>
     </div>
 
     <!-- Sliders -->
     <div class="ctrl-section">
-      <div class="ctrl-section-title"><i class="fa-solid fa-thermometer-half"></i> Environment Controls</div>
+      <div class="ctrl-section-title"><i class="fa-solid fa-thermometer-half"></i> <span data-i18n="envControls">Environment Controls</span></div>
       <div id="sliders-container"></div>
     </div>
 
     <!-- Toggles -->
     <div class="ctrl-section">
-      <div class="ctrl-section-title"><i class="fa-solid fa-toggle-on"></i> Systems</div>
+      <div class="ctrl-section-title"><i class="fa-solid fa-toggle-on"></i> <span data-i18n="systems">Systems</span></div>
       <div class="toggle-row">
-        <div class="toggle-label"><i class="fa-solid fa-droplet" style="color:#3498db"></i> Irrigation</div>
+        <div class="toggle-label"><i class="fa-solid fa-droplet" style="color:#3498db"></i> <span data-i18n="irrigation">Irrigation</span></div>
         <label class="toggle"><input type="checkbox" id="t-irrigation" onchange="toggleSystem('irrigation',this.checked)"><span class="toggle-slider"></span></label>
       </div>
       <div class="toggle-row">
-        <div class="toggle-label"><i class="fa-solid fa-flask" style="color:#2ecc71"></i> Fertilizer</div>
+        <div class="toggle-label"><i class="fa-solid fa-flask" style="color:#2ecc71"></i> <span data-i18n="fertilizer">Fertilizer</span></div>
         <label class="toggle"><input type="checkbox" id="t-fertilizer" onchange="toggleSystem('fertilizer',this.checked)"><span class="toggle-slider"></span></label>
       </div>
       <div class="toggle-row">
-        <div class="toggle-label"><i class="fa-solid fa-bug" style="color:#f39c12"></i> Pesticide</div>
+        <div class="toggle-label"><i class="fa-solid fa-bug" style="color:#f39c12"></i> <span data-i18n="pesticide">Pesticide</span></div>
         <label class="toggle"><input type="checkbox" id="t-pesticide" onchange="toggleSystem('pesticide',this.checked)"><span class="toggle-slider"></span></label>
       </div>
     </div>
 
-    <button class="apply-btn" onclick="applyToAll()"><i class="fa-solid fa-check-double"></i> Apply to All Plants</button>
+    <button class="apply-btn" onclick="applyToAll()"><i class="fa-solid fa-check-double"></i> <span data-i18n="applyAll">Apply to All Plants</span></button>
 
     <!-- Export/Import -->
     <div class="ctrl-section" style="margin-top:14px">
-      <div class="ctrl-section-title"><i class="fa-solid fa-database"></i> Data</div>
+      <div class="ctrl-section-title"><i class="fa-solid fa-database"></i> <span data-i18n="data">Data</span></div>
       <div class="export-row">
-        <button class="export-btn" onclick="exportFarm()"><i class="fa-solid fa-download"></i> Export</button>
-        <button class="export-btn" onclick="importFarm()"><i class="fa-solid fa-upload"></i> Import</button>
+        <button class="export-btn" onclick="exportFarm()"><i class="fa-solid fa-download"></i> <span data-i18n="export">Export</span></button>
+        <button class="export-btn" onclick="importFarm()"><i class="fa-solid fa-upload"></i> <span data-i18n="import">Import</span></button>
         <input type="file" id="import-file" style="display:none" accept=".json" onchange="handleImport(event)">
       </div>
     </div>
@@ -756,51 +757,51 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
   <main id="main">
 
     <!-- Environmental Monitoring -->
-    <div class="section-title"><i class="fa-solid fa-gauge-high"></i> Environmental Monitoring</div>
+    <div class="section-title"><i class="fa-solid fa-gauge-high"></i> <span data-i18n="envMonitoring">Environmental Monitoring</span></div>
     <div id="sensors-grid"></div>
 
     <!-- Recommendations -->
-    <div class="section-title"><i class="fa-solid fa-lightbulb"></i> Smart Recommendations</div>
+    <div class="section-title"><i class="fa-solid fa-lightbulb"></i> <span data-i18n="smartReco">Smart Recommendations</span></div>
     <div id="reco-panel"><div id="reco-list"></div></div>
 
     <!-- Farm Grid -->
     <div class="farm-header">
-      <div class="section-title" style="margin:0"><i class="fa-solid fa-seedling"></i> Farm Grid <span id="plant-count-badge" style="font-size:10px;color:var(--text-muted);font-family:var(--font-body)"></span></div>
+      <div class="section-title" style="margin:0"><i class="fa-solid fa-seedling"></i> <span data-i18n="farmGrid">Farm Grid</span> <span id="plant-count-badge" style="font-size:10px;color:var(--text-muted);font-family:var(--font-body)"></span></div>
       <div style="display:flex;gap:8px">
-        <button class="btn-secondary" onclick="openAddPlant()"><i class="fa-solid fa-plus"></i> Add Plant</button>
+        <button class="btn-secondary" onclick="openAddPlant()"><i class="fa-solid fa-plus"></i> <span data-i18n="addPlant">Add Plant</span></button>
       </div>
     </div>
     <div id="farm-grid"></div>
 
     <!-- Stats -->
-    <div class="section-title"><i class="fa-solid fa-chart-pie"></i> Statistics Dashboard</div>
+    <div class="section-title"><i class="fa-solid fa-chart-pie"></i> <span data-i18n="statsDash">Statistics Dashboard</span></div>
     <div id="stats-panel">
       <div class="stat-card">
-        <div class="stat-title">Total Plants</div>
+        <div class="stat-title" data-i18n="totalPlants">Total Plants</div>
         <div class="stat-value" id="stat-total">0</div>
-        <div class="stat-sub" id="stat-breakdown">No plants yet</div>
+        <div class="stat-sub" id="stat-breakdown" data-i18n-live="noPlantsYet">No plants yet</div>
       </div>
       <div class="stat-card">
-        <div class="stat-title">Average Health</div>
+        <div class="stat-title" data-i18n="avgHealth">Average Health</div>
         <canvas id="env-score-canvas" width="140" height="140"></canvas>
         <div class="stat-sub" id="stat-avg-health">—</div>
       </div>
       <div class="stat-card">
-        <div class="stat-title">Plant Status</div>
+        <div class="stat-title" data-i18n="plantStatus">Plant Status</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px">
-          <div class="mini-stat"><div class="mini-stat-val" id="s-thriving" style="color:var(--accent)">0</div><div class="mini-stat-label">Thriving</div></div>
-          <div class="mini-stat"><div class="mini-stat-val" id="s-stressed" style="color:var(--amber)">0</div><div class="mini-stat-label">Stressed</div></div>
-          <div class="mini-stat"><div class="mini-stat-val" id="s-critical" style="color:var(--red)">0</div><div class="mini-stat-label">Critical</div></div>
-          <div class="mini-stat"><div class="mini-stat-val" id="s-dying" style="color:#888">0</div><div class="mini-stat-label">Dying</div></div>
+          <div class="mini-stat"><div class="mini-stat-val" id="s-thriving" style="color:var(--accent)">0</div><div class="mini-stat-label" data-i18n="thriving">Thriving</div></div>
+          <div class="mini-stat"><div class="mini-stat-val" id="s-stressed" style="color:var(--amber)">0</div><div class="mini-stat-label" data-i18n="stressed">Stressed</div></div>
+          <div class="mini-stat"><div class="mini-stat-val" id="s-critical" style="color:var(--red)">0</div><div class="mini-stat-label" data-i18n="critical">Critical</div></div>
+          <div class="mini-stat"><div class="mini-stat-val" id="s-dying" style="color:#888">0</div><div class="mini-stat-label" data-i18n="dying">Dying</div></div>
         </div>
       </div>
       <div class="stat-card">
-        <div class="stat-title">Plants by Category</div>
+        <div class="stat-title" data-i18n="plantsByCategory">Plants by Category</div>
         <canvas id="donut-canvas" width="140" height="140"></canvas>
         <div id="donut-legend" style="margin-top:8px;display:flex;flex-wrap:wrap;gap:4px;justify-content:center"></div>
       </div>
       <div class="stat-card">
-        <div class="stat-title">Environmental Score</div>
+        <div class="stat-title" data-i18n="envScore">Environmental Score</div>
         <div class="stat-value" id="stat-env-score">—</div>
         <div class="stat-sub" id="stat-best">No plants planted</div>
       </div>
@@ -808,33 +809,33 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
 
     <!-- Algorithm Status Panel -->
     <div class="section-title" style="cursor:pointer" onclick="toggleAlgoPanel()">
-      <i class="fa-solid fa-brain"></i> Algorithm Status
+      <i class="fa-solid fa-brain"></i> <span data-i18n="algoStatus">Algorithm Status</span>
       <i class="fa-solid fa-chevron-down" id="algo-chevron" style="margin-left:auto;font-size:10px;transition:transform 0.3s"></i>
     </div>
     <div id="algo-panel" style="display:none">
       <div id="algo-panel-inner" style="background:var(--bg-card);border:1px solid var(--border-green);border-radius:var(--radius);padding:14px;margin-bottom:24px">
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px">
-          <div class="mini-stat"><div class="mini-stat-val" id="algo-cycle-ms">—</div><div class="mini-stat-label">Cycle Time</div></div>
-          <div class="mini-stat"><div class="mini-stat-val" id="algo-layers">—</div><div class="mini-stat-label">Layers Active</div></div>
-          <div class="mini-stat"><div class="mini-stat-val" id="algo-actions">—</div><div class="mini-stat-label">Actions</div></div>
+          <div class="mini-stat"><div class="mini-stat-val" id="algo-cycle-ms">—</div><div class="mini-stat-label" data-i18n="cycleTime">Cycle Time</div></div>
+          <div class="mini-stat"><div class="mini-stat-val" id="algo-layers">—</div><div class="mini-stat-label" data-i18n="layersActive">Layers Active</div></div>
+          <div class="mini-stat"><div class="mini-stat-val" id="algo-actions">—</div><div class="mini-stat-label" data-i18n="actions">Actions</div></div>
         </div>
         <div id="algo-reasoning" style="font-size:11px;color:var(--text-secondary);max-height:200px;overflow-y:auto"></div>
       </div>
     </div>
 
     <!-- Alert Feed -->
-    <div class="section-title"><i class="fa-solid fa-bell"></i> Alert Feed</div>
+    <div class="section-title"><i class="fa-solid fa-bell"></i> <span data-i18n="alertFeed">Alert Feed</span></div>
     <div id="alert-feed" style="background:var(--bg-card);border:1px solid var(--border-green);border-radius:var(--radius);padding:14px;margin-bottom:24px;max-height:250px;overflow-y:auto">
-      <div style="color:var(--text-muted);font-size:11px;text-align:center">No alerts yet</div>
+      <div style="color:var(--text-muted);font-size:11px;text-align:center" data-i18n="noAlerts">No alerts yet</div>
     </div>
 
     <!-- Historical Charts -->
-    <div class="section-title"><i class="fa-solid fa-chart-line"></i> 24h History</div>
+    <div class="section-title"><i class="fa-solid fa-chart-line"></i> <span data-i18n="history24h">24h History</span></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px" id="history-charts">
-      <div class="stat-card"><div class="stat-title">Temperature</div><canvas id="hist-temp" height="120"></canvas></div>
-      <div class="stat-card"><div class="stat-title">Soil Moisture</div><canvas id="hist-soil" height="120"></canvas></div>
-      <div class="stat-card"><div class="stat-title">Humidity</div><canvas id="hist-humidity" height="120"></canvas></div>
-      <div class="stat-card"><div class="stat-title">pH Level</div><canvas id="hist-ph" height="120"></canvas></div>
+      <div class="stat-card"><div class="stat-title" data-i18n="temperature">Temperature</div><canvas id="hist-temp" height="120"></canvas></div>
+      <div class="stat-card"><div class="stat-title" data-i18n="soilMoisture">Soil Moisture</div><canvas id="hist-soil" height="120"></canvas></div>
+      <div class="stat-card"><div class="stat-title" data-i18n="humidity">Humidity</div><canvas id="hist-humidity" height="120"></canvas></div>
+      <div class="stat-card"><div class="stat-title" data-i18n="phLevel">pH Level</div><canvas id="hist-ph" height="120"></canvas></div>
     </div>
 
   </main>
@@ -844,11 +845,11 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
 <div class="modal-overlay" id="modal-add">
   <div class="modal">
     <div class="modal-header">
-      <div class="modal-title"><i class="fa-solid fa-seedling"></i> Plant Library</div>
+      <div class="modal-title"><i class="fa-solid fa-seedling"></i> <span data-i18n="plantLibrary">Plant Library</span></div>
       <button class="modal-close" onclick="closeModal('modal-add')"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="modal-body">
-      <input type="text" class="plant-search" id="plant-search-input" placeholder="🔍  Search plants..." oninput="filterPlants()">
+      <input type="text" class="plant-search" id="plant-search-input" data-i18n-placeholder="searchPlants" placeholder="🔍  Search plants..." oninput="filterPlants()">
       <div id="plant-library-content"></div>
     </div>
   </div>
@@ -2027,6 +2028,178 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+</script>
+
+<!-- ===== i18n ARABIC / ENGLISH ENGINE ===== -->
+<script>
+const TRANSLATIONS = {
+  en: {
+    addPlant:         "Add Plant",
+    controlPanel:     "Control Panel",
+    seasonPresets:    "Season Presets",
+    spring:           "Spring",
+    summer:           "Summer",
+    autumn:           "Autumn",
+    winter:           "Winter",
+    envControls:      "Environment Controls",
+    systems:          "Systems",
+    irrigation:       "Irrigation",
+    fertilizer:       "Fertilizer",
+    pesticide:        "Pesticide",
+    applyAll:         "Apply to All Plants",
+    data:             "Data",
+    export:           "Export",
+    import:           "Import",
+    envMonitoring:    "Environmental Monitoring",
+    smartReco:        "Smart Recommendations",
+    farmGrid:         "Farm Grid",
+    statsDash:        "Statistics Dashboard",
+    totalPlants:      "Total Plants",
+    noPlantsYet:      "No plants yet",
+    avgHealth:        "Average Health",
+    plantStatus:      "Plant Status",
+    thriving:         "Thriving",
+    stressed:         "Stressed",
+    critical:         "Critical",
+    dying:            "Dying",
+    plantsByCategory: "Plants by Category",
+    envScore:         "Environmental Score",
+    algoStatus:       "Algorithm Status",
+    cycleTime:        "Cycle Time",
+    layersActive:     "Layers Active",
+    actions:          "Actions",
+    alertFeed:        "Alert Feed",
+    noAlerts:         "No alerts yet",
+    history24h:       "24h History",
+    temperature:      "Temperature",
+    soilMoisture:     "Soil Moisture",
+    humidity:         "Humidity",
+    phLevel:          "pH Level",
+    plantLibrary:     "Plant Library",
+    searchPlants:     "🔍  Search plants...",
+    emptyFarm:        "No plants added yet",
+    emptyFarmSub:     "Click \"Add Plant\" to start growing!",
+    harvestIn:        "harvest",
+    zoneLbl:          "Zone",
+    healthLbl:        "Health",
+    removeLbl:        "Remove",
+    detailsLbl:       "Details",
+    careTips:         "Care Tips",
+    conditionsVsOpt:  "Conditions vs Optimal",
+  },
+  ar: {
+    addPlant:         "إضافة نبات",
+    controlPanel:     "لوحة التحكم",
+    seasonPresets:    "إعدادات الموسم",
+    spring:           "ربيع",
+    summer:           "صيف",
+    autumn:           "خريف",
+    winter:           "شتاء",
+    envControls:      "تحكم بالبيئة",
+    systems:          "الأنظمة",
+    irrigation:       "الري",
+    fertilizer:       "السماد",
+    pesticide:        "المبيدات",
+    applyAll:         "تطبيق على كل النباتات",
+    data:             "البيانات",
+    export:           "تصدير",
+    import:           "استيراد",
+    envMonitoring:    "مراقبة البيئة",
+    smartReco:        "التوصيات الذكية",
+    farmGrid:         "شبكة المزرعة",
+    statsDash:        "لوحة الإحصاءات",
+    totalPlants:      "إجمالي النباتات",
+    noPlantsYet:      "لا توجد نباتات بعد",
+    avgHealth:        "متوسط الصحة",
+    plantStatus:      "حالة النباتات",
+    thriving:         "ممتازة",
+    stressed:         "مجهدة",
+    critical:         "حرجة",
+    dying:            "تحتضر",
+    plantsByCategory: "النباتات حسب الفئة",
+    envScore:         "تقييم البيئة",
+    algoStatus:       "حالة الخوارزمية",
+    cycleTime:        "وقت الدورة",
+    layersActive:     "الطبقات النشطة",
+    actions:          "الإجراءات",
+    alertFeed:        "التنبيهات",
+    noAlerts:         "لا توجد تنبيهات",
+    history24h:       "سجل 24 ساعة",
+    temperature:      "الحرارة",
+    soilMoisture:     "رطوبة التربة",
+    humidity:         "رطوبة الجو",
+    phLevel:          "مستوى pH",
+    plantLibrary:     "مكتبة النباتات",
+    searchPlants:     "🔍  ابحث عن نبات...",
+    emptyFarm:        "لا توجد نباتات بعد",
+    emptyFarmSub:     "اضغط \"إضافة نبات\" لتبدأ الزراعة!",
+    harvestIn:        "حصاد",
+    zoneLbl:          "المنطقة",
+    healthLbl:        "الصحة",
+    removeLbl:        "حذف",
+    detailsLbl:       "تفاصيل",
+    careTips:         "نصائح العناية",
+    conditionsVsOpt:  "الظروف مقابل المثالية",
+  }
+};
+
+let currentLang = localStorage.getItem("ag_lang") || "en";
+
+function applyLang() {
+  const T = TRANSLATIONS[currentLang];
+  const isAr = currentLang === "ar";
+
+  // RTL / LTR
+  document.documentElement.setAttribute("dir", isAr ? "rtl" : "ltr");
+  document.documentElement.setAttribute("lang", isAr ? "ar" : "en");
+
+  // Swap button label
+  const btn = document.getElementById("lang-btn");
+  if (btn) btn.textContent = isAr ? "EN" : "AR";
+
+  // Swap all data-i18n text nodes
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (T[key] !== undefined) el.textContent = T[key];
+  });
+
+  // Swap placeholders
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    if (T[key] !== undefined) el.placeholder = T[key];
+  });
+
+  // Save to localStorage
+  localStorage.setItem("ag_lang", currentLang);
+}
+
+function toggleLang() {
+  currentLang = currentLang === "en" ? "ar" : "en";
+  applyLang();
+  // Re-render farm grid so plant cards use new language
+  if (typeof renderFarm === "function") renderFarm();
+}
+
+// Patch renderFarm to use translated strings for empty state
+const _origRenderFarm = window.renderFarm;
+document.addEventListener("DOMContentLoaded", () => {
+  // Hook into renderFarm after it is defined
+  const origFn = window.renderFarm;
+  if (origFn) {
+    window.renderFarm = function() {
+      origFn();
+      // patch empty-farm text
+      const ef = document.querySelector(".empty-farm");
+      if (ef) {
+        const T = TRANSLATIONS[currentLang];
+        ef.innerHTML = `<div style="font-size:32px">🌱</div>
+          <div>${T.emptyFarm}</div>
+          <small>${T.emptyFarmSub}</small>`;
+      }
+    };
+  }
+  applyLang();
+});
 </script>
 </body>
 </html>
