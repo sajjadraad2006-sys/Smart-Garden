@@ -771,6 +771,24 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
   cursor:pointer;font-family:var(--font-body);transition:var(--transition);
 }
 .wizard-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px var(--accent-glow)}
+
+/* ===== LIVE / SIM MODE TOGGLE ===== */
+.mode-toggle{
+  display:flex;align-items:center;gap:0;
+  background:var(--bg-card);border:1px solid var(--border-green);
+  border-radius:20px;overflow:hidden;height:32px;
+}
+.mode-opt{
+  padding:6px 12px;font-size:10px;font-weight:700;
+  cursor:pointer;transition:var(--transition);
+  color:var(--text-muted);border:none;background:none;
+  font-family:var(--font-body);letter-spacing:0.5px;
+  display:flex;align-items:center;gap:4px;
+}
+.mode-opt.active{background:var(--accent);color:#000;border-radius:20px}
+.mode-opt.active.sim-active{background:#3498db}
+.sim-banner.live-mode{background:linear-gradient(90deg,rgba(46,204,113,0.15),rgba(46,204,113,0.08));}
+.sim-banner.live-mode .sim-dot{background:#2ecc71}
 </style>
 </head>
 <body>
@@ -790,6 +808,10 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
     </div>
   </div>
   <div class="header-right">
+    <div class="mode-toggle" id="mode-toggle">
+      <button class="mode-opt active" id="mode-live" onclick="setMode('live')">🟢 <span data-i18n="modeLive">LIVE</span></button>
+      <button class="mode-opt" id="mode-sim" onclick="setMode('sim')">🧪 <span data-i18n="modeSim">SIM</span></button>
+    </div>
     <button class="icon-btn" onclick="toggleTheme()" title="Toggle Theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
     <button class="icon-btn" id="lang-btn" onclick="toggleLang()" title="العربية / English" style="font-size:13px;font-weight:700;letter-spacing:0">EN</button>
     <button class="icon-btn" id="bell-btn" title="Notifications">
@@ -839,7 +861,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
           <span class="sc-sub">18°C 95%</span>
         </button>
         <button class="scenario-btn" onclick="applyScenario('drought')">
-          <span class="sc-emoji">🥵</span>
+          <span class="sc-emoji">🌵</span>
           <span class="sc-label" data-i18n="scDrought">Drought</span>
           <span class="sc-sub">38°C 10%</span>
         </button>
@@ -1171,10 +1193,11 @@ function calculatePlantHealth(plant, env) {
   const score = Math.round(pHScore*0.25 + tScore*0.25 + hScore*0.20 + smScore*0.15 + lScore*0.15);
 
   let status, statusLabel;
-  if (score >= 80) { status = "thriving"; statusLabel = "🟢 Thriving"; }
-  else if (score >= 55) { status = "stressed"; statusLabel = "🟡 Stressed"; }
-  else if (score >= 30) { status = "critical"; statusLabel = "🔴 Critical"; }
-  else { status = "dying"; statusLabel = "💀 Dying"; }
+  const isAr = (typeof currentLang !== 'undefined' && currentLang === 'ar');
+  if (score >= 80) { status = "thriving"; statusLabel = isAr ? "🟢 مزدهر" : "🟢 Thriving"; }
+  else if (score >= 55) { status = "stressed"; statusLabel = isAr ? "🟡 مُجهَد" : "🟡 Stressed"; }
+  else if (score >= 30) { status = "critical"; statusLabel = isAr ? "🔴 حرج" : "🔴 Critical"; }
+  else { status = "dying"; statusLabel = isAr ? "💀 يحتضر" : "💀 Dying"; }
 
   const recommendations = [];
   if (env.pH < db.pH[0]) recommendations.push({type:"warn", msg:`Raise pH to at least ${db.pH[0]}`});
@@ -1490,35 +1513,36 @@ function updateFarmGrid() {
 
     const card = document.createElement("div");
     card.className = `plant-card ${h.status === "critical" ? "critical-plant" : h.status}`;
+    const _ar = currentLang === 'ar';
     card.innerHTML = `
-      ${isHarvest ? `<div class="harvest-banner">🎉 Ready to Harvest!</div>` : ""}
+      ${isHarvest ? `<div class="harvest-banner">🎉 ${_ar ? 'جاهز للحصاد!' : 'Ready to Harvest!'}</div>` : ""}
       <div class="pc-header">
         <div class="pc-emoji">${db.emoji}</div>
-        <button class="pc-del" onclick="event.stopPropagation();removePlant(${plant.id})" title="Remove"><i class="fa-solid fa-trash"></i></button>
+        <button class="pc-del" onclick="event.stopPropagation();removePlant(${plant.id})" title="${_ar ? 'حذف' : 'Remove'}"><i class="fa-solid fa-trash"></i></button>
       </div>
       <div class="pc-name">${pName(db)}</div>
       <div class="pc-sci">${db.sci}</div>
       <div class="pc-status">${h.statusLabel}</div>
       <div class="pc-health-bar-wrap">
-        <div class="pb-label"><span>HEALTH</span><span style="color:${healthColor}">${h.score}/100</span></div>
+        <div class="pb-label"><span>${_ar ? 'الصحة' : 'HEALTH'}</span><span style="color:${healthColor}">${h.score}/100</span></div>
         <div class="progress-bar">
           <div class="progress-fill" style="width:${h.score}%;background:${healthColor}"></div>
         </div>
       </div>
       <div class="pc-health-bar-wrap">
-        <div class="pb-label"><span>GROWTH</span><span>${Math.round(harvestPct)}%</span></div>
+        <div class="pb-label"><span>${_ar ? 'النمو' : 'GROWTH'}</span><span>${Math.round(harvestPct)}%</span></div>
         <div class="progress-bar">
           <div class="progress-fill" style="width:${harvestPct}%;background:${harvestColor}"></div>
         </div>
       </div>
       <div class="pc-mini-stats">
-        <div class="mini-stat"><div class="mini-stat-val" style="color:${tMatch>=80?'#2ecc71':tMatch>=55?'#f39c12':'#e74c3c'}">${tMatch}%</div><div class="mini-stat-label">Temp</div></div>
+        <div class="mini-stat"><div class="mini-stat-val" style="color:${tMatch>=80?'#2ecc71':tMatch>=55?'#f39c12':'#e74c3c'}">${tMatch}%</div><div class="mini-stat-label">${_ar ? 'حرارة' : 'Temp'}</div></div>
         <div class="mini-stat"><div class="mini-stat-val" style="color:${pHMatch>=80?'#2ecc71':pHMatch>=55?'#f39c12':'#e74c3c'}">${pHMatch}%</div><div class="mini-stat-label">pH</div></div>
-        <div class="mini-stat"><div class="mini-stat-val" style="color:${hMatch>=80?'#2ecc71':hMatch>=55?'#f39c12':'#e74c3c'}">${hMatch}%</div><div class="mini-stat-label">Humid</div></div>
+        <div class="mini-stat"><div class="mini-stat-val" style="color:${hMatch>=80?'#2ecc71':hMatch>=55?'#f39c12':'#e74c3c'}">${hMatch}%</div><div class="mini-stat-label">${_ar ? 'رطوبة' : 'Humid'}</div></div>
       </div>
       <div class="harvest-row">
-        <span class="harvest-label"><i class="fa-solid fa-clock"></i> Harvest</span>
-        <span class="harvest-val">${isHarvest ? "🎉 Ready!" : dth + " days"}</span>
+        <span class="harvest-label"><i class="fa-solid fa-clock"></i> ${_ar ? 'الحصاد' : 'Harvest'}</span>
+        <span class="harvest-val">${isHarvest ? (_ar ? '🎉 جاهز!' : '🎉 Ready!') : (_ar ? dth + ' يوم' : dth + ' days')}</span>
       </div>
     `;
     card.onclick = () => openPlantDetail(plant);
@@ -2205,6 +2229,42 @@ function init() {
 
 document.addEventListener("DOMContentLoaded", init);
 
+// ===== LIVE / SIM MODE =====
+let currentMode = localStorage.getItem("ag_mode") || "live";
+
+function setMode(mode) {
+  currentMode = mode;
+  localStorage.setItem("ag_mode", mode);
+  const liveBtn = document.getElementById("mode-live");
+  const simBtn = document.getElementById("mode-sim");
+  const banner = document.getElementById("sim-banner");
+  const simPanel = document.querySelector(".sim-panel");
+  const isAr = currentLang === 'ar';
+
+  liveBtn.classList.toggle("active", mode === "live");
+  simBtn.classList.toggle("active", mode === "sim");
+  simBtn.classList.toggle("sim-active", mode === "sim");
+
+  if (mode === "live") {
+    // LIVE mode — monitoring only
+    banner.className = "sim-banner live-mode";
+    banner.querySelector("[data-i18n='simMode']").textContent = isAr ? "🟢 الوضع المباشر" : "🟢 Live Monitoring";
+    banner.querySelector("[data-i18n='simDesc']").textContent = isAr ? "— بيانات حقيقية من الحساسات" : "— Real sensor data";
+    if (simPanel) simPanel.style.display = "none";
+    stopFullDaySim();
+  } else {
+    // SIM mode — simulation with controls
+    banner.className = "sim-banner";
+    banner.querySelector("[data-i18n='simMode']").textContent = isAr ? "⚡ وضع المحاكاة" : "⚡ Simulation Mode";
+    banner.querySelector("[data-i18n='simDesc']").textContent = isAr ? "— البيانات وهمية لغرض التجربة" : "— Data is simulated for testing";
+    if (simPanel) simPanel.style.display = "block";
+  }
+  toast(mode === "live" ? (isAr ? "🟢 الوضع المباشر" : "🟢 Live Mode") : (isAr ? "🧪 وضع المحاكاة" : "🧪 Simulation Mode"), "success", "fa-toggle-on");
+}
+
+// Apply saved mode on load
+document.addEventListener("DOMContentLoaded", () => { setTimeout(() => setMode(currentMode), 200); });
+
 // ===== SCENARIO ENGINE =====
 const SCENARIOS = {
   perfect:  { temperature:25, humidity:65, soilMoisture:60, pH:6.5, light:35, co2:800, windSpeed:8, rainfall:0 },
@@ -2406,6 +2466,8 @@ const TRANSLATIONS = {
     scTropical:       "Tropical",
     fullDaySim:       "▶ Full Day Simulation",
     manualSliders:    "Manual Sliders",
+    modeLive:         "LIVE",
+    modeSim:          "SIM",
   },
   ar: {
     addPlant:         "إضافة نبات",
@@ -2471,6 +2533,8 @@ const TRANSLATIONS = {
     scTropical:       "استوائي",
     fullDaySim:       "▶ محاكاة يوم كامل",
     manualSliders:    "سلايدرات يدوية",
+    modeLive:         "مباشر",
+    modeSim:          "محاكاة",
   }
 };
 
