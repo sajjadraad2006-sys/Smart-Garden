@@ -667,6 +667,110 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
 [data-theme="light"] #reco-panel,[data-theme="light"] .stat-card{background:#fff;box-shadow:0 2px 12px rgba(0,0,0,0.08)}
 [data-theme="light"] #sidebar{background:rgba(241,248,233,0.98)}
 [data-theme="light"] #header{background:rgba(241,248,233,0.97)}
+
+/* ===== SIMULATION BANNER ===== */
+.sim-banner{
+  background:linear-gradient(90deg,rgba(46,204,113,0.12),rgba(52,152,219,0.12),rgba(46,204,113,0.12));
+  background-size:200% 100%;
+  animation:sim-shimmer 3s ease-in-out infinite;
+  border-bottom:1px solid var(--border-green);
+  padding:8px 20px;
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  font-size:12px;color:var(--text-secondary);
+  position:relative;z-index:99;
+}
+@keyframes sim-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.sim-banner .sim-dot{width:8px;height:8px;border-radius:50%;background:#2ecc71;animation:sim-pulse 1.5s ease-in-out infinite}
+@keyframes sim-pulse{0%,100%{opacity:1;box-shadow:0 0 4px #2ecc71}50%{opacity:0.4;box-shadow:0 0 12px #2ecc71}}
+.sim-banner strong{color:var(--accent);font-size:11px;letter-spacing:0.5px}
+
+/* ===== SIMULATOR PANEL ===== */
+.sim-panel{
+  border:1px dashed rgba(46,204,113,0.3);
+  border-radius:var(--radius);
+  padding:10px;
+  margin-bottom:14px;
+  background:rgba(46,204,113,0.03);
+  position:relative;
+}
+.sim-panel::before{
+  content:"";position:absolute;inset:0;border-radius:var(--radius);
+  box-shadow:inset 0 0 20px rgba(46,204,113,0.05);pointer-events:none;
+}
+.sim-panel-title{
+  font-size:11px;font-weight:700;letter-spacing:0.5px;
+  color:var(--accent);margin-bottom:10px;display:flex;align-items:center;gap:6px;
+}
+
+/* ===== SCENARIO BUTTONS ===== */
+.scenario-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
+.scenario-btn{
+  padding:8px 6px;
+  border:1px solid var(--border-green);
+  background:var(--bg-card);
+  border-radius:8px;
+  cursor:pointer;
+  font-size:10px;
+  color:var(--text-secondary);
+  transition:var(--transition);
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  font-family:var(--font-body);
+}
+.scenario-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(46,204,113,0.07)}
+.scenario-btn .sc-emoji{font-size:18px}
+.scenario-btn .sc-label{font-weight:600;font-size:10px}
+.scenario-btn .sc-sub{font-size:8px;opacity:0.7}
+
+/* Full Day Sim Button */
+.fullday-btn{
+  width:100%;padding:10px;margin-top:8px;
+  border:1px solid var(--accent);
+  background:linear-gradient(135deg,rgba(46,204,113,0.1),rgba(52,152,219,0.1));
+  border-radius:8px;cursor:pointer;
+  color:var(--accent);font-size:11px;font-weight:700;
+  font-family:var(--font-body);
+  transition:var(--transition);
+  display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.fullday-btn:hover{background:var(--accent);color:#000}
+.fullday-btn:disabled{opacity:0.5;cursor:not-allowed}
+.sim-progress{
+  width:100%;height:4px;background:var(--border-green);border-radius:2px;margin-top:6px;overflow:hidden;
+}
+.sim-progress-fill{height:100%;background:var(--accent);border-radius:2px;transition:width 0.5s linear;width:0%}
+.sim-time-label{font-size:9px;color:var(--text-muted);text-align:center;margin-top:4px}
+
+/* ===== GETTING STARTED WIZARD ===== */
+.wizard-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(6px);z-index:10000;
+  display:flex;align-items:center;justify-content:center;
+}
+.wizard-card{
+  background:var(--bg-card);border:1px solid var(--accent);
+  border-radius:16px;padding:32px;max-width:420px;width:90%;
+  text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.5);
+}
+.wizard-card h2{color:var(--accent);font-family:var(--font-display);font-size:20px;margin-bottom:8px}
+.wizard-card p{color:var(--text-secondary);font-size:13px;line-height:1.6;margin-bottom:20px}
+.wizard-steps{display:flex;flex-direction:column;gap:12px;margin-bottom:24px;text-align:left}
+.wizard-step{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 14px;border-radius:10px;
+  background:rgba(46,204,113,0.06);border:1px solid var(--border-green);
+  font-size:12px;color:var(--text-primary);
+}
+.wizard-step .ws-num{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--accent);color:#000;font-weight:700;font-size:13px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.wizard-btn{
+  padding:12px 32px;border:none;border-radius:10px;
+  background:var(--accent);color:#000;font-weight:700;font-size:14px;
+  cursor:pointer;font-family:var(--font-body);transition:var(--transition);
+}
+.wizard-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px var(--accent-glow)}
 </style>
 </head>
 <body>
@@ -696,6 +800,13 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
   </div>
 </header>
 
+<!-- ===== SIMULATION BANNER ===== -->
+<div class="sim-banner" id="sim-banner">
+  <span class="sim-dot"></span>
+  <strong data-i18n="simMode">⚡ Simulation Mode</strong>
+  <span data-i18n="simDesc">— Data is simulated for testing</span>
+</div>
+
 <!-- ===== SIDEBAR TOGGLE (mobile) ===== -->
 <button id="sidebar-toggle" onclick="toggleSidebar()"><i class="fa-solid fa-sliders"></i></button>
 
@@ -706,21 +817,71 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
   <aside id="sidebar">
     <div class="section-title"><i class="fa-solid fa-gamepad"></i> <span data-i18n="controlPanel">Control Panel</span></div>
 
-    <!-- Season Presets -->
-    <div class="ctrl-section">
-      <div class="ctrl-section-title"><i class="fa-solid fa-sun"></i> <span data-i18n="seasonPresets">Season Presets</span></div>
-      <div class="presets-grid">
-        <button class="preset-btn" onclick="applyPreset('spring')">🌸 <span data-i18n="spring">Spring</span></button>
-        <button class="preset-btn" onclick="applyPreset('summer')">☀️ <span data-i18n="summer">Summer</span></button>
-        <button class="preset-btn" onclick="applyPreset('autumn')">🍂 <span data-i18n="autumn">Autumn</span></button>
-        <button class="preset-btn" onclick="applyPreset('winter')">❄️ <span data-i18n="winter">Winter</span></button>
-      </div>
-    </div>
+    <!-- ===== SIMULATOR PANEL (grouped) ===== -->
+    <div class="sim-panel">
+      <div class="sim-panel-title"><i class="fa-solid fa-flask-vial"></i> <span data-i18n="envSimulator">Environment Simulator</span></div>
 
-    <!-- Sliders -->
-    <div class="ctrl-section">
-      <div class="ctrl-section-title"><i class="fa-solid fa-thermometer-half"></i> <span data-i18n="envControls">Environment Controls</span></div>
-      <div id="sliders-container"></div>
+      <!-- Quick Scenarios -->
+      <div class="scenario-grid" id="scenario-grid">
+        <button class="scenario-btn" onclick="applyScenario('perfect')">
+          <span class="sc-emoji">✅</span>
+          <span class="sc-label" data-i18n="scPerfect">Perfect</span>
+          <span class="sc-sub">25°C 65%</span>
+        </button>
+        <button class="scenario-btn" onclick="applyScenario('desert')">
+          <span class="sc-emoji">🏜️</span>
+          <span class="sc-label" data-i18n="scDesert">Hot Desert</span>
+          <span class="sc-sub">45°C 15%</span>
+        </button>
+        <button class="scenario-btn" onclick="applyScenario('storm')">
+          <span class="sc-emoji">⛈️</span>
+          <span class="sc-label" data-i18n="scStorm">Storm</span>
+          <span class="sc-sub">18°C 95%</span>
+        </button>
+        <button class="scenario-btn" onclick="applyScenario('drought')">
+          <span class="sc-emoji">🥵</span>
+          <span class="sc-label" data-i18n="scDrought">Drought</span>
+          <span class="sc-sub">38°C 10%</span>
+        </button>
+        <button class="scenario-btn" onclick="applyScenario('frost')">
+          <span class="sc-emoji">🧊</span>
+          <span class="sc-label" data-i18n="scFrost">Frost</span>
+          <span class="sc-sub">-2°C 40%</span>
+        </button>
+        <button class="scenario-btn" onclick="applyScenario('tropical')">
+          <span class="sc-emoji">🌴</span>
+          <span class="sc-label" data-i18n="scTropical">Tropical</span>
+          <span class="sc-sub">32°C 85%</span>
+        </button>
+      </div>
+
+      <!-- Full Day Simulation -->
+      <button class="fullday-btn" id="fullday-btn" onclick="startFullDaySim()">
+        <i class="fa-solid fa-sun"></i> <span data-i18n="fullDaySim">▶ Full Day Simulation</span>
+      </button>
+      <div class="sim-progress" id="sim-progress" style="display:none">
+        <div class="sim-progress-fill" id="sim-progress-fill"></div>
+      </div>
+      <div class="sim-time-label" id="sim-time-label"></div>
+
+      <!-- Season Presets -->
+      <div class="ctrl-section" style="margin-top:10px">
+        <div class="ctrl-section-title"><i class="fa-solid fa-sun"></i> <span data-i18n="seasonPresets">Season Presets</span></div>
+        <div class="presets-grid">
+          <button class="preset-btn" onclick="applyPreset('spring')">🌸 <span data-i18n="spring">Spring</span></button>
+          <button class="preset-btn" onclick="applyPreset('summer')">☀️ <span data-i18n="summer">Summer</span></button>
+          <button class="preset-btn" onclick="applyPreset('autumn')">🍂 <span data-i18n="autumn">Autumn</span></button>
+          <button class="preset-btn" onclick="applyPreset('winter')">❄️ <span data-i18n="winter">Winter</span></button>
+        </div>
+      </div>
+
+      <!-- Sliders (collapsible) -->
+      <details style="margin-top:10px">
+        <summary style="cursor:pointer;font-size:10px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;padding:6px 0">
+          <i class="fa-solid fa-sliders"></i> <span data-i18n="manualSliders">Manual Sliders</span>
+        </summary>
+        <div id="sliders-container" style="margin-top:8px"></div>
+      </details>
     </div>
 
     <!-- Toggles -->
@@ -2043,6 +2204,139 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
+// ===== SCENARIO ENGINE =====
+const SCENARIOS = {
+  perfect:  { temperature:25, humidity:65, soilMoisture:60, pH:6.5, light:35, co2:800, windSpeed:8, rainfall:0 },
+  desert:   { temperature:45, humidity:15, soilMoisture:8, pH:7.8, light:95, co2:450, windSpeed:25, rainfall:0 },
+  storm:    { temperature:18, humidity:95, soilMoisture:90, pH:6.2, light:5, co2:600, windSpeed:60, rainfall:80 },
+  drought:  { temperature:38, humidity:20, soilMoisture:10, pH:7.5, light:85, co2:500, windSpeed:15, rainfall:0 },
+  frost:    { temperature:-2, humidity:40, soilMoisture:35, pH:6.8, light:15, co2:700, windSpeed:5, rainfall:0 },
+  tropical: { temperature:32, humidity:85, soilMoisture:75, pH:6.0, light:55, co2:900, windSpeed:5, rainfall:20 },
+};
+
+function applyScenario(name) {
+  const sc = SCENARIOS[name];
+  if (!sc) return;
+  Object.assign(envState, sc);
+  buildSliders();
+  updateAllSensors();
+  updateFarmGrid();
+  updateRecommendations();
+  updateStats();
+  saveState();
+  const labels = {
+    perfect: currentLang==='ar' ? 'مثالي' : 'Perfect',
+    desert:  currentLang==='ar' ? 'صحراء حارة' : 'Hot Desert',
+    storm:   currentLang==='ar' ? 'عاصفة' : 'Storm',
+    drought: currentLang==='ar' ? 'جفاف' : 'Drought',
+    frost:   currentLang==='ar' ? 'صقيع' : 'Frost',
+    tropical:currentLang==='ar' ? 'استوائي' : 'Tropical',
+  };
+  toast(`🎬 ${labels[name]} — ${sc.temperature}°C`, "success", "fa-flask-vial");
+}
+
+// ===== FULL DAY SIMULATION =====
+let fullDayTimer = null;
+function startFullDaySim() {
+  if (fullDayTimer) { stopFullDaySim(); return; }
+  const btn = document.getElementById("fullday-btn");
+  const bar = document.getElementById("sim-progress");
+  const fill = document.getElementById("sim-progress-fill");
+  const label = document.getElementById("sim-time-label");
+  btn.innerHTML = '<i class="fa-solid fa-stop"></i> ' + (currentLang==='ar' ? '⏹ إيقاف' : '⏹ Stop');
+  bar.style.display = "block";
+
+  const DAY_PHASES = [
+    { hour:5,  label:"🌅 Dawn",   labelAr:"🌅 فجر",    t:18, h:75, sm:55, light:8,  co2:650 },
+    { hour:8,  label:"☀️ Morning", labelAr:"☀️ صباح",  t:24, h:65, sm:50, light:35, co2:700 },
+    { hour:12, label:"🔥 Noon",    labelAr:"🔥 ظهر",   t:38, h:40, sm:35, light:90, co2:500 },
+    { hour:15, label:"☀️ Afternoon",labelAr:"☀️ عصر",  t:35, h:45, sm:30, light:65, co2:550 },
+    { hour:18, label:"🌇 Sunset",  labelAr:"🌇 غروب",  t:28, h:55, sm:28, light:15, co2:600 },
+    { hour:21, label:"🌙 Night",   labelAr:"🌙 ليل",   t:20, h:70, sm:25, light:0,  co2:750 },
+    { hour:24, label:"🌑 Midnight",labelAr:"🌑 منتصف الليل", t:16, h:78, sm:22, light:0, co2:800 },
+  ];
+
+  let step = 0;
+  const totalSteps = DAY_PHASES.length;
+  const interval = 4000; // 4 sec per phase = 28 sec total
+
+  function tick() {
+    if (step >= totalSteps) { stopFullDaySim(); return; }
+    const p = DAY_PHASES[step];
+    const pct = ((step + 1) / totalSteps * 100).toFixed(0);
+    fill.style.width = pct + "%";
+    label.textContent = (currentLang==='ar' ? p.labelAr : p.label) + ` — ${p.hour}:00`;
+
+    envState.temperature = p.t;
+    envState.humidity = p.h;
+    envState.soilMoisture = p.sm;
+    envState.light = p.light;
+    envState.co2 = p.co2;
+    envState.pH = 6.5;
+    envState.windSpeed = 5 + Math.random() * 15;
+    envState.rainfall = p.hour >= 12 && p.hour <= 15 ? 0 : Math.random() * 5;
+
+    buildSliders();
+    updateAllSensors();
+    updateFarmGrid();
+    updateRecommendations();
+    updateStats();
+    step++;
+  }
+
+  tick();
+  fullDayTimer = setInterval(tick, interval);
+}
+
+function stopFullDaySim() {
+  if (fullDayTimer) { clearInterval(fullDayTimer); fullDayTimer = null; }
+  const btn = document.getElementById("fullday-btn");
+  btn.innerHTML = '<i class="fa-solid fa-sun"></i> ' + (currentLang==='ar' ? '▶ محاكاة يوم كامل' : '▶ Full Day Simulation');
+  document.getElementById("sim-progress").style.display = "none";
+  document.getElementById("sim-progress-fill").style.width = "0%";
+  document.getElementById("sim-time-label").textContent = "";
+}
+
+// ===== GETTING STARTED WIZARD =====
+function showWizard() {
+  if (localStorage.getItem("ag_wizard_done")) return;
+  const isAr = (typeof currentLang !== 'undefined' && currentLang === 'ar');
+  const overlay = document.createElement("div");
+  overlay.className = "wizard-overlay";
+  overlay.id = "wizard-overlay";
+  overlay.innerHTML = `
+    <div class="wizard-card">
+      <h2>🌿 ${isAr ? 'مرحباً بك!' : 'Welcome!'}</h2>
+      <p>${isAr ? 'هذا نظام الزراعة الذكية — خلنا نبدأ بـ 3 خطوات بسيطة' : 'This is your Smart Garden Dashboard — let\'s get started in 3 steps'}</p>
+      <div class="wizard-steps">
+        <div class="wizard-step">
+          <span class="ws-num">1</span>
+          <span>${isAr ? '🌱 أضف أول نبتة من مكتبة الـ 42 نبتة' : '🌱 Add your first plant from the 42-plant library'}</span>
+        </div>
+        <div class="wizard-step">
+          <span class="ws-num">2</span>
+          <span>${isAr ? '🧪 جرّب السيناريوهات (صحراء، عاصفة، صقيع...) وشاهد التأثير' : '🧪 Try scenarios (Desert, Storm, Frost...) and watch the effect'}</span>
+        </div>
+        <div class="wizard-step">
+          <span class="ws-num">3</span>
+          <span>${isAr ? '📊 تابع صحة نباتاتك والتوصيات الذكية' : '📊 Monitor plant health & smart recommendations'}</span>
+        </div>
+      </div>
+      <button class="wizard-btn" onclick="closeWizard()">${isAr ? 'يالله نبدأ! 🚀' : 'Let\'s Go! 🚀'}</button>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+}
+
+function closeWizard() {
+  const el = document.getElementById("wizard-overlay");
+  if (el) el.remove();
+  localStorage.setItem("ag_wizard_done", "1");
+}
+
+// Show wizard on first visit (after a short delay)
+document.addEventListener("DOMContentLoaded", () => { setTimeout(showWizard, 800); });
 </script>
 
 <!-- ===== i18n ARABIC / ENGLISH ENGINE ===== -->
@@ -2101,6 +2395,17 @@ const TRANSLATIONS = {
     detailsLbl:       "Details",
     careTips:         "Care Tips",
     conditionsVsOpt:  "Conditions vs Optimal",
+    simMode:          "⚡ Simulation Mode",
+    simDesc:          "— Data is simulated for testing",
+    envSimulator:     "Environment Simulator",
+    scPerfect:        "Perfect",
+    scDesert:         "Hot Desert",
+    scStorm:          "Storm",
+    scDrought:        "Drought",
+    scFrost:          "Frost",
+    scTropical:       "Tropical",
+    fullDaySim:       "▶ Full Day Simulation",
+    manualSliders:    "Manual Sliders",
   },
   ar: {
     addPlant:         "إضافة نبات",
@@ -2155,6 +2460,17 @@ const TRANSLATIONS = {
     detailsLbl:       "تفاصيل",
     careTips:         "نصائح العناية",
     conditionsVsOpt:  "الظروف مقابل المثالية",
+    simMode:          "⚡ وضع المحاكاة",
+    simDesc:          "— البيانات وهمية لغرض التجربة",
+    envSimulator:     "محاكي البيئة",
+    scPerfect:        "مثالي",
+    scDesert:         "صحراء حارة",
+    scStorm:          "عاصفة",
+    scDrought:        "جفاف",
+    scFrost:          "صقيع",
+    scTropical:       "استوائي",
+    fullDaySim:       "▶ محاكاة يوم كامل",
+    manualSliders:    "سلايدرات يدوية",
   }
 };
 
