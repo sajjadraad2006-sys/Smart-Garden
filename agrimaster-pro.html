@@ -953,26 +953,27 @@ let envState = {
 };
 
 // ===== SENSOR CONFIG =====
+function sLabel(s) { return (typeof currentLang !== 'undefined' && currentLang === 'ar' && s.labelAr) ? s.labelAr : s.label; }
 const SENSORS = [
-  {key:"temperature",label:"Temperature",unit:"°C",min:-10,max:50,warn:[35,null],crit:[42,null],warnLow:null,critLow:null,icon:"fa-thermometer-half",color:"#e74c3c"},
-  {key:"humidity",label:"Humidity",unit:"%",min:0,max:100,warn:[85,30],crit:[95,20],icon:"fa-droplet",color:"#3498db"},
-  {key:"soilMoisture",label:"Soil Moisture",unit:"%",min:0,max:100,warn:[null,25],crit:[null,15],icon:"fa-layer-group",color:"#8b6914"},
-  {key:"pH",label:"pH Level",unit:"pH",min:3,max:9,warn:[7.5,5.5],crit:[8.5,4.5],icon:"fa-flask",color:"#9b59b6"},
-  {key:"light",label:"Light",unit:"klux",min:0,max:100,warn:[null,10],crit:[null,5],icon:"fa-sun",color:"#f39c12"},
-  {key:"co2",label:"CO₂ Level",unit:"ppm",min:300,max:2000,warn:[1200,null],crit:[1500,null],icon:"fa-wind",color:"#1abc9c"},
-  {key:"windSpeed",label:"Wind Speed",unit:"km/h",min:0,max:100,warn:[40,null],crit:[60,null],icon:"fa-tornado",color:"#95a5a6"},
-  {key:"rainfall",label:"Rainfall",unit:"mm",min:0,max:200,warn:[null,null],crit:[100,null],icon:"fa-cloud-rain",color:"#2980b9"},
+  {key:"temperature",label:"Temperature",labelAr:"الحرارة",unit:"°C",min:-10,max:50,warn:[35,null],crit:[42,null],warnLow:null,critLow:null,icon:"fa-thermometer-half",color:"#e74c3c"},
+  {key:"humidity",label:"Humidity",labelAr:"رطوبة الجو",unit:"%",min:0,max:100,warn:[85,30],crit:[95,20],icon:"fa-droplet",color:"#3498db"},
+  {key:"soilMoisture",label:"Soil Moisture",labelAr:"رطوبة التربة",unit:"%",min:0,max:100,warn:[null,25],crit:[null,15],icon:"fa-layer-group",color:"#8b6914"},
+  {key:"pH",label:"pH Level",labelAr:"مستوى pH",unit:"pH",min:3,max:9,warn:[7.5,5.5],crit:[8.5,4.5],icon:"fa-flask",color:"#9b59b6"},
+  {key:"light",label:"Light",labelAr:"الضوء",unit:"klux",min:0,max:100,warn:[null,10],crit:[null,5],icon:"fa-sun",color:"#f39c12"},
+  {key:"co2",label:"CO₂ Level",labelAr:"ثاني أوكسيد الكربون",unit:"ppm",min:300,max:2000,warn:[1200,null],crit:[1500,null],icon:"fa-wind",color:"#1abc9c"},
+  {key:"windSpeed",label:"Wind Speed",labelAr:"سرعة الرياح",unit:"km/h",min:0,max:100,warn:[40,null],crit:[60,null],icon:"fa-tornado",color:"#95a5a6"},
+  {key:"rainfall",label:"Rainfall",labelAr:"هطول الأمطار",unit:"mm",min:0,max:200,warn:[null,null],crit:[100,null],icon:"fa-cloud-rain",color:"#2980b9"},
 ];
 
 const SLIDER_CONFIG = [
-  {key:"temperature",label:"Temperature",unit:"°C",min:-10,max:50,step:1},
-  {key:"humidity",label:"Humidity",unit:"%",min:0,max:100,step:1},
-  {key:"soilMoisture",label:"Soil Moisture",unit:"%",min:0,max:100,step:1},
-  {key:"pH",label:"pH Level",unit:"",min:3.0,max:9.0,step:0.1},
-  {key:"light",label:"Light",unit:"klux",min:0,max:100,step:1},
-  {key:"co2",label:"CO₂",unit:"ppm",min:300,max:2000,step:10},
-  {key:"windSpeed",label:"Wind Speed",unit:"km/h",min:0,max:100,step:1},
-  {key:"rainfall",label:"Rainfall",unit:"mm",min:0,max:200,step:1},
+  {key:"temperature",label:"Temperature",labelAr:"الحرارة",unit:"°C",min:-10,max:50,step:1},
+  {key:"humidity",label:"Humidity",labelAr:"رطوبة الجو",unit:"%",min:0,max:100,step:1},
+  {key:"soilMoisture",label:"Soil Moisture",labelAr:"رطوبة التربة",unit:"%",min:0,max:100,step:1},
+  {key:"pH",label:"pH Level",labelAr:"مستوى pH",unit:"",min:3.0,max:9.0,step:0.1},
+  {key:"light",label:"Light",labelAr:"الضوء",unit:"klux",min:0,max:100,step:1},
+  {key:"co2",label:"CO₂",labelAr:"CO₂",unit:"ppm",min:300,max:2000,step:10},
+  {key:"windSpeed",label:"Wind Speed",labelAr:"سرعة الرياح",unit:"km/h",min:0,max:100,step:1},
+  {key:"rainfall",label:"Rainfall",labelAr:"هطول الأمطار",unit:"mm",min:0,max:200,step:1},
 ];
 
 const SEASON_PRESETS = {
@@ -1059,7 +1060,7 @@ function buildSensorsGrid() {
     div.id = "sc-" + s.key;
     div.innerHTML = `
       <div class="sensor-header">
-        <div class="sensor-label"><i class="fa-solid ${s.icon}" style="color:${s.color};margin-right:4px"></i>${s.label}</div>
+        <div class="sensor-label"><i class="fa-solid ${s.icon}" style="color:${s.color};margin-right:4px"></i>${sLabel(s)}</div>
         <span class="status-badge badge-optimal" id="sb-${s.key}">Optimal</span>
       </div>
       <div class="gauge-wrap">
@@ -1146,7 +1147,7 @@ function buildSliders() {
     const pct = ((val - cfg.min) / (cfg.max - cfg.min) * 100).toFixed(1);
     div.innerHTML = `
       <div class="slider-label">
-        <span>${cfg.label}</span>
+        <span>${sLabel(cfg)}</span>
         <span class="slider-val" id="sv-${cfg.key}">${disp}${cfg.unit}</span>
       </div>
       <div class="slider-controls">
@@ -1456,8 +1457,8 @@ function updateRecommendations() {
   // Sensor alerts
   SENSORS.forEach(s => {
     const st = getSensorStatus(s);
-    if (st.status === "critical") { recos.push({type:"danger", icon:"fa-circle-exclamation", msg:`${s.label} is CRITICAL (${envState[s.key]}${s.unit})`}); newAlerts++; }
-    else if (st.status === "warning") { recos.push({type:"warn", icon:"fa-triangle-exclamation", msg:`${s.label} is at warning level (${envState[s.key]}${s.unit})`}); }
+    if (st.status === "critical") { recos.push({type:"danger", icon:"fa-circle-exclamation", msg: currentLang==='ar' ? `${sLabel(s)} حرج! (${envState[s.key]}${s.unit})` : `${sLabel(s)} is CRITICAL (${envState[s.key]}${s.unit})`}); newAlerts++; }
+    else if (st.status === "warning") { recos.push({type:"warn", icon:"fa-triangle-exclamation", msg: currentLang==='ar' ? `${sLabel(s)} بمستوى تحذير (${envState[s.key]}${s.unit})` : `${sLabel(s)} is at warning level (${envState[s.key]}${s.unit})`}); }
   });
 
   // Plant health
@@ -1466,12 +1467,12 @@ function updateRecommendations() {
     const db = findPlantById(plant.dbId);
     if (!db) return;
     const h = calculatePlantHealth(plant, envState);
-    if (h.status === "dying") { recos.push({type:"danger", icon:"fa-skull", msg:`${db.emoji} ${pName(db)} is DYING — check conditions immediately`}); newAlerts++; }
-    else if (h.status === "critical") { recos.push({type:"danger", icon:"fa-heart-crack", msg:`${db.emoji} ${pName(db)} is in critical condition (${h.score}/100)`}); newAlerts++; }
-    else if (h.status === "stressed") { recos.push({type:"warn", icon:"fa-triangle-exclamation", msg:`${db.emoji} ${pName(db)} is stressed (${h.score}/100)`}); }
-    else { recos.push({type:"ok", icon:"fa-circle-check", msg:`${db.emoji} ${pName(db)} thriving in current conditions`}); }
+    if (h.status === "dying") { recos.push({type:"danger", icon:"fa-skull", msg: currentLang==='ar' ? `${db.emoji} ${pName(db)} تحتضر — راجع الظروف فوراً` : `${db.emoji} ${pName(db)} is DYING — check conditions immediately`}); newAlerts++; }
+    else if (h.status === "critical") { recos.push({type:"danger", icon:"fa-heart-crack", msg: currentLang==='ar' ? `${db.emoji} ${pName(db)} بحالة حرجة (${h.score}/100)` : `${db.emoji} ${pName(db)} is in critical condition (${h.score}/100)`}); newAlerts++; }
+    else if (h.status === "stressed") { recos.push({type:"warn", icon:"fa-triangle-exclamation", msg: currentLang==='ar' ? `${db.emoji} ${pName(db)} مجهدة (${h.score}/100)` : `${db.emoji} ${pName(db)} is stressed (${h.score}/100)`}); }
+    else { recos.push({type:"ok", icon:"fa-circle-check", msg: currentLang==='ar' ? `${db.emoji} ${pName(db)} بحالة ممتازة` : `${db.emoji} ${pName(db)} thriving in current conditions`}); }
     if (envState.soilMoisture < 30) waterNeeded++;
-    if (daysUntilHarvest(plant) === 0) recos.unshift({type:"ok", icon:"fa-star", msg:`🎉 ${db.emoji} ${pName(db)} is ready to harvest!`});
+    if (daysUntilHarvest(plant) === 0) recos.unshift({type:"ok", icon:"fa-star", msg: currentLang==='ar' ? `🎉 ${db.emoji} ${pName(db)} جاهز للحصاد!` : `🎉 ${db.emoji} ${pName(db)} is ready to harvest!`});
   });
 
   if (waterNeeded > 0) recos.push({type:"info", icon:"fa-droplet", msg:`${waterNeeded} plant(s) need more soil moisture`});
@@ -2190,8 +2191,13 @@ function applyLang() {
 function toggleLang() {
   currentLang = currentLang === "en" ? "ar" : "en";
   applyLang();
-  // Re-render farm grid so plant cards use new language
-  if (typeof renderFarm === "function") renderFarm();
+  // Re-render all dynamic content with new language
+  if (typeof buildSensorsGrid === "function") buildSensorsGrid();
+  if (typeof buildSliders === "function") buildSliders();
+  if (typeof updateAllSensors === "function") updateAllSensors();
+  if (typeof updateFarmGrid === "function") updateFarmGrid();
+  if (typeof updateRecommendations === "function") updateRecommendations();
+  if (typeof updateStats === "function") updateStats();
 }
 
 // Patch renderFarm to use translated strings for empty state
