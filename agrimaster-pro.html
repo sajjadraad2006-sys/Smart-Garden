@@ -1223,15 +1223,16 @@ function findPlantById(id) {
 // ===== SENSOR STATUS =====
 function getSensorStatus(s) {
   const v = envState[s.key];
+  const _a = (typeof currentLang !== 'undefined' && currentLang === 'ar');
   if (s.crit) {
-    if (s.crit[0] !== null && v >= s.crit[0]) return {status:"critical", label:"Critical"};
-    if (s.crit[1] !== null && v <= s.crit[1]) return {status:"critical", label:"Critical"};
+    if (s.crit[0] !== null && v >= s.crit[0]) return {status:"critical", label: _a ? "حرج" : "Critical"};
+    if (s.crit[1] !== null && v <= s.crit[1]) return {status:"critical", label: _a ? "حرج" : "Critical"};
   }
   if (s.warn) {
-    if (s.warn[0] !== null && v >= s.warn[0]) return {status:"warning", label:"Warning"};
-    if (s.warn[1] !== null && v <= s.warn[1]) return {status:"warning", label:"Warning"};
+    if (s.warn[0] !== null && v >= s.warn[0]) return {status:"warning", label: _a ? "تحذير" : "Warning"};
+    if (s.warn[1] !== null && v <= s.warn[1]) return {status:"warning", label: _a ? "تحذير" : "Warning"};
   }
-  return {status:"optimal", label:"Optimal"};
+  return {status:"optimal", label: _a ? "مثالي" : "Optimal"};
 }
 
 // ===== BUILD SENSORS GRID =====
@@ -1785,7 +1786,7 @@ function drawDonut(cats) {
   leg.innerHTML = entries.map(([cat, val], i) =>
     `<span style="font-size:9px;color:${CAT_COLORS[i%CAT_COLORS.length]};display:flex;align-items:center;gap:3px">
       <span style="width:7px;height:7px;border-radius:50%;background:${CAT_COLORS[i%CAT_COLORS.length]};display:inline-block"></span>
-      ${cat.split(" ")[0]} (${val})
+      ${catName(cat)} (${val})
     </span>`
   ).join("");
 }
@@ -1793,14 +1794,15 @@ function drawDonut(cats) {
 // ===== WEATHER =====
 function updateWeather() {
   const t = envState.temperature, h = envState.humidity, r = envState.rainfall;
-  let icon, desc;
-  if (r > 50) { icon="⛈️"; desc="Stormy"; }
-  else if (r > 10) { icon="🌧️"; desc="Rainy"; }
-  else if (h > 80) { icon="⛅"; desc="Cloudy"; }
-  else if (t > 35) { icon="🌡️"; desc="Hot"; }
-  else { icon="☀️"; desc="Sunny"; }
+  const _a = currentLang === 'ar';
+  if (r > 50) { icon="⛈️"; desc= _a ? "عاصف" : "Stormy"; }
+  else if (r > 10) { icon="🌧️"; desc= _a ? "ممطر" : "Rainy"; }
+  else if (h > 80) { icon="⛅"; desc= _a ? "غائم" : "Cloudy"; }
+  else if (t > 35) { icon="🌡️"; desc= _a ? "حار" : "Hot"; }
+  else { icon="☀️"; desc= _a ? "مشمس" : "Sunny"; }
   document.getElementById("weather-icon").textContent = icon;
   document.getElementById("weather-desc").textContent = `${desc}, ${Math.round(t)}°C`;
+  document.getElementById("weather-city").textContent = _a ? "مزرعتي" : "My Farm";
 }
 
 // ===== CLOCK =====
