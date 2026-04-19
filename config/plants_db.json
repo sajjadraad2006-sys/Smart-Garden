@@ -2,9 +2,15 @@
   "version": "1.0.0",
   "last_updated": "2026-04-18",
   "total_plants": 52,
-  "categories": ["grains", "vegetables", "fruits", "trees", "herbs", "industrial"],
+  "categories": [
+    "grains",
+    "vegetables",
+    "fruits",
+    "trees",
+    "herbs",
+    "industrial"
+  ],
   "plants": [
-
     {
       "id": "wheat",
       "name": "Wheat",
@@ -13,13 +19,45 @@
       "emoji": "🌾",
       "description": "Staple cereal crop, cool-season grain grown worldwide.",
       "environment": {
-        "temperature": { "min": 10, "max": 24, "opt": 17, "unit": "°C" },
-        "humidity":    { "min": 40, "max": 70, "opt": 55, "unit": "%" },
-        "soil_moisture":{ "min": 40, "max": 70, "opt": 55, "unit": "%" },
-        "ph":          { "min": 5.5,"max": 7.0, "opt": 6.3 },
-        "light_lux":   { "min": 20000,"max": 80000,"opt": 50000 },
-        "co2_ppm":     { "min": 350, "max": 1500, "opt": 800 },
-        "soil_temp":   { "min": 4,   "max": 25,   "opt": 15, "unit": "°C" }
+        "temperature": {
+          "min": 10,
+          "max": 24,
+          "opt": 17,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 40,
+          "max": 70,
+          "opt": 55,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 40,
+          "max": 70,
+          "opt": 55,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 5.5,
+          "max": 7.0,
+          "opt": 6.3
+        },
+        "light_lux": {
+          "min": 20000,
+          "max": 80000,
+          "opt": 50000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1500,
+          "opt": 800
+        },
+        "soil_temp": {
+          "min": 4,
+          "max": 25,
+          "opt": 15,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 120,
@@ -29,10 +67,21 @@
         "area_m2": 1.0,
         "daily_light_target_klux_hours": 28
       },
-      "stress_weights": { "temperature": 0.25, "humidity": 0.20, "soil_moisture": 0.20, "ph": 0.20, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Avoid waterlogging", "Apply nitrogen fertilizer at tillering stage", "Monitor for rust fungus in humid conditions"]
+      "stress_weights": {
+        "temperature": 0.25,
+        "humidity": 0.2,
+        "soil_moisture": 0.2,
+        "ph": 0.2,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Avoid waterlogging",
+        "Apply nitrogen fertilizer at tillering stage",
+        "Monitor for rust fungus in humid conditions"
+      ],
+      "name_ar": "قمح"
     },
-
     {
       "id": "rice",
       "name": "Rice",
@@ -41,13 +90,45 @@
       "emoji": "🌾",
       "description": "Staple food for half the world, requires flooded or very moist conditions.",
       "environment": {
-        "temperature": { "min": 20, "max": 35, "opt": 28, "unit": "°C" },
-        "humidity":    { "min": 70, "max": 90, "opt": 80, "unit": "%" },
-        "soil_moisture":{ "min": 75, "max": 100,"opt": 90, "unit": "%" },
-        "ph":          { "min": 5.0,"max": 6.5, "opt": 5.8 },
-        "light_lux":   { "min": 30000,"max": 90000,"opt": 60000 },
-        "co2_ppm":     { "min": 350, "max": 1500, "opt": 900 },
-        "soil_temp":   { "min": 18,  "max": 38,   "opt": 27, "unit": "°C" }
+        "temperature": {
+          "min": 20,
+          "max": 35,
+          "opt": 28,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 70,
+          "max": 90,
+          "opt": 80,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 75,
+          "max": 100,
+          "opt": 90,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 5.0,
+          "max": 6.5,
+          "opt": 5.8
+        },
+        "light_lux": {
+          "min": 30000,
+          "max": 90000,
+          "opt": 60000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1500,
+          "opt": 900
+        },
+        "soil_temp": {
+          "min": 18,
+          "max": 38,
+          "opt": 27,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 130,
@@ -57,10 +138,21 @@
         "area_m2": 1.0,
         "daily_light_target_klux_hours": 35
       },
-      "stress_weights": { "temperature": 0.25, "humidity": 0.15, "soil_moisture": 0.30, "ph": 0.15, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Maintain standing water 2-5cm during vegetative stage", "Drain field 2 weeks before harvest", "High nitrogen requirement"]
+      "stress_weights": {
+        "temperature": 0.25,
+        "humidity": 0.15,
+        "soil_moisture": 0.3,
+        "ph": 0.15,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Maintain standing water 2-5cm during vegetative stage",
+        "Drain field 2 weeks before harvest",
+        "High nitrogen requirement"
+      ],
+      "name_ar": "أرز"
     },
-
     {
       "id": "corn",
       "name": "Corn / Maize",
@@ -69,13 +161,45 @@
       "emoji": "🌽",
       "description": "High-yield warm-season cereal, very responsive to nitrogen.",
       "environment": {
-        "temperature": { "min": 18, "max": 32, "opt": 25, "unit": "°C" },
-        "humidity":    { "min": 50, "max": 80, "opt": 65, "unit": "%" },
-        "soil_moisture":{ "min": 50, "max": 80, "opt": 65, "unit": "%" },
-        "ph":          { "min": 5.8,"max": 7.0, "opt": 6.4 },
-        "light_lux":   { "min": 25000,"max": 100000,"opt": 60000 },
-        "co2_ppm":     { "min": 350, "max": 1500, "opt": 800 },
-        "soil_temp":   { "min": 10,  "max": 35,   "opt": 22, "unit": "°C" }
+        "temperature": {
+          "min": 18,
+          "max": 32,
+          "opt": 25,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 50,
+          "max": 80,
+          "opt": 65,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 50,
+          "max": 80,
+          "opt": 65,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 5.8,
+          "max": 7.0,
+          "opt": 6.4
+        },
+        "light_lux": {
+          "min": 25000,
+          "max": 100000,
+          "opt": 60000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1500,
+          "opt": 800
+        },
+        "soil_temp": {
+          "min": 10,
+          "max": 35,
+          "opt": 22,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 90,
@@ -85,10 +209,21 @@
         "area_m2": 1.0,
         "daily_light_target_klux_hours": 38
       },
-      "stress_weights": { "temperature": 0.25, "humidity": 0.15, "soil_moisture": 0.25, "ph": 0.15, "light": 0.15, "co2": 0.05 },
-      "care_tips": ["Critical irrigation period: silking and tasseling", "Deep root system tolerates short droughts", "Heavy feeder — apply NPK in split doses"]
+      "stress_weights": {
+        "temperature": 0.25,
+        "humidity": 0.15,
+        "soil_moisture": 0.25,
+        "ph": 0.15,
+        "light": 0.15,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Critical irrigation period: silking and tasseling",
+        "Deep root system tolerates short droughts",
+        "Heavy feeder — apply NPK in split doses"
+      ],
+      "name_ar": "ذرة"
     },
-
     {
       "id": "barley",
       "name": "Barley",
@@ -97,13 +232,45 @@
       "emoji": "🌾",
       "description": "Hardy cool-season grain, tolerates drought better than wheat.",
       "environment": {
-        "temperature": { "min": 8,  "max": 20, "opt": 14, "unit": "°C" },
-        "humidity":    { "min": 45, "max": 70, "opt": 57, "unit": "%" },
-        "soil_moisture":{ "min": 35, "max": 65, "opt": 50, "unit": "%" },
-        "ph":          { "min": 6.0,"max": 7.5, "opt": 6.8 },
-        "light_lux":   { "min": 18000,"max": 75000,"opt": 45000 },
-        "co2_ppm":     { "min": 350, "max": 1500, "opt": 750 },
-        "soil_temp":   { "min": 2,   "max": 22,   "opt": 12, "unit": "°C" }
+        "temperature": {
+          "min": 8,
+          "max": 20,
+          "opt": 14,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 45,
+          "max": 70,
+          "opt": 57,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 35,
+          "max": 65,
+          "opt": 50,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 6.0,
+          "max": 7.5,
+          "opt": 6.8
+        },
+        "light_lux": {
+          "min": 18000,
+          "max": 75000,
+          "opt": 45000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1500,
+          "opt": 750
+        },
+        "soil_temp": {
+          "min": 2,
+          "max": 22,
+          "opt": 12,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 100,
@@ -113,10 +280,21 @@
         "area_m2": 1.0,
         "daily_light_target_klux_hours": 26
       },
-      "stress_weights": { "temperature": 0.30, "humidity": 0.15, "soil_moisture": 0.20, "ph": 0.20, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Sensitive to waterlogging — ensure good drainage", "Tolerates slightly alkaline soils well", "Sow in early spring or autumn"]
+      "stress_weights": {
+        "temperature": 0.3,
+        "humidity": 0.15,
+        "soil_moisture": 0.2,
+        "ph": 0.2,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Sensitive to waterlogging — ensure good drainage",
+        "Tolerates slightly alkaline soils well",
+        "Sow in early spring or autumn"
+      ],
+      "name_ar": "شعير"
     },
-
     {
       "id": "sorghum",
       "name": "Sorghum",
@@ -125,13 +303,45 @@
       "emoji": "🌾",
       "description": "Drought-tolerant warm-season grain, excellent for hot dry climates like Basra.",
       "environment": {
-        "temperature": { "min": 25, "max": 40, "opt": 32, "unit": "°C" },
-        "humidity":    { "min": 30, "max": 65, "opt": 47, "unit": "%" },
-        "soil_moisture":{ "min": 30, "max": 65, "opt": 48, "unit": "%" },
-        "ph":          { "min": 5.5,"max": 7.5, "opt": 6.5 },
-        "light_lux":   { "min": 25000,"max": 100000,"opt": 65000 },
-        "co2_ppm":     { "min": 350, "max": 1500, "opt": 800 },
-        "soil_temp":   { "min": 18,  "max": 42,   "opt": 30, "unit": "°C" }
+        "temperature": {
+          "min": 25,
+          "max": 40,
+          "opt": 32,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 30,
+          "max": 65,
+          "opt": 47,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 30,
+          "max": 65,
+          "opt": 48,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 5.5,
+          "max": 7.5,
+          "opt": 6.5
+        },
+        "light_lux": {
+          "min": 25000,
+          "max": 100000,
+          "opt": 65000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1500,
+          "opt": 800
+        },
+        "soil_temp": {
+          "min": 18,
+          "max": 42,
+          "opt": 30,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 110,
@@ -141,10 +351,21 @@
         "area_m2": 1.0,
         "daily_light_target_klux_hours": 40
       },
-      "stress_weights": { "temperature": 0.20, "humidity": 0.15, "soil_moisture": 0.25, "ph": 0.15, "light": 0.20, "co2": 0.05 },
-      "care_tips": ["Drought stomata close efficiently — do not over-irrigate", "Excellent for alkaline soils", "Ratoon cropping possible after first harvest"]
+      "stress_weights": {
+        "temperature": 0.2,
+        "humidity": 0.15,
+        "soil_moisture": 0.25,
+        "ph": 0.15,
+        "light": 0.2,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Drought stomata close efficiently — do not over-irrigate",
+        "Excellent for alkaline soils",
+        "Ratoon cropping possible after first harvest"
+      ],
+      "name_ar": "ذرة رفيعة"
     },
-
     {
       "id": "tomato",
       "name": "Tomato",
@@ -153,13 +374,45 @@
       "emoji": "🍅",
       "description": "High-value warm-season vegetable, very sensitive to temperature extremes.",
       "environment": {
-        "temperature": { "min": 18, "max": 27, "opt": 22, "unit": "°C" },
-        "humidity":    { "min": 65, "max": 85, "opt": 75, "unit": "%" },
-        "soil_moisture":{ "min": 55, "max": 80, "opt": 68, "unit": "%" },
-        "ph":          { "min": 6.0,"max": 6.8, "opt": 6.4 },
-        "light_lux":   { "min": 20000,"max": 70000,"opt": 45000 },
-        "co2_ppm":     { "min": 400, "max": 1200, "opt": 800 },
-        "soil_temp":   { "min": 15,  "max": 30,   "opt": 22, "unit": "°C" }
+        "temperature": {
+          "min": 18,
+          "max": 27,
+          "opt": 22,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 65,
+          "max": 85,
+          "opt": 75,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 55,
+          "max": 80,
+          "opt": 68,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 6.0,
+          "max": 6.8,
+          "opt": 6.4
+        },
+        "light_lux": {
+          "min": 20000,
+          "max": 70000,
+          "opt": 45000
+        },
+        "co2_ppm": {
+          "min": 400,
+          "max": 1200,
+          "opt": 800
+        },
+        "soil_temp": {
+          "min": 15,
+          "max": 30,
+          "opt": 22,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 80,
@@ -169,10 +422,21 @@
         "area_m2": 0.5,
         "daily_light_target_klux_hours": 32
       },
-      "stress_weights": { "temperature": 0.30, "humidity": 0.20, "soil_moisture": 0.20, "ph": 0.15, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Blossom drop occurs above 32°C — shade cloth in summer", "Calcium deficiency causes blossom end rot", "Consistent moisture prevents cracking"]
+      "stress_weights": {
+        "temperature": 0.3,
+        "humidity": 0.2,
+        "soil_moisture": 0.2,
+        "ph": 0.15,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Blossom drop occurs above 32°C — shade cloth in summer",
+        "Calcium deficiency causes blossom end rot",
+        "Consistent moisture prevents cracking"
+      ],
+      "name_ar": "طماطم"
     },
-
     {
       "id": "potato",
       "name": "Potato",
@@ -181,13 +445,45 @@
       "emoji": "🥔",
       "description": "Cool-season tuber crop, prefers loose well-draining acidic soil.",
       "environment": {
-        "temperature": { "min": 10, "max": 22, "opt": 16, "unit": "°C" },
-        "humidity":    { "min": 70, "max": 90, "opt": 80, "unit": "%" },
-        "soil_moisture":{ "min": 60, "max": 85, "opt": 72, "unit": "%" },
-        "ph":          { "min": 4.8,"max": 5.5, "opt": 5.2 },
-        "light_lux":   { "min": 15000,"max": 60000,"opt": 35000 },
-        "co2_ppm":     { "min": 350, "max": 1200, "opt": 700 },
-        "soil_temp":   { "min": 7,   "max": 24,   "opt": 15, "unit": "°C" }
+        "temperature": {
+          "min": 10,
+          "max": 22,
+          "opt": 16,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 70,
+          "max": 90,
+          "opt": 80,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 60,
+          "max": 85,
+          "opt": 72,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 4.8,
+          "max": 5.5,
+          "opt": 5.2
+        },
+        "light_lux": {
+          "min": 15000,
+          "max": 60000,
+          "opt": 35000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1200,
+          "opt": 700
+        },
+        "soil_temp": {
+          "min": 7,
+          "max": 24,
+          "opt": 15,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 100,
@@ -197,10 +493,21 @@
         "area_m2": 0.5,
         "daily_light_target_klux_hours": 22
       },
-      "stress_weights": { "temperature": 0.30, "humidity": 0.15, "soil_moisture": 0.20, "ph": 0.25, "light": 0.05, "co2": 0.05 },
-      "care_tips": ["Hill soil around stems as plant grows", "Low pH critical to prevent scab disease", "Stop irrigation 2 weeks before harvest to harden skin"]
+      "stress_weights": {
+        "temperature": 0.3,
+        "humidity": 0.15,
+        "soil_moisture": 0.2,
+        "ph": 0.25,
+        "light": 0.05,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Hill soil around stems as plant grows",
+        "Low pH critical to prevent scab disease",
+        "Stop irrigation 2 weeks before harvest to harden skin"
+      ],
+      "name_ar": "بطاطا"
     },
-
     {
       "id": "carrot",
       "name": "Carrot",
@@ -209,13 +516,45 @@
       "emoji": "🥕",
       "description": "Cool-season root vegetable requiring deep loose soil for straight roots.",
       "environment": {
-        "temperature": { "min": 10, "max": 22, "opt": 16, "unit": "°C" },
-        "humidity":    { "min": 55, "max": 75, "opt": 65, "unit": "%" },
-        "soil_moisture":{ "min": 50, "max": 75, "opt": 62, "unit": "%" },
-        "ph":          { "min": 6.0,"max": 6.8, "opt": 6.4 },
-        "light_lux":   { "min": 15000,"max": 60000,"opt": 35000 },
-        "co2_ppm":     { "min": 350, "max": 1200, "opt": 700 },
-        "soil_temp":   { "min": 5,   "max": 25,   "opt": 14, "unit": "°C" }
+        "temperature": {
+          "min": 10,
+          "max": 22,
+          "opt": 16,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 55,
+          "max": 75,
+          "opt": 65,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 50,
+          "max": 75,
+          "opt": 62,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 6.0,
+          "max": 6.8,
+          "opt": 6.4
+        },
+        "light_lux": {
+          "min": 15000,
+          "max": 60000,
+          "opt": 35000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1200,
+          "opt": 700
+        },
+        "soil_temp": {
+          "min": 5,
+          "max": 25,
+          "opt": 14,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 75,
@@ -225,10 +564,21 @@
         "area_m2": 0.3,
         "daily_light_target_klux_hours": 22
       },
-      "stress_weights": { "temperature": 0.25, "humidity": 0.15, "soil_moisture": 0.25, "ph": 0.20, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Deep loose soil prevents forked roots", "Thin seedlings to 5cm spacing", "Excess nitrogen causes hairy roots and poor flavor"]
+      "stress_weights": {
+        "temperature": 0.25,
+        "humidity": 0.15,
+        "soil_moisture": 0.25,
+        "ph": 0.2,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Deep loose soil prevents forked roots",
+        "Thin seedlings to 5cm spacing",
+        "Excess nitrogen causes hairy roots and poor flavor"
+      ],
+      "name_ar": "جزر"
     },
-
     {
       "id": "lettuce",
       "name": "Lettuce",
@@ -237,13 +587,45 @@
       "emoji": "🥬",
       "description": "Fast-growing cool-season leafy vegetable, bolts in heat.",
       "environment": {
-        "temperature": { "min": 7,  "max": 20, "opt": 14, "unit": "°C" },
-        "humidity":    { "min": 60, "max": 75, "opt": 68, "unit": "%" },
-        "soil_moisture":{ "min": 55, "max": 75, "opt": 65, "unit": "%" },
-        "ph":          { "min": 6.0,"max": 7.0, "opt": 6.5 },
-        "light_lux":   { "min": 10000,"max": 40000,"opt": 22000 },
-        "co2_ppm":     { "min": 350, "max": 1200, "opt": 700 },
-        "soil_temp":   { "min": 5,   "max": 22,   "opt": 13, "unit": "°C" }
+        "temperature": {
+          "min": 7,
+          "max": 20,
+          "opt": 14,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 60,
+          "max": 75,
+          "opt": 68,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 55,
+          "max": 75,
+          "opt": 65,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 6.0,
+          "max": 7.0,
+          "opt": 6.5
+        },
+        "light_lux": {
+          "min": 10000,
+          "max": 40000,
+          "opt": 22000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1200,
+          "opt": 700
+        },
+        "soil_temp": {
+          "min": 5,
+          "max": 22,
+          "opt": 13,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 55,
@@ -255,10 +637,21 @@
         "requires_short_day": true,
         "critical_photoperiod": 14
       },
-      "stress_weights": { "temperature": 0.35, "humidity": 0.20, "soil_moisture": 0.20, "ph": 0.10, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Bolts (goes to seed) above 24°C — use shade cloth in summer", "Succession plant every 2 weeks for continuous harvest", "Shallow roots — water frequently but lightly"]
+      "stress_weights": {
+        "temperature": 0.35,
+        "humidity": 0.2,
+        "soil_moisture": 0.2,
+        "ph": 0.1,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Bolts (goes to seed) above 24°C — use shade cloth in summer",
+        "Succession plant every 2 weeks for continuous harvest",
+        "Shallow roots — water frequently but lightly"
+      ],
+      "name_ar": "خس"
     },
-
     {
       "id": "onion",
       "name": "Onion",
@@ -267,13 +660,45 @@
       "emoji": "🧅",
       "description": "Bulb vegetable sensitive to day length, requires consistent moisture during bulbing.",
       "environment": {
-        "temperature": { "min": 13, "max": 24, "opt": 18, "unit": "°C" },
-        "humidity":    { "min": 60, "max": 80, "opt": 70, "unit": "%" },
-        "soil_moisture":{ "min": 50, "max": 75, "opt": 62, "unit": "%" },
-        "ph":          { "min": 6.0,"max": 7.0, "opt": 6.5 },
-        "light_lux":   { "min": 20000,"max": 70000,"opt": 45000 },
-        "co2_ppm":     { "min": 350, "max": 1200, "opt": 700 },
-        "soil_temp":   { "min": 8,   "max": 28,   "opt": 16, "unit": "°C" }
+        "temperature": {
+          "min": 13,
+          "max": 24,
+          "opt": 18,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 60,
+          "max": 80,
+          "opt": 70,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 50,
+          "max": 75,
+          "opt": 62,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 6.0,
+          "max": 7.0,
+          "opt": 6.5
+        },
+        "light_lux": {
+          "min": 20000,
+          "max": 70000,
+          "opt": 45000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1200,
+          "opt": 700
+        },
+        "soil_temp": {
+          "min": 8,
+          "max": 28,
+          "opt": 16,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 120,
@@ -283,10 +708,21 @@
         "area_m2": 0.3,
         "daily_light_target_klux_hours": 28
       },
-      "stress_weights": { "temperature": 0.25, "humidity": 0.15, "soil_moisture": 0.25, "ph": 0.20, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Stop watering when tops fall over — signals maturity", "Day length triggers bulb formation", "Sulfur deficiency reduces pungency and storage life"]
+      "stress_weights": {
+        "temperature": 0.25,
+        "humidity": 0.15,
+        "soil_moisture": 0.25,
+        "ph": 0.2,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Stop watering when tops fall over — signals maturity",
+        "Day length triggers bulb formation",
+        "Sulfur deficiency reduces pungency and storage life"
+      ],
+      "name_ar": "بصل"
     },
-
     {
       "id": "pepper",
       "name": "Bell Pepper",
@@ -295,13 +731,45 @@
       "emoji": "🫑",
       "description": "Warm-season vegetable requiring steady heat and consistent moisture.",
       "environment": {
-        "temperature": { "min": 20, "max": 30, "opt": 25, "unit": "°C" },
-        "humidity":    { "min": 65, "max": 80, "opt": 72, "unit": "%" },
-        "soil_moisture":{ "min": 55, "max": 80, "opt": 67, "unit": "%" },
-        "ph":          { "min": 6.0,"max": 6.8, "opt": 6.4 },
-        "light_lux":   { "min": 20000,"max": 75000,"opt": 48000 },
-        "co2_ppm":     { "min": 400, "max": 1200, "opt": 800 },
-        "soil_temp":   { "min": 18,  "max": 32,   "opt": 24, "unit": "°C" }
+        "temperature": {
+          "min": 20,
+          "max": 30,
+          "opt": 25,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 65,
+          "max": 80,
+          "opt": 72,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 55,
+          "max": 80,
+          "opt": 67,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 6.0,
+          "max": 6.8,
+          "opt": 6.4
+        },
+        "light_lux": {
+          "min": 20000,
+          "max": 75000,
+          "opt": 48000
+        },
+        "co2_ppm": {
+          "min": 400,
+          "max": 1200,
+          "opt": 800
+        },
+        "soil_temp": {
+          "min": 18,
+          "max": 32,
+          "opt": 24,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 90,
@@ -311,10 +779,21 @@
         "area_m2": 0.5,
         "daily_light_target_klux_hours": 30
       },
-      "stress_weights": { "temperature": 0.30, "humidity": 0.20, "soil_moisture": 0.20, "ph": 0.15, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Blossom drop above 32°C or below 16°C", "Calcium is critical — add gypsum if deficient", "Stake plants when fruiting to prevent branch breakage"]
+      "stress_weights": {
+        "temperature": 0.3,
+        "humidity": 0.2,
+        "soil_moisture": 0.2,
+        "ph": 0.15,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Blossom drop above 32°C or below 16°C",
+        "Calcium is critical — add gypsum if deficient",
+        "Stake plants when fruiting to prevent branch breakage"
+      ],
+      "name_ar": "فلفل"
     },
-
     {
       "id": "cucumber",
       "name": "Cucumber",
@@ -323,13 +802,45 @@
       "emoji": "🥒",
       "description": "Fast-growing warm-season vine, high water requirement.",
       "environment": {
-        "temperature": { "min": 18, "max": 30, "opt": 24, "unit": "°C" },
-        "humidity":    { "min": 70, "max": 90, "opt": 80, "unit": "%" },
-        "soil_moisture":{ "min": 65, "max": 85, "opt": 75, "unit": "%" },
-        "ph":          { "min": 5.5,"max": 7.0, "opt": 6.2 },
-        "light_lux":   { "min": 20000,"max": 70000,"opt": 45000 },
-        "co2_ppm":     { "min": 400, "max": 1500, "opt": 900 },
-        "soil_temp":   { "min": 15,  "max": 32,   "opt": 22, "unit": "°C" }
+        "temperature": {
+          "min": 18,
+          "max": 30,
+          "opt": 24,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 70,
+          "max": 90,
+          "opt": 80,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 65,
+          "max": 85,
+          "opt": 75,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 5.5,
+          "max": 7.0,
+          "opt": 6.2
+        },
+        "light_lux": {
+          "min": 20000,
+          "max": 70000,
+          "opt": 45000
+        },
+        "co2_ppm": {
+          "min": 400,
+          "max": 1500,
+          "opt": 900
+        },
+        "soil_temp": {
+          "min": 15,
+          "max": 32,
+          "opt": 22,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 55,
@@ -339,10 +850,21 @@
         "area_m2": 0.5,
         "daily_light_target_klux_hours": 28
       },
-      "stress_weights": { "temperature": 0.25, "humidity": 0.20, "soil_moisture": 0.30, "ph": 0.10, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Fruits are 95% water — never let soil dry out", "Bitter cucumbers indicate water stress", "Harvest frequently to encourage more fruit"]
+      "stress_weights": {
+        "temperature": 0.25,
+        "humidity": 0.2,
+        "soil_moisture": 0.3,
+        "ph": 0.1,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Fruits are 95% water — never let soil dry out",
+        "Bitter cucumbers indicate water stress",
+        "Harvest frequently to encourage more fruit"
+      ],
+      "name_ar": "خيار"
     },
-
     {
       "id": "spinach",
       "name": "Spinach",
@@ -351,13 +873,45 @@
       "emoji": "🥬",
       "description": "Fast cool-season leafy green, bolts quickly in heat.",
       "environment": {
-        "temperature": { "min": 5,  "max": 18, "opt": 12, "unit": "°C" },
-        "humidity":    { "min": 55, "max": 75, "opt": 65, "unit": "%" },
-        "soil_moisture":{ "min": 55, "max": 75, "opt": 65, "unit": "%" },
-        "ph":          { "min": 6.0,"max": 7.5, "opt": 6.8 },
-        "light_lux":   { "min": 8000, "max": 35000,"opt": 20000 },
-        "co2_ppm":     { "min": 350, "max": 1200, "opt": 700 },
-        "soil_temp":   { "min": 2,   "max": 20,   "opt": 10, "unit": "°C" }
+        "temperature": {
+          "min": 5,
+          "max": 18,
+          "opt": 12,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 55,
+          "max": 75,
+          "opt": 65,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 55,
+          "max": 75,
+          "opt": 65,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 6.0,
+          "max": 7.5,
+          "opt": 6.8
+        },
+        "light_lux": {
+          "min": 8000,
+          "max": 35000,
+          "opt": 20000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1200,
+          "opt": 700
+        },
+        "soil_temp": {
+          "min": 2,
+          "max": 20,
+          "opt": 10,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 45,
@@ -369,10 +923,21 @@
         "requires_short_day": true,
         "critical_photoperiod": 13
       },
-      "stress_weights": { "temperature": 0.40, "humidity": 0.15, "soil_moisture": 0.20, "ph": 0.10, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Bolts above 24°C — strictly a cool-season crop", "High oxalate content reduced by cooking", "Harvest outer leaves for continuous production"]
+      "stress_weights": {
+        "temperature": 0.4,
+        "humidity": 0.15,
+        "soil_moisture": 0.2,
+        "ph": 0.1,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Bolts above 24°C — strictly a cool-season crop",
+        "High oxalate content reduced by cooking",
+        "Harvest outer leaves for continuous production"
+      ],
+      "name_ar": "سبانخ"
     },
-
     {
       "id": "garlic",
       "name": "Garlic",
@@ -381,13 +946,45 @@
       "emoji": "🧄",
       "description": "Long-season bulb crop, planted in autumn and harvested in late spring.",
       "environment": {
-        "temperature": { "min": 10, "max": 26, "opt": 18, "unit": "°C" },
-        "humidity":    { "min": 50, "max": 70, "opt": 60, "unit": "%" },
-        "soil_moisture":{ "min": 45, "max": 70, "opt": 57, "unit": "%" },
-        "ph":          { "min": 6.0,"max": 7.0, "opt": 6.5 },
-        "light_lux":   { "min": 15000,"max": 65000,"opt": 40000 },
-        "co2_ppm":     { "min": 350, "max": 1200, "opt": 700 },
-        "soil_temp":   { "min": 5,   "max": 28,   "opt": 15, "unit": "°C" }
+        "temperature": {
+          "min": 10,
+          "max": 26,
+          "opt": 18,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 50,
+          "max": 70,
+          "opt": 60,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 45,
+          "max": 70,
+          "opt": 57,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 6.0,
+          "max": 7.0,
+          "opt": 6.5
+        },
+        "light_lux": {
+          "min": 15000,
+          "max": 65000,
+          "opt": 40000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1200,
+          "opt": 700
+        },
+        "soil_temp": {
+          "min": 5,
+          "max": 28,
+          "opt": 15,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 240,
@@ -397,10 +994,21 @@
         "area_m2": 0.2,
         "daily_light_target_klux_hours": 26
       },
-      "stress_weights": { "temperature": 0.25, "humidity": 0.15, "soil_moisture": 0.25, "ph": 0.20, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Requires cold vernalization period for bulb splitting", "Stop watering when leaves yellow", "Plant pointed end up, 5cm deep"]
+      "stress_weights": {
+        "temperature": 0.25,
+        "humidity": 0.15,
+        "soil_moisture": 0.25,
+        "ph": 0.2,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Requires cold vernalization period for bulb splitting",
+        "Stop watering when leaves yellow",
+        "Plant pointed end up, 5cm deep"
+      ],
+      "name_ar": "ثوم"
     },
-
     {
       "id": "eggplant",
       "name": "Eggplant / Aubergine",
@@ -409,13 +1017,45 @@
       "emoji": "🍆",
       "description": "Heat-loving vegetable, very suitable for hot climates like Iraq.",
       "environment": {
-        "temperature": { "min": 22, "max": 32, "opt": 27, "unit": "°C" },
-        "humidity":    { "min": 55, "max": 75, "opt": 65, "unit": "%" },
-        "soil_moisture":{ "min": 55, "max": 80, "opt": 67, "unit": "%" },
-        "ph":          { "min": 5.5,"max": 6.5, "opt": 6.0 },
-        "light_lux":   { "min": 20000,"max": 75000,"opt": 50000 },
-        "co2_ppm":     { "min": 400, "max": 1200, "opt": 800 },
-        "soil_temp":   { "min": 18,  "max": 35,   "opt": 25, "unit": "°C" }
+        "temperature": {
+          "min": 22,
+          "max": 32,
+          "opt": 27,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 55,
+          "max": 75,
+          "opt": 65,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 55,
+          "max": 80,
+          "opt": 67,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 5.5,
+          "max": 6.5,
+          "opt": 6.0
+        },
+        "light_lux": {
+          "min": 20000,
+          "max": 75000,
+          "opt": 50000
+        },
+        "co2_ppm": {
+          "min": 400,
+          "max": 1200,
+          "opt": 800
+        },
+        "soil_temp": {
+          "min": 18,
+          "max": 35,
+          "opt": 25,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 80,
@@ -425,10 +1065,21 @@
         "area_m2": 0.5,
         "daily_light_target_klux_hours": 32
       },
-      "stress_weights": { "temperature": 0.25, "humidity": 0.20, "soil_moisture": 0.20, "ph": 0.20, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Very heat tolerant — ideal for Basra summer", "Bitter flavor indicates water or nutrient stress", "Harvest before seeds harden for best quality"]
+      "stress_weights": {
+        "temperature": 0.25,
+        "humidity": 0.2,
+        "soil_moisture": 0.2,
+        "ph": 0.2,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Very heat tolerant — ideal for Basra summer",
+        "Bitter flavor indicates water or nutrient stress",
+        "Harvest before seeds harden for best quality"
+      ],
+      "name_ar": "باذنجان"
     },
-
     {
       "id": "strawberry",
       "name": "Strawberry",
@@ -437,13 +1088,45 @@
       "emoji": "🍓",
       "description": "Low-growing perennial berry, produces best in cool conditions with high light.",
       "environment": {
-        "temperature": { "min": 12, "max": 24, "opt": 18, "unit": "°C" },
-        "humidity":    { "min": 60, "max": 80, "opt": 70, "unit": "%" },
-        "soil_moisture":{ "min": 55, "max": 75, "opt": 65, "unit": "%" },
-        "ph":          { "min": 5.5,"max": 6.5, "opt": 6.0 },
-        "light_lux":   { "min": 20000,"max": 70000,"opt": 45000 },
-        "co2_ppm":     { "min": 400, "max": 1200, "opt": 800 },
-        "soil_temp":   { "min": 10,  "max": 26,   "opt": 17, "unit": "°C" }
+        "temperature": {
+          "min": 12,
+          "max": 24,
+          "opt": 18,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 60,
+          "max": 80,
+          "opt": 70,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 55,
+          "max": 75,
+          "opt": 65,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 5.5,
+          "max": 6.5,
+          "opt": 6.0
+        },
+        "light_lux": {
+          "min": 20000,
+          "max": 70000,
+          "opt": 45000
+        },
+        "co2_ppm": {
+          "min": 400,
+          "max": 1200,
+          "opt": 800
+        },
+        "soil_temp": {
+          "min": 10,
+          "max": 26,
+          "opt": 17,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 90,
@@ -455,10 +1138,21 @@
         "requires_short_day": true,
         "critical_photoperiod": 14
       },
-      "stress_weights": { "temperature": 0.30, "humidity": 0.20, "soil_moisture": 0.20, "ph": 0.15, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Remove runners to concentrate energy into fruit", "Mulch to keep fruits clean and retain moisture", "Day-neutral varieties produce year-round"]
+      "stress_weights": {
+        "temperature": 0.3,
+        "humidity": 0.2,
+        "soil_moisture": 0.2,
+        "ph": 0.15,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Remove runners to concentrate energy into fruit",
+        "Mulch to keep fruits clean and retain moisture",
+        "Day-neutral varieties produce year-round"
+      ],
+      "name_ar": "فراولة"
     },
-
     {
       "id": "watermelon",
       "name": "Watermelon",
@@ -467,13 +1161,45 @@
       "emoji": "🍉",
       "description": "Large warm-season vine fruit, excellent heat tolerance — perfect for Basra.",
       "environment": {
-        "temperature": { "min": 22, "max": 35, "opt": 29, "unit": "°C" },
-        "humidity":    { "min": 50, "max": 80, "opt": 65, "unit": "%" },
-        "soil_moisture":{ "min": 50, "max": 75, "opt": 62, "unit": "%" },
-        "ph":          { "min": 6.0,"max": 7.0, "opt": 6.5 },
-        "light_lux":   { "min": 25000,"max": 100000,"opt": 65000 },
-        "co2_ppm":     { "min": 400, "max": 1500, "opt": 900 },
-        "soil_temp":   { "min": 20,  "max": 38,   "opt": 28, "unit": "°C" }
+        "temperature": {
+          "min": 22,
+          "max": 35,
+          "opt": 29,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 50,
+          "max": 80,
+          "opt": 65,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 50,
+          "max": 75,
+          "opt": 62,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 6.0,
+          "max": 7.0,
+          "opt": 6.5
+        },
+        "light_lux": {
+          "min": 25000,
+          "max": 100000,
+          "opt": 65000
+        },
+        "co2_ppm": {
+          "min": 400,
+          "max": 1500,
+          "opt": 900
+        },
+        "soil_temp": {
+          "min": 20,
+          "max": 38,
+          "opt": 28,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 85,
@@ -483,10 +1209,21 @@
         "area_m2": 2.0,
         "daily_light_target_klux_hours": 40
       },
-      "stress_weights": { "temperature": 0.20, "humidity": 0.15, "soil_moisture": 0.25, "ph": 0.15, "light": 0.20, "co2": 0.05 },
-      "care_tips": ["Reduce irrigation 2 weeks before harvest to concentrate sugars", "Hollow thump sound indicates ripeness", "One strong vine produces better than multiple weak ones"]
+      "stress_weights": {
+        "temperature": 0.2,
+        "humidity": 0.15,
+        "soil_moisture": 0.25,
+        "ph": 0.15,
+        "light": 0.2,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Reduce irrigation 2 weeks before harvest to concentrate sugars",
+        "Hollow thump sound indicates ripeness",
+        "One strong vine produces better than multiple weak ones"
+      ],
+      "name_ar": "بطيخ"
     },
-
     {
       "id": "grapes",
       "name": "Grapes",
@@ -495,13 +1232,45 @@
       "emoji": "🍇",
       "description": "Perennial woody vine, requires dry conditions during ripening.",
       "environment": {
-        "temperature": { "min": 15, "max": 30, "opt": 22, "unit": "°C" },
-        "humidity":    { "min": 40, "max": 70, "opt": 55, "unit": "%" },
-        "soil_moisture":{ "min": 35, "max": 65, "opt": 50, "unit": "%" },
-        "ph":          { "min": 5.5,"max": 6.5, "opt": 6.0 },
-        "light_lux":   { "min": 25000,"max": 90000,"opt": 60000 },
-        "co2_ppm":     { "min": 350, "max": 1200, "opt": 750 },
-        "soil_temp":   { "min": 10,  "max": 32,   "opt": 20, "unit": "°C" }
+        "temperature": {
+          "min": 15,
+          "max": 30,
+          "opt": 22,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 40,
+          "max": 70,
+          "opt": 55,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 35,
+          "max": 65,
+          "opt": 50,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 5.5,
+          "max": 6.5,
+          "opt": 6.0
+        },
+        "light_lux": {
+          "min": 25000,
+          "max": 90000,
+          "opt": 60000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1200,
+          "opt": 750
+        },
+        "soil_temp": {
+          "min": 10,
+          "max": 32,
+          "opt": 20,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 180,
@@ -511,10 +1280,21 @@
         "area_m2": 2.0,
         "daily_light_target_klux_hours": 38
       },
-      "stress_weights": { "temperature": 0.25, "humidity": 0.20, "soil_moisture": 0.20, "ph": 0.20, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["High humidity causes fungal diseases — ensure good airflow", "Deficit irrigation during veraison improves sugar concentration", "Prune hard in dormancy for best fruit production"]
+      "stress_weights": {
+        "temperature": 0.25,
+        "humidity": 0.2,
+        "soil_moisture": 0.2,
+        "ph": 0.2,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "High humidity causes fungal diseases — ensure good airflow",
+        "Deficit irrigation during veraison improves sugar concentration",
+        "Prune hard in dormancy for best fruit production"
+      ],
+      "name_ar": "عنب"
     },
-
     {
       "id": "mango",
       "name": "Mango",
@@ -523,13 +1303,45 @@
       "emoji": "🥭",
       "description": "Tropical tree fruit, extremely heat tolerant and productive in Iraq's climate.",
       "environment": {
-        "temperature": { "min": 22, "max": 38, "opt": 30, "unit": "°C" },
-        "humidity":    { "min": 40, "max": 75, "opt": 57, "unit": "%" },
-        "soil_moisture":{ "min": 40, "max": 70, "opt": 55, "unit": "%" },
-        "ph":          { "min": 5.5,"max": 7.5, "opt": 6.5 },
-        "light_lux":   { "min": 30000,"max": 100000,"opt": 70000 },
-        "co2_ppm":     { "min": 350, "max": 1500, "opt": 900 },
-        "soil_temp":   { "min": 20,  "max": 40,   "opt": 28, "unit": "°C" }
+        "temperature": {
+          "min": 22,
+          "max": 38,
+          "opt": 30,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 40,
+          "max": 75,
+          "opt": 57,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 40,
+          "max": 70,
+          "opt": 55,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 5.5,
+          "max": 7.5,
+          "opt": 6.5
+        },
+        "light_lux": {
+          "min": 30000,
+          "max": 100000,
+          "opt": 70000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1500,
+          "opt": 900
+        },
+        "soil_temp": {
+          "min": 20,
+          "max": 40,
+          "opt": 28,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 120,
@@ -539,10 +1351,21 @@
         "area_m2": 5.0,
         "daily_light_target_klux_hours": 45
       },
-      "stress_weights": { "temperature": 0.20, "humidity": 0.15, "soil_moisture": 0.20, "ph": 0.15, "light": 0.25, "co2": 0.05 },
-      "care_tips": ["Dry spell triggers flowering — withhold water for 4-6 weeks before desired bloom", "Young trees need frost protection below 4°C", "Deep taproot tolerates drought once established"]
+      "stress_weights": {
+        "temperature": 0.2,
+        "humidity": 0.15,
+        "soil_moisture": 0.2,
+        "ph": 0.15,
+        "light": 0.25,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Dry spell triggers flowering — withhold water for 4-6 weeks before desired bloom",
+        "Young trees need frost protection below 4°C",
+        "Deep taproot tolerates drought once established"
+      ],
+      "name_ar": "مانجو"
     },
-
     {
       "id": "banana",
       "name": "Banana",
@@ -551,13 +1374,45 @@
       "emoji": "🍌",
       "description": "Fast-growing tropical herb (not a tree), high water and nutrient demand.",
       "environment": {
-        "temperature": { "min": 24, "max": 38, "opt": 30, "unit": "°C" },
-        "humidity":    { "min": 70, "max": 90, "opt": 80, "unit": "%" },
-        "soil_moisture":{ "min": 65, "max": 90, "opt": 78, "unit": "%" },
-        "ph":          { "min": 5.5,"max": 7.0, "opt": 6.2 },
-        "light_lux":   { "min": 25000,"max": 90000,"opt": 60000 },
-        "co2_ppm":     { "min": 400, "max": 1500, "opt": 900 },
-        "soil_temp":   { "min": 20,  "max": 40,   "opt": 28, "unit": "°C" }
+        "temperature": {
+          "min": 24,
+          "max": 38,
+          "opt": 30,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 70,
+          "max": 90,
+          "opt": 80,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 65,
+          "max": 90,
+          "opt": 78,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 5.5,
+          "max": 7.0,
+          "opt": 6.2
+        },
+        "light_lux": {
+          "min": 25000,
+          "max": 90000,
+          "opt": 60000
+        },
+        "co2_ppm": {
+          "min": 400,
+          "max": 1500,
+          "opt": 900
+        },
+        "soil_temp": {
+          "min": 20,
+          "max": 40,
+          "opt": 28,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 300,
@@ -567,10 +1422,21 @@
         "area_m2": 3.0,
         "daily_light_target_klux_hours": 40
       },
-      "stress_weights": { "temperature": 0.20, "humidity": 0.20, "soil_moisture": 0.30, "ph": 0.15, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Pseudostem is 93% water — never let soil dry", "Remove all but one sucker per plant", "Wind damage causes cosmetic scarring on fruit — use windbreaks"]
+      "stress_weights": {
+        "temperature": 0.2,
+        "humidity": 0.2,
+        "soil_moisture": 0.3,
+        "ph": 0.15,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Pseudostem is 93% water — never let soil dry",
+        "Remove all but one sucker per plant",
+        "Wind damage causes cosmetic scarring on fruit — use windbreaks"
+      ],
+      "name_ar": "موز"
     },
-
     {
       "id": "lemon",
       "name": "Lemon",
@@ -579,13 +1445,45 @@
       "emoji": "🍋",
       "description": "Evergreen citrus tree, everbearing fruit production in warm climates.",
       "environment": {
-        "temperature": { "min": 15, "max": 35, "opt": 25, "unit": "°C" },
-        "humidity":    { "min": 45, "max": 72, "opt": 58, "unit": "%" },
-        "soil_moisture":{ "min": 40, "max": 70, "opt": 55, "unit": "%" },
-        "ph":          { "min": 5.5,"max": 6.5, "opt": 6.0 },
-        "light_lux":   { "min": 25000,"max": 85000,"opt": 55000 },
-        "co2_ppm":     { "min": 350, "max": 1200, "opt": 750 },
-        "soil_temp":   { "min": 12,  "max": 36,   "opt": 22, "unit": "°C" }
+        "temperature": {
+          "min": 15,
+          "max": 35,
+          "opt": 25,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 45,
+          "max": 72,
+          "opt": 58,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 40,
+          "max": 70,
+          "opt": 55,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 5.5,
+          "max": 6.5,
+          "opt": 6.0
+        },
+        "light_lux": {
+          "min": 25000,
+          "max": 85000,
+          "opt": 55000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1200,
+          "opt": 750
+        },
+        "soil_temp": {
+          "min": 12,
+          "max": 36,
+          "opt": 22,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 180,
@@ -595,10 +1493,21 @@
         "area_m2": 4.0,
         "daily_light_target_klux_hours": 35
       },
-      "stress_weights": { "temperature": 0.25, "humidity": 0.15, "soil_moisture": 0.20, "ph": 0.25, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Iron chlorosis in alkaline soils — chelated iron foliar spray", "Deep infrequent irrigation better than shallow frequent", "Fruit drop from sudden temperature changes — avoid stress"]
+      "stress_weights": {
+        "temperature": 0.25,
+        "humidity": 0.15,
+        "soil_moisture": 0.2,
+        "ph": 0.25,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Iron chlorosis in alkaline soils — chelated iron foliar spray",
+        "Deep infrequent irrigation better than shallow frequent",
+        "Fruit drop from sudden temperature changes — avoid stress"
+      ],
+      "name_ar": "ليمون"
     },
-
     {
       "id": "pomegranate",
       "name": "Pomegranate",
@@ -607,13 +1516,45 @@
       "emoji": "🍎",
       "description": "Drought-tolerant deciduous shrub, thrives in Basra's hot dry climate.",
       "environment": {
-        "temperature": { "min": 16, "max": 38, "opt": 28, "unit": "°C" },
-        "humidity":    { "min": 30, "max": 65, "opt": 47, "unit": "%" },
-        "soil_moisture":{ "min": 35, "max": 65, "opt": 50, "unit": "%" },
-        "ph":          { "min": 5.5,"max": 7.5, "opt": 6.5 },
-        "light_lux":   { "min": 25000,"max": 100000,"opt": 65000 },
-        "co2_ppm":     { "min": 350, "max": 1500, "opt": 800 },
-        "soil_temp":   { "min": 12,  "max": 40,   "opt": 25, "unit": "°C" }
+        "temperature": {
+          "min": 16,
+          "max": 38,
+          "opt": 28,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 30,
+          "max": 65,
+          "opt": 47,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 35,
+          "max": 65,
+          "opt": 50,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 5.5,
+          "max": 7.5,
+          "opt": 6.5
+        },
+        "light_lux": {
+          "min": 25000,
+          "max": 100000,
+          "opt": 65000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1500,
+          "opt": 800
+        },
+        "soil_temp": {
+          "min": 12,
+          "max": 40,
+          "opt": 25,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 180,
@@ -623,10 +1564,21 @@
         "area_m2": 3.0,
         "daily_light_target_klux_hours": 40
       },
-      "stress_weights": { "temperature": 0.20, "humidity": 0.15, "soil_moisture": 0.20, "ph": 0.20, "light": 0.20, "co2": 0.05 },
-      "care_tips": ["One of the most heat and drought tolerant fruits — ideal for Iraq", "Irregular watering causes fruit cracking", "Needs cold winters for good flowering — dormancy essential"]
+      "stress_weights": {
+        "temperature": 0.2,
+        "humidity": 0.15,
+        "soil_moisture": 0.2,
+        "ph": 0.2,
+        "light": 0.2,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "One of the most heat and drought tolerant fruits — ideal for Iraq",
+        "Irregular watering causes fruit cracking",
+        "Needs cold winters for good flowering — dormancy essential"
+      ],
+      "name_ar": "رمان"
     },
-
     {
       "id": "date_palm",
       "name": "Date Palm",
@@ -635,13 +1587,45 @@
       "emoji": "🌴",
       "description": "Iraq's national tree —极 heat tolerant, the world's oldest cultivated fruit tree.",
       "environment": {
-        "temperature": { "min": 20, "max": 50, "opt": 35, "unit": "°C" },
-        "humidity":    { "min": 15, "max": 50, "opt": 30, "unit": "%" },
-        "soil_moisture":{ "min": 30, "max": 65, "opt": 48, "unit": "%" },
-        "ph":          { "min": 6.0,"max": 8.5, "opt": 7.5 },
-        "light_lux":   { "min": 40000,"max": 120000,"opt": 80000 },
-        "co2_ppm":     { "min": 350, "max": 1500, "opt": 900 },
-        "soil_temp":   { "min": 18,  "max": 50,   "opt": 32, "unit": "°C" }
+        "temperature": {
+          "min": 20,
+          "max": 50,
+          "opt": 35,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 15,
+          "max": 50,
+          "opt": 30,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 30,
+          "max": 65,
+          "opt": 48,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 6.0,
+          "max": 8.5,
+          "opt": 7.5
+        },
+        "light_lux": {
+          "min": 40000,
+          "max": 120000,
+          "opt": 80000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1500,
+          "opt": 900
+        },
+        "soil_temp": {
+          "min": 18,
+          "max": 50,
+          "opt": 32,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 365,
@@ -651,10 +1635,21 @@
         "area_m2": 8.0,
         "daily_light_target_klux_hours": 55
       },
-      "stress_weights": { "temperature": 0.15, "humidity": 0.10, "soil_moisture": 0.25, "ph": 0.20, "light": 0.25, "co2": 0.05 },
-      "care_tips": ["Thrives where other trees fail — 'feet in water, head in fire'", "Requires hand pollination for reliable fruit set", "Salt tolerant — can use slightly brackish irrigation water"]
+      "stress_weights": {
+        "temperature": 0.15,
+        "humidity": 0.1,
+        "soil_moisture": 0.25,
+        "ph": 0.2,
+        "light": 0.25,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Thrives where other trees fail — 'feet in water, head in fire'",
+        "Requires hand pollination for reliable fruit set",
+        "Salt tolerant — can use slightly brackish irrigation water"
+      ],
+      "name_ar": "نخل التمر"
     },
-
     {
       "id": "olive",
       "name": "Olive",
@@ -663,13 +1658,45 @@
       "emoji": "🫒",
       "description": "Ancient evergreen tree, extremely drought and heat tolerant once established.",
       "environment": {
-        "temperature": { "min": 12, "max": 35, "opt": 23, "unit": "°C" },
-        "humidity":    { "min": 30, "max": 65, "opt": 47, "unit": "%" },
-        "soil_moisture":{ "min": 25, "max": 60, "opt": 43, "unit": "%" },
-        "ph":          { "min": 5.5,"max": 8.5, "opt": 7.0 },
-        "light_lux":   { "min": 30000,"max": 100000,"opt": 65000 },
-        "co2_ppm":     { "min": 350, "max": 1500, "opt": 800 },
-        "soil_temp":   { "min": 8,   "max": 38,   "opt": 20, "unit": "°C" }
+        "temperature": {
+          "min": 12,
+          "max": 35,
+          "opt": 23,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 30,
+          "max": 65,
+          "opt": 47,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 25,
+          "max": 60,
+          "opt": 43,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 5.5,
+          "max": 8.5,
+          "opt": 7.0
+        },
+        "light_lux": {
+          "min": 30000,
+          "max": 100000,
+          "opt": 65000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1500,
+          "opt": 800
+        },
+        "soil_temp": {
+          "min": 8,
+          "max": 38,
+          "opt": 20,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 1825,
@@ -679,10 +1706,21 @@
         "area_m2": 6.0,
         "daily_light_target_klux_hours": 42
       },
-      "stress_weights": { "temperature": 0.20, "humidity": 0.10, "soil_moisture": 0.20, "ph": 0.25, "light": 0.20, "co2": 0.05 },
-      "care_tips": ["Established trees survive without irrigation — supplemental water increases yield", "Biennial bearing — heavy crop one year, light next", "Requires cold chilling hours below 10°C to flower"]
+      "stress_weights": {
+        "temperature": 0.2,
+        "humidity": 0.1,
+        "soil_moisture": 0.2,
+        "ph": 0.25,
+        "light": 0.2,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Established trees survive without irrigation — supplemental water increases yield",
+        "Biennial bearing — heavy crop one year, light next",
+        "Requires cold chilling hours below 10°C to flower"
+      ],
+      "name_ar": "زيتون"
     },
-
     {
       "id": "avocado",
       "name": "Avocado",
@@ -691,13 +1729,45 @@
       "emoji": "🥑",
       "description": "Tropical/subtropical tree fruit, very sensitive to waterlogging and salt.",
       "environment": {
-        "temperature": { "min": 16, "max": 30, "opt": 23, "unit": "°C" },
-        "humidity":    { "min": 55, "max": 80, "opt": 67, "unit": "%" },
-        "soil_moisture":{ "min": 50, "max": 75, "opt": 62, "unit": "%" },
-        "ph":          { "min": 6.0,"max": 7.0, "opt": 6.5 },
-        "light_lux":   { "min": 25000,"max": 80000,"opt": 50000 },
-        "co2_ppm":     { "min": 350, "max": 1200, "opt": 800 },
-        "soil_temp":   { "min": 14,  "max": 32,   "opt": 22, "unit": "°C" }
+        "temperature": {
+          "min": 16,
+          "max": 30,
+          "opt": 23,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 55,
+          "max": 80,
+          "opt": 67,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 50,
+          "max": 75,
+          "opt": 62,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 6.0,
+          "max": 7.0,
+          "opt": 6.5
+        },
+        "light_lux": {
+          "min": 25000,
+          "max": 80000,
+          "opt": 50000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1200,
+          "opt": 800
+        },
+        "soil_temp": {
+          "min": 14,
+          "max": 32,
+          "opt": 22,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 540,
@@ -707,10 +1777,21 @@
         "area_m2": 6.0,
         "daily_light_target_klux_hours": 32
       },
-      "stress_weights": { "temperature": 0.25, "humidity": 0.20, "soil_moisture": 0.25, "ph": 0.15, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Shallow feeder roots — mulch heavily and never cultivate", "Chloride sensitive — avoid NaCl-rich water", "Ethylene from ripening fruit triggers nearby trees to fruit"]
+      "stress_weights": {
+        "temperature": 0.25,
+        "humidity": 0.2,
+        "soil_moisture": 0.25,
+        "ph": 0.15,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Shallow feeder roots — mulch heavily and never cultivate",
+        "Chloride sensitive — avoid NaCl-rich water",
+        "Ethylene from ripening fruit triggers nearby trees to fruit"
+      ],
+      "name_ar": "أفوكادو"
     },
-
     {
       "id": "fig",
       "name": "Fig",
@@ -719,13 +1800,45 @@
       "emoji": "🫐",
       "description": "Ancient heat-tolerant deciduous fruit tree, thrives in Mediterranean and Middle Eastern climates.",
       "environment": {
-        "temperature": { "min": 16, "max": 38, "opt": 27, "unit": "°C" },
-        "humidity":    { "min": 35, "max": 65, "opt": 50, "unit": "%" },
-        "soil_moisture":{ "min": 35, "max": 65, "opt": 50, "unit": "%" },
-        "ph":          { "min": 6.0,"max": 7.5, "opt": 6.8 },
-        "light_lux":   { "min": 25000,"max": 100000,"opt": 65000 },
-        "co2_ppm":     { "min": 350, "max": 1500, "opt": 800 },
-        "soil_temp":   { "min": 12,  "max": 40,   "opt": 24, "unit": "°C" }
+        "temperature": {
+          "min": 16,
+          "max": 38,
+          "opt": 27,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 35,
+          "max": 65,
+          "opt": 50,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 35,
+          "max": 65,
+          "opt": 50,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 6.0,
+          "max": 7.5,
+          "opt": 6.8
+        },
+        "light_lux": {
+          "min": 25000,
+          "max": 100000,
+          "opt": 65000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1500,
+          "opt": 800
+        },
+        "soil_temp": {
+          "min": 12,
+          "max": 40,
+          "opt": 24,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 540,
@@ -735,10 +1848,21 @@
         "area_m2": 4.0,
         "daily_light_target_klux_hours": 40
       },
-      "stress_weights": { "temperature": 0.20, "humidity": 0.15, "soil_moisture": 0.20, "ph": 0.20, "light": 0.20, "co2": 0.05 },
-      "care_tips": ["Very drought tolerant once established", "Splitting fruit indicates irregular watering", "Common figs don't need pollination — most home garden varieties"]
+      "stress_weights": {
+        "temperature": 0.2,
+        "humidity": 0.15,
+        "soil_moisture": 0.2,
+        "ph": 0.2,
+        "light": 0.2,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Very drought tolerant once established",
+        "Splitting fruit indicates irregular watering",
+        "Common figs don't need pollination — most home garden varieties"
+      ],
+      "name_ar": "تين"
     },
-
     {
       "id": "coconut",
       "name": "Coconut Palm",
@@ -747,13 +1871,45 @@
       "emoji": "🥥",
       "description": "Tropical palm, productive year-round in humid coastal climates.",
       "environment": {
-        "temperature": { "min": 25, "max": 38, "opt": 32, "unit": "°C" },
-        "humidity":    { "min": 70, "max": 90, "opt": 80, "unit": "%" },
-        "soil_moisture":{ "min": 60, "max": 85, "opt": 72, "unit": "%" },
-        "ph":          { "min": 5.5,"max": 8.0, "opt": 6.5 },
-        "light_lux":   { "min": 35000,"max": 110000,"opt": 75000 },
-        "co2_ppm":     { "min": 350, "max": 1500, "opt": 900 },
-        "soil_temp":   { "min": 22,  "max": 40,   "opt": 30, "unit": "°C" }
+        "temperature": {
+          "min": 25,
+          "max": 38,
+          "opt": 32,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 70,
+          "max": 90,
+          "opt": 80,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 60,
+          "max": 85,
+          "opt": 72,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 5.5,
+          "max": 8.0,
+          "opt": 6.5
+        },
+        "light_lux": {
+          "min": 35000,
+          "max": 110000,
+          "opt": 75000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1500,
+          "opt": 900
+        },
+        "soil_temp": {
+          "min": 22,
+          "max": 40,
+          "opt": 30,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 365,
@@ -763,10 +1919,21 @@
         "area_m2": 9.0,
         "daily_light_target_klux_hours": 50
       },
-      "stress_weights": { "temperature": 0.20, "humidity": 0.25, "soil_moisture": 0.25, "ph": 0.10, "light": 0.15, "co2": 0.05 },
-      "care_tips": ["Salt tolerant — thrives in coastal areas", "Boron deficiency causes 'little leaf' disorder", "Productive for 60-80 years with proper care"]
+      "stress_weights": {
+        "temperature": 0.2,
+        "humidity": 0.25,
+        "soil_moisture": 0.25,
+        "ph": 0.1,
+        "light": 0.15,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Salt tolerant — thrives in coastal areas",
+        "Boron deficiency causes 'little leaf' disorder",
+        "Productive for 60-80 years with proper care"
+      ],
+      "name_ar": "نخل جوز الهند"
     },
-
     {
       "id": "mint",
       "name": "Mint",
@@ -775,13 +1942,45 @@
       "emoji": "🌿",
       "description": "Vigorous spreading perennial herb, spreads aggressively via rhizomes.",
       "environment": {
-        "temperature": { "min": 13, "max": 26, "opt": 19, "unit": "°C" },
-        "humidity":    { "min": 60, "max": 80, "opt": 70, "unit": "%" },
-        "soil_moisture":{ "min": 60, "max": 85, "opt": 72, "unit": "%" },
-        "ph":          { "min": 6.0,"max": 7.0, "opt": 6.5 },
-        "light_lux":   { "min": 10000,"max": 50000,"opt": 25000 },
-        "co2_ppm":     { "min": 350, "max": 1200, "opt": 700 },
-        "soil_temp":   { "min": 8,   "max": 28,   "opt": 16, "unit": "°C" }
+        "temperature": {
+          "min": 13,
+          "max": 26,
+          "opt": 19,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 60,
+          "max": 80,
+          "opt": 70,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 60,
+          "max": 85,
+          "opt": 72,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 6.0,
+          "max": 7.0,
+          "opt": 6.5
+        },
+        "light_lux": {
+          "min": 10000,
+          "max": 50000,
+          "opt": 25000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1200,
+          "opt": 700
+        },
+        "soil_temp": {
+          "min": 8,
+          "max": 28,
+          "opt": 16,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 90,
@@ -791,10 +1990,21 @@
         "area_m2": 0.5,
         "daily_light_target_klux_hours": 16
       },
-      "stress_weights": { "temperature": 0.25, "humidity": 0.20, "soil_moisture": 0.25, "ph": 0.15, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Contain in pots — spreads invasively in open beds", "Harvest frequently to prevent flowering which reduces flavor", "Partial shade acceptable — good for shaded garden spots"]
+      "stress_weights": {
+        "temperature": 0.25,
+        "humidity": 0.2,
+        "soil_moisture": 0.25,
+        "ph": 0.15,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Contain in pots — spreads invasively in open beds",
+        "Harvest frequently to prevent flowering which reduces flavor",
+        "Partial shade acceptable — good for shaded garden spots"
+      ],
+      "name_ar": "نعناع"
     },
-
     {
       "id": "basil",
       "name": "Basil",
@@ -803,13 +2013,45 @@
       "emoji": "🌿",
       "description": "Warm-season aromatic herb, very sensitive to cold.",
       "environment": {
-        "temperature": { "min": 18, "max": 30, "opt": 24, "unit": "°C" },
-        "humidity":    { "min": 55, "max": 75, "opt": 65, "unit": "%" },
-        "soil_moisture":{ "min": 50, "max": 75, "opt": 62, "unit": "%" },
-        "ph":          { "min": 6.0,"max": 7.0, "opt": 6.5 },
-        "light_lux":   { "min": 15000,"max": 60000,"opt": 35000 },
-        "co2_ppm":     { "min": 350, "max": 1200, "opt": 700 },
-        "soil_temp":   { "min": 15,  "max": 32,   "opt": 22, "unit": "°C" }
+        "temperature": {
+          "min": 18,
+          "max": 30,
+          "opt": 24,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 55,
+          "max": 75,
+          "opt": 65,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 50,
+          "max": 75,
+          "opt": 62,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 6.0,
+          "max": 7.0,
+          "opt": 6.5
+        },
+        "light_lux": {
+          "min": 15000,
+          "max": 60000,
+          "opt": 35000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1200,
+          "opt": 700
+        },
+        "soil_temp": {
+          "min": 15,
+          "max": 32,
+          "opt": 22,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 60,
@@ -819,10 +2061,21 @@
         "area_m2": 0.2,
         "daily_light_target_klux_hours": 22
       },
-      "stress_weights": { "temperature": 0.35, "humidity": 0.15, "soil_moisture": 0.20, "ph": 0.15, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Pinch off flower buds to extend leaf production", "Chilling injury below 10°C causes black spotting", "Companion plant with tomatoes — repels aphids"]
+      "stress_weights": {
+        "temperature": 0.35,
+        "humidity": 0.15,
+        "soil_moisture": 0.2,
+        "ph": 0.15,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Pinch off flower buds to extend leaf production",
+        "Chilling injury below 10°C causes black spotting",
+        "Companion plant with tomatoes — repels aphids"
+      ],
+      "name_ar": "ريحان"
     },
-
     {
       "id": "coriander",
       "name": "Coriander / Cilantro",
@@ -831,13 +2084,45 @@
       "emoji": "🌿",
       "description": "Cool-season herb used extensively in Middle Eastern cuisine.",
       "environment": {
-        "temperature": { "min": 13, "max": 27, "opt": 20, "unit": "°C" },
-        "humidity":    { "min": 45, "max": 65, "opt": 55, "unit": "%" },
-        "soil_moisture":{ "min": 45, "max": 70, "opt": 57, "unit": "%" },
-        "ph":          { "min": 6.0,"max": 7.5, "opt": 6.7 },
-        "light_lux":   { "min": 12000,"max": 50000,"opt": 28000 },
-        "co2_ppm":     { "min": 350, "max": 1200, "opt": 700 },
-        "soil_temp":   { "min": 8,   "max": 28,   "opt": 18, "unit": "°C" }
+        "temperature": {
+          "min": 13,
+          "max": 27,
+          "opt": 20,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 45,
+          "max": 65,
+          "opt": 55,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 45,
+          "max": 70,
+          "opt": 57,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 6.0,
+          "max": 7.5,
+          "opt": 6.7
+        },
+        "light_lux": {
+          "min": 12000,
+          "max": 50000,
+          "opt": 28000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1200,
+          "opt": 700
+        },
+        "soil_temp": {
+          "min": 8,
+          "max": 28,
+          "opt": 18,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 45,
@@ -847,10 +2132,21 @@
         "area_m2": 0.2,
         "daily_light_target_klux_hours": 18
       },
-      "stress_weights": { "temperature": 0.30, "humidity": 0.15, "soil_moisture": 0.20, "ph": 0.15, "light": 0.15, "co2": 0.05 },
-      "care_tips": ["Bolts rapidly in heat — sow in cooler months in Basra (Oct-Feb)", "Direct sow — does not transplant well", "Crush a seed before sowing to improve germination rate"]
+      "stress_weights": {
+        "temperature": 0.3,
+        "humidity": 0.15,
+        "soil_moisture": 0.2,
+        "ph": 0.15,
+        "light": 0.15,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Bolts rapidly in heat — sow in cooler months in Basra (Oct-Feb)",
+        "Direct sow — does not transplant well",
+        "Crush a seed before sowing to improve germination rate"
+      ],
+      "name_ar": "كزبرة"
     },
-
     {
       "id": "turmeric",
       "name": "Turmeric",
@@ -859,13 +2155,45 @@
       "emoji": "🌿",
       "description": "Tropical rhizome spice requiring warm moist conditions — ideal for Iraq summers.",
       "environment": {
-        "temperature": { "min": 20, "max": 35, "opt": 28, "unit": "°C" },
-        "humidity":    { "min": 70, "max": 90, "opt": 80, "unit": "%" },
-        "soil_moisture":{ "min": 65, "max": 85, "opt": 75, "unit": "%" },
-        "ph":          { "min": 5.0,"max": 7.5, "opt": 6.2 },
-        "light_lux":   { "min": 15000,"max": 60000,"opt": 35000 },
-        "co2_ppm":     { "min": 350, "max": 1500, "opt": 900 },
-        "soil_temp":   { "min": 18,  "max": 38,   "opt": 26, "unit": "°C" }
+        "temperature": {
+          "min": 20,
+          "max": 35,
+          "opt": 28,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 70,
+          "max": 90,
+          "opt": 80,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 65,
+          "max": 85,
+          "opt": 75,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 5.0,
+          "max": 7.5,
+          "opt": 6.2
+        },
+        "light_lux": {
+          "min": 15000,
+          "max": 60000,
+          "opt": 35000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1500,
+          "opt": 900
+        },
+        "soil_temp": {
+          "min": 18,
+          "max": 38,
+          "opt": 26,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 270,
@@ -875,10 +2203,21 @@
         "area_m2": 0.5,
         "daily_light_target_klux_hours": 22
       },
-      "stress_weights": { "temperature": 0.25, "humidity": 0.25, "soil_moisture": 0.25, "ph": 0.10, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Prefers filtered light — grows under taller plants", "Harvest when lower leaves yellow", "Cure rhizomes 1 week before storing"]
+      "stress_weights": {
+        "temperature": 0.25,
+        "humidity": 0.25,
+        "soil_moisture": 0.25,
+        "ph": 0.1,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Prefers filtered light — grows under taller plants",
+        "Harvest when lower leaves yellow",
+        "Cure rhizomes 1 week before storing"
+      ],
+      "name_ar": "كركم"
     },
-
     {
       "id": "ginger",
       "name": "Ginger",
@@ -887,13 +2226,45 @@
       "emoji": "🌿",
       "description": "Tropical rhizome with high culinary and medicinal value.",
       "environment": {
-        "temperature": { "min": 20, "max": 32, "opt": 26, "unit": "°C" },
-        "humidity":    { "min": 65, "max": 90, "opt": 78, "unit": "%" },
-        "soil_moisture":{ "min": 60, "max": 85, "opt": 72, "unit": "%" },
-        "ph":          { "min": 5.5,"max": 6.5, "opt": 6.0 },
-        "light_lux":   { "min": 10000,"max": 45000,"opt": 25000 },
-        "co2_ppm":     { "min": 350, "max": 1500, "opt": 800 },
-        "soil_temp":   { "min": 18,  "max": 35,   "opt": 24, "unit": "°C" }
+        "temperature": {
+          "min": 20,
+          "max": 32,
+          "opt": 26,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 65,
+          "max": 90,
+          "opt": 78,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 60,
+          "max": 85,
+          "opt": 72,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 5.5,
+          "max": 6.5,
+          "opt": 6.0
+        },
+        "light_lux": {
+          "min": 10000,
+          "max": 45000,
+          "opt": 25000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1500,
+          "opt": 800
+        },
+        "soil_temp": {
+          "min": 18,
+          "max": 35,
+          "opt": 24,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 240,
@@ -903,10 +2274,21 @@
         "area_m2": 0.5,
         "daily_light_target_klux_hours": 16
       },
-      "stress_weights": { "temperature": 0.25, "humidity": 0.25, "soil_moisture": 0.25, "ph": 0.15, "light": 0.05, "co2": 0.05 },
-      "care_tips": ["Shade-tolerant — plant under taller crops", "Rhizomes rot if waterlogged — excellent drainage essential", "Divide rhizomes to each have at least one 'eye' before planting"]
+      "stress_weights": {
+        "temperature": 0.25,
+        "humidity": 0.25,
+        "soil_moisture": 0.25,
+        "ph": 0.15,
+        "light": 0.05,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Shade-tolerant — plant under taller crops",
+        "Rhizomes rot if waterlogged — excellent drainage essential",
+        "Divide rhizomes to each have at least one 'eye' before planting"
+      ],
+      "name_ar": "زنجبيل"
     },
-
     {
       "id": "saffron",
       "name": "Saffron",
@@ -915,13 +2297,45 @@
       "emoji": "🌸",
       "description": "World's most expensive spice, harvested from flower stigmas. Requires hot dry summer dormancy.",
       "environment": {
-        "temperature": { "min": 10, "max": 24, "opt": 17, "unit": "°C" },
-        "humidity":    { "min": 30, "max": 55, "opt": 42, "unit": "%" },
-        "soil_moisture":{ "min": 30, "max": 60, "opt": 45, "unit": "%" },
-        "ph":          { "min": 6.0,"max": 8.0, "opt": 7.0 },
-        "light_lux":   { "min": 20000,"max": 70000,"opt": 45000 },
-        "co2_ppm":     { "min": 350, "max": 1200, "opt": 700 },
-        "soil_temp":   { "min": 5,   "max": 26,   "opt": 14, "unit": "°C" }
+        "temperature": {
+          "min": 10,
+          "max": 24,
+          "opt": 17,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 30,
+          "max": 55,
+          "opt": 42,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 30,
+          "max": 60,
+          "opt": 45,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 6.0,
+          "max": 8.0,
+          "opt": 7.0
+        },
+        "light_lux": {
+          "min": 20000,
+          "max": 70000,
+          "opt": 45000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1200,
+          "opt": 700
+        },
+        "soil_temp": {
+          "min": 5,
+          "max": 26,
+          "opt": 14,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 180,
@@ -931,10 +2345,21 @@
         "area_m2": 0.5,
         "daily_light_target_klux_hours": 28
       },
-      "stress_weights": { "temperature": 0.35, "humidity": 0.20, "soil_moisture": 0.20, "ph": 0.10, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["STOP watering completely June-August (hot dormancy triggers flowering)", "Harvest stigmas within 24h of flower opening at dawn", "Alkaline well-drained soil is essential — add lime if needed"]
+      "stress_weights": {
+        "temperature": 0.35,
+        "humidity": 0.2,
+        "soil_moisture": 0.2,
+        "ph": 0.1,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "STOP watering completely June-August (hot dormancy triggers flowering)",
+        "Harvest stigmas within 24h of flower opening at dawn",
+        "Alkaline well-drained soil is essential — add lime if needed"
+      ],
+      "name_ar": "زعفران"
     },
-
     {
       "id": "sunflower",
       "name": "Sunflower",
@@ -943,13 +2368,45 @@
       "emoji": "🌻",
       "description": "Heat-tolerant oilseed crop, also grown for ornamental purposes.",
       "environment": {
-        "temperature": { "min": 18, "max": 32, "opt": 24, "unit": "°C" },
-        "humidity":    { "min": 35, "max": 65, "opt": 50, "unit": "%" },
-        "soil_moisture":{ "min": 40, "max": 70, "opt": 55, "unit": "%" },
-        "ph":          { "min": 6.0,"max": 7.5, "opt": 6.7 },
-        "light_lux":   { "min": 30000,"max": 100000,"opt": 65000 },
-        "co2_ppm":     { "min": 350, "max": 1500, "opt": 900 },
-        "soil_temp":   { "min": 10,  "max": 35,   "opt": 20, "unit": "°C" }
+        "temperature": {
+          "min": 18,
+          "max": 32,
+          "opt": 24,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 35,
+          "max": 65,
+          "opt": 50,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 40,
+          "max": 70,
+          "opt": 55,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 6.0,
+          "max": 7.5,
+          "opt": 6.7
+        },
+        "light_lux": {
+          "min": 30000,
+          "max": 100000,
+          "opt": 65000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1500,
+          "opt": 900
+        },
+        "soil_temp": {
+          "min": 10,
+          "max": 35,
+          "opt": 20,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 100,
@@ -959,10 +2416,21 @@
         "area_m2": 1.0,
         "daily_light_target_klux_hours": 42
       },
-      "stress_weights": { "temperature": 0.20, "humidity": 0.10, "soil_moisture": 0.25, "ph": 0.15, "light": 0.25, "co2": 0.05 },
-      "care_tips": ["Deep taproot — drought tolerant after establishment", "Heads track the sun only during vegetative stage", "Birds eat seeds — net heads if growing for harvest"]
+      "stress_weights": {
+        "temperature": 0.2,
+        "humidity": 0.1,
+        "soil_moisture": 0.25,
+        "ph": 0.15,
+        "light": 0.25,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Deep taproot — drought tolerant after establishment",
+        "Heads track the sun only during vegetative stage",
+        "Birds eat seeds — net heads if growing for harvest"
+      ],
+      "name_ar": "عباد الشمس"
     },
-
     {
       "id": "cotton",
       "name": "Cotton",
@@ -971,13 +2439,45 @@
       "emoji": "☁️",
       "description": "Warm-season fiber crop, historically grown in Mesopotamia.",
       "environment": {
-        "temperature": { "min": 20, "max": 36, "opt": 28, "unit": "°C" },
-        "humidity":    { "min": 35, "max": 65, "opt": 50, "unit": "%" },
-        "soil_moisture":{ "min": 45, "max": 75, "opt": 60, "unit": "%" },
-        "ph":          { "min": 5.8,"max": 7.0, "opt": 6.4 },
-        "light_lux":   { "min": 30000,"max": 100000,"opt": 65000 },
-        "co2_ppm":     { "min": 350, "max": 1500, "opt": 900 },
-        "soil_temp":   { "min": 18,  "max": 38,   "opt": 26, "unit": "°C" }
+        "temperature": {
+          "min": 20,
+          "max": 36,
+          "opt": 28,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 35,
+          "max": 65,
+          "opt": 50,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 45,
+          "max": 75,
+          "opt": 60,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 5.8,
+          "max": 7.0,
+          "opt": 6.4
+        },
+        "light_lux": {
+          "min": 30000,
+          "max": 100000,
+          "opt": 65000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1500,
+          "opt": 900
+        },
+        "soil_temp": {
+          "min": 18,
+          "max": 38,
+          "opt": 26,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 180,
@@ -987,10 +2487,21 @@
         "area_m2": 2.0,
         "daily_light_target_klux_hours": 42
       },
-      "stress_weights": { "temperature": 0.25, "humidity": 0.15, "soil_moisture": 0.25, "ph": 0.15, "light": 0.15, "co2": 0.05 },
-      "care_tips": ["Reduce irrigation after boll opening to aid drying", "Heavy nitrogen at squaring stage increases yield", "Dry weather during harvest prevents boll rot"]
+      "stress_weights": {
+        "temperature": 0.25,
+        "humidity": 0.15,
+        "soil_moisture": 0.25,
+        "ph": 0.15,
+        "light": 0.15,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Reduce irrigation after boll opening to aid drying",
+        "Heavy nitrogen at squaring stage increases yield",
+        "Dry weather during harvest prevents boll rot"
+      ],
+      "name_ar": "قطن"
     },
-
     {
       "id": "sugarcane",
       "name": "Sugar Cane",
@@ -999,13 +2510,45 @@
       "emoji": "🎋",
       "description": "Tropical perennial grass producing sucrose, grown in warm humid climates.",
       "environment": {
-        "temperature": { "min": 22, "max": 40, "opt": 30, "unit": "°C" },
-        "humidity":    { "min": 55, "max": 80, "opt": 67, "unit": "%" },
-        "soil_moisture":{ "min": 60, "max": 85, "opt": 72, "unit": "%" },
-        "ph":          { "min": 6.0,"max": 7.5, "opt": 6.7 },
-        "light_lux":   { "min": 35000,"max": 110000,"opt": 75000 },
-        "co2_ppm":     { "min": 350, "max": 1500, "opt": 1000 },
-        "soil_temp":   { "min": 20,  "max": 42,   "opt": 30, "unit": "°C" }
+        "temperature": {
+          "min": 22,
+          "max": 40,
+          "opt": 30,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 55,
+          "max": 80,
+          "opt": 67,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 60,
+          "max": 85,
+          "opt": 72,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 6.0,
+          "max": 7.5,
+          "opt": 6.7
+        },
+        "light_lux": {
+          "min": 35000,
+          "max": 110000,
+          "opt": 75000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1500,
+          "opt": 1000
+        },
+        "soil_temp": {
+          "min": 20,
+          "max": 42,
+          "opt": 30,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 365,
@@ -1015,10 +2558,21 @@
         "area_m2": 3.0,
         "daily_light_target_klux_hours": 50
       },
-      "stress_weights": { "temperature": 0.20, "humidity": 0.20, "soil_moisture": 0.30, "ph": 0.10, "light": 0.15, "co2": 0.05 },
-      "care_tips": ["Cool dry period before harvest increases sugar content", "Ratoon crops from cut stumps for 3-5 cycles", "High potassium demand — apply K fertilizer at grand growth stage"]
+      "stress_weights": {
+        "temperature": 0.2,
+        "humidity": 0.2,
+        "soil_moisture": 0.3,
+        "ph": 0.1,
+        "light": 0.15,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Cool dry period before harvest increases sugar content",
+        "Ratoon crops from cut stumps for 3-5 cycles",
+        "High potassium demand — apply K fertilizer at grand growth stage"
+      ],
+      "name_ar": "قصب السكر"
     },
-
     {
       "id": "papaya",
       "name": "Papaya",
@@ -1027,13 +2581,45 @@
       "emoji": "🍈",
       "description": "Fast-growing tropical tree, fruits within one year, very productive in heat.",
       "environment": {
-        "temperature": { "min": 20, "max": 35, "opt": 27, "unit": "°C" },
-        "humidity":    { "min": 60, "max": 85, "opt": 72, "unit": "%" },
-        "soil_moisture":{ "min": 55, "max": 80, "opt": 67, "unit": "%" },
-        "ph":          { "min": 6.0,"max": 7.0, "opt": 6.5 },
-        "light_lux":   { "min": 25000,"max": 90000,"opt": 60000 },
-        "co2_ppm":     { "min": 350, "max": 1500, "opt": 900 },
-        "soil_temp":   { "min": 18,  "max": 36,   "opt": 26, "unit": "°C" }
+        "temperature": {
+          "min": 20,
+          "max": 35,
+          "opt": 27,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 60,
+          "max": 85,
+          "opt": 72,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 55,
+          "max": 80,
+          "opt": 67,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 6.0,
+          "max": 7.0,
+          "opt": 6.5
+        },
+        "light_lux": {
+          "min": 25000,
+          "max": 90000,
+          "opt": 60000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1500,
+          "opt": 900
+        },
+        "soil_temp": {
+          "min": 18,
+          "max": 36,
+          "opt": 26,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 180,
@@ -1043,10 +2629,21 @@
         "area_m2": 3.0,
         "daily_light_target_klux_hours": 38
       },
-      "stress_weights": { "temperature": 0.25, "humidity": 0.20, "soil_moisture": 0.25, "ph": 0.15, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Waterlogging for even 48h can be fatal — raised beds essential", "Plant 3 seeds per hole, thin to best plant + one male", "Fruits ripen from bottom of plant upward"]
+      "stress_weights": {
+        "temperature": 0.25,
+        "humidity": 0.2,
+        "soil_moisture": 0.25,
+        "ph": 0.15,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Waterlogging for even 48h can be fatal — raised beds essential",
+        "Plant 3 seeds per hole, thin to best plant + one male",
+        "Fruits ripen from bottom of plant upward"
+      ],
+      "name_ar": "بابايا"
     },
-
     {
       "id": "pineapple",
       "name": "Pineapple",
@@ -1055,13 +2652,45 @@
       "emoji": "🍍",
       "description": "Bromeliad that tolerates poor acidic soils, produces one fruit per plant.",
       "environment": {
-        "temperature": { "min": 22, "max": 35, "opt": 28, "unit": "°C" },
-        "humidity":    { "min": 55, "max": 80, "opt": 67, "unit": "%" },
-        "soil_moisture":{ "min": 40, "max": 70, "opt": 55, "unit": "%" },
-        "ph":          { "min": 4.5,"max": 6.0, "opt": 5.2 },
-        "light_lux":   { "min": 25000,"max": 90000,"opt": 60000 },
-        "co2_ppm":     { "min": 350, "max": 1500, "opt": 900 },
-        "soil_temp":   { "min": 18,  "max": 36,   "opt": 26, "unit": "°C" }
+        "temperature": {
+          "min": 22,
+          "max": 35,
+          "opt": 28,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 55,
+          "max": 80,
+          "opt": 67,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 40,
+          "max": 70,
+          "opt": 55,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 4.5,
+          "max": 6.0,
+          "opt": 5.2
+        },
+        "light_lux": {
+          "min": 25000,
+          "max": 90000,
+          "opt": 60000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1500,
+          "opt": 900
+        },
+        "soil_temp": {
+          "min": 18,
+          "max": 36,
+          "opt": 26,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 540,
@@ -1071,10 +2700,21 @@
         "area_m2": 1.0,
         "daily_light_target_klux_hours": 38
       },
-      "stress_weights": { "temperature": 0.20, "humidity": 0.15, "soil_moisture": 0.20, "ph": 0.30, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Absorbs water through leaves — spray foliage to water", "Ethylene gas from ripe apple nearby triggers early fruiting", "Ratoon from side shoots after main harvest"]
+      "stress_weights": {
+        "temperature": 0.2,
+        "humidity": 0.15,
+        "soil_moisture": 0.2,
+        "ph": 0.3,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Absorbs water through leaves — spray foliage to water",
+        "Ethylene gas from ripe apple nearby triggers early fruiting",
+        "Ratoon from side shoots after main harvest"
+      ],
+      "name_ar": "أناناس"
     },
-
     {
       "id": "melon",
       "name": "Cantaloupe Melon",
@@ -1083,13 +2723,45 @@
       "emoji": "🍈",
       "description": "Warm-season vine fruit, needs heat and dry conditions during ripening.",
       "environment": {
-        "temperature": { "min": 22, "max": 32, "opt": 27, "unit": "°C" },
-        "humidity":    { "min": 50, "max": 75, "opt": 62, "unit": "%" },
-        "soil_moisture":{ "min": 50, "max": 75, "opt": 62, "unit": "%" },
-        "ph":          { "min": 6.0,"max": 6.5, "opt": 6.2 },
-        "light_lux":   { "min": 25000,"max": 95000,"opt": 60000 },
-        "co2_ppm":     { "min": 400, "max": 1500, "opt": 900 },
-        "soil_temp":   { "min": 18,  "max": 35,   "opt": 25, "unit": "°C" }
+        "temperature": {
+          "min": 22,
+          "max": 32,
+          "opt": 27,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 50,
+          "max": 75,
+          "opt": 62,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 50,
+          "max": 75,
+          "opt": 62,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 6.0,
+          "max": 6.5,
+          "opt": 6.2
+        },
+        "light_lux": {
+          "min": 25000,
+          "max": 95000,
+          "opt": 60000
+        },
+        "co2_ppm": {
+          "min": 400,
+          "max": 1500,
+          "opt": 900
+        },
+        "soil_temp": {
+          "min": 18,
+          "max": 35,
+          "opt": 25,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 90,
@@ -1099,10 +2771,21 @@
         "area_m2": 1.5,
         "daily_light_target_klux_hours": 38
       },
-      "stress_weights": { "temperature": 0.25, "humidity": 0.15, "soil_moisture": 0.25, "ph": 0.15, "light": 0.15, "co2": 0.05 },
-      "care_tips": ["Stop irrigation 1 week before harvest to concentrate sugar", "Sweet fragrance at stem end indicates ripeness", "One vine — two or three melons maximum for best size"]
+      "stress_weights": {
+        "temperature": 0.25,
+        "humidity": 0.15,
+        "soil_moisture": 0.25,
+        "ph": 0.15,
+        "light": 0.15,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Stop irrigation 1 week before harvest to concentrate sugar",
+        "Sweet fragrance at stem end indicates ripeness",
+        "One vine — two or three melons maximum for best size"
+      ],
+      "name_ar": "شمام"
     },
-
     {
       "id": "peach",
       "name": "Peach",
@@ -1111,13 +2794,45 @@
       "emoji": "🍑",
       "description": "Stone fruit tree originally from Persia (Iran/Iraq region), needs winter chilling.",
       "environment": {
-        "temperature": { "min": 12, "max": 26, "opt": 19, "unit": "°C" },
-        "humidity":    { "min": 45, "max": 72, "opt": 58, "unit": "%" },
-        "soil_moisture":{ "min": 45, "max": 70, "opt": 57, "unit": "%" },
-        "ph":          { "min": 6.0,"max": 7.0, "opt": 6.5 },
-        "light_lux":   { "min": 25000,"max": 80000,"opt": 52000 },
-        "co2_ppm":     { "min": 350, "max": 1200, "opt": 750 },
-        "soil_temp":   { "min": 8,   "max": 28,   "opt": 18, "unit": "°C" }
+        "temperature": {
+          "min": 12,
+          "max": 26,
+          "opt": 19,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 45,
+          "max": 72,
+          "opt": 58,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 45,
+          "max": 70,
+          "opt": 57,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 6.0,
+          "max": 7.0,
+          "opt": 6.5
+        },
+        "light_lux": {
+          "min": 25000,
+          "max": 80000,
+          "opt": 52000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1200,
+          "opt": 750
+        },
+        "soil_temp": {
+          "min": 8,
+          "max": 28,
+          "opt": 18,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 160,
@@ -1127,10 +2842,21 @@
         "area_m2": 5.0,
         "daily_light_target_klux_hours": 32
       },
-      "stress_weights": { "temperature": 0.30, "humidity": 0.15, "soil_moisture": 0.20, "ph": 0.20, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Requires 300-900 chilling hours below 7°C for fruit set", "Thin fruits to one per 15cm for large peaches", "Brown rot fungus thrives in humid conditions — avoid overhead watering"]
+      "stress_weights": {
+        "temperature": 0.3,
+        "humidity": 0.15,
+        "soil_moisture": 0.2,
+        "ph": 0.2,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Requires 300-900 chilling hours below 7°C for fruit set",
+        "Thin fruits to one per 15cm for large peaches",
+        "Brown rot fungus thrives in humid conditions — avoid overhead watering"
+      ],
+      "name_ar": "خوخ"
     },
-
     {
       "id": "apple",
       "name": "Apple",
@@ -1139,13 +2865,45 @@
       "emoji": "🍎",
       "description": "Temperate deciduous fruit tree, requires cold winters for dormancy.",
       "environment": {
-        "temperature": { "min": 10, "max": 24, "opt": 17, "unit": "°C" },
-        "humidity":    { "min": 55, "max": 80, "opt": 67, "unit": "%" },
-        "soil_moisture":{ "min": 50, "max": 75, "opt": 62, "unit": "%" },
-        "ph":          { "min": 5.8,"max": 6.5, "opt": 6.2 },
-        "light_lux":   { "min": 25000,"max": 80000,"opt": 52000 },
-        "co2_ppm":     { "min": 350, "max": 1200, "opt": 750 },
-        "soil_temp":   { "min": 5,   "max": 26,   "opt": 15, "unit": "°C" }
+        "temperature": {
+          "min": 10,
+          "max": 24,
+          "opt": 17,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 55,
+          "max": 80,
+          "opt": 67,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 50,
+          "max": 75,
+          "opt": 62,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 5.8,
+          "max": 6.5,
+          "opt": 6.2
+        },
+        "light_lux": {
+          "min": 25000,
+          "max": 80000,
+          "opt": 52000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1200,
+          "opt": 750
+        },
+        "soil_temp": {
+          "min": 5,
+          "max": 26,
+          "opt": 15,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 150,
@@ -1155,10 +2913,21 @@
         "area_m2": 6.0,
         "daily_light_target_klux_hours": 32
       },
-      "stress_weights": { "temperature": 0.30, "humidity": 0.15, "soil_moisture": 0.20, "ph": 0.20, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Most varieties need a cross-pollinator", "June drop is natural — tree self-thins excess fruitlets", "Calcium sprays prevent bitter pit disorder in stored fruit"]
+      "stress_weights": {
+        "temperature": 0.3,
+        "humidity": 0.15,
+        "soil_moisture": 0.2,
+        "ph": 0.2,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Most varieties need a cross-pollinator",
+        "June drop is natural — tree self-thins excess fruitlets",
+        "Calcium sprays prevent bitter pit disorder in stored fruit"
+      ],
+      "name_ar": "تفاح"
     },
-
     {
       "id": "orange",
       "name": "Orange",
@@ -1167,13 +2936,45 @@
       "emoji": "🍊",
       "description": "Evergreen citrus tree, very productive in subtropical/Mediterranean climates.",
       "environment": {
-        "temperature": { "min": 16, "max": 32, "opt": 24, "unit": "°C" },
-        "humidity":    { "min": 45, "max": 75, "opt": 60, "unit": "%" },
-        "soil_moisture":{ "min": 45, "max": 70, "opt": 57, "unit": "%" },
-        "ph":          { "min": 5.5,"max": 6.5, "opt": 6.0 },
-        "light_lux":   { "min": 25000,"max": 85000,"opt": 55000 },
-        "co2_ppm":     { "min": 350, "max": 1200, "opt": 750 },
-        "soil_temp":   { "min": 12,  "max": 35,   "opt": 22, "unit": "°C" }
+        "temperature": {
+          "min": 16,
+          "max": 32,
+          "opt": 24,
+          "unit": "°C"
+        },
+        "humidity": {
+          "min": 45,
+          "max": 75,
+          "opt": 60,
+          "unit": "%"
+        },
+        "soil_moisture": {
+          "min": 45,
+          "max": 70,
+          "opt": 57,
+          "unit": "%"
+        },
+        "ph": {
+          "min": 5.5,
+          "max": 6.5,
+          "opt": 6.0
+        },
+        "light_lux": {
+          "min": 25000,
+          "max": 85000,
+          "opt": 55000
+        },
+        "co2_ppm": {
+          "min": 350,
+          "max": 1200,
+          "opt": 750
+        },
+        "soil_temp": {
+          "min": 12,
+          "max": 35,
+          "opt": 22,
+          "unit": "°C"
+        }
       },
       "growth": {
         "harvest_days": 240,
@@ -1183,9 +2984,20 @@
         "area_m2": 5.0,
         "daily_light_target_klux_hours": 36
       },
-      "stress_weights": { "temperature": 0.25, "humidity": 0.15, "soil_moisture": 0.20, "ph": 0.25, "light": 0.10, "co2": 0.05 },
-      "care_tips": ["Deep infrequent watering encourages deep roots", "Magnesium deficiency shows as yellow leaves with green veins", "Frost below -3°C damages fruit — protect young trees"]
+      "stress_weights": {
+        "temperature": 0.25,
+        "humidity": 0.15,
+        "soil_moisture": 0.2,
+        "ph": 0.25,
+        "light": 0.1,
+        "co2": 0.05
+      },
+      "care_tips": [
+        "Deep infrequent watering encourages deep roots",
+        "Magnesium deficiency shows as yellow leaves with green veins",
+        "Frost below -3°C damages fruit — protect young trees"
+      ],
+      "name_ar": "برتقال"
     }
-
   ]
 }
